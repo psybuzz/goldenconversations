@@ -1,0 +1,58 @@
+@import 'partials/normalize';
+@import 'partials/variables';
+@import "compass";
+
+
+
+html,
+body {
+	height: 100%;
+	font-size: 16px;
+	.wrapper{
+		height: 100%;
+		.display-area{
+			height: 45%;
+		}
+	}
+}
+
+
+body {
+	margin: 0 30%;
+	font-family: $font-stack;	
+	h1 {
+		color: $dark-black;
+	}
+}
+
+.display-area{
+	background-color: $super-light-gray;
+	border-radius: 3px;
+	@include background-image(linear-gradient($super-light-gray, white));
+}
+
+
+.input-area {
+	margin-top: 1rem;
+	form {
+		width: 100%;
+		textarea {
+			width: 100%;
+			border: 1px solid $dark-gray; 
+			    
+
+			border-radius: 2px;
+			padding: 1rem;
+			box-sizing: border-box;
+		}
+
+		input {
+			display: block;
+			margin-top: 1rem;
+			float: right;
+		}
+	}
+}
+
+
+
