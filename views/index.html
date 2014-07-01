@@ -17,13 +17,18 @@
 		</div>
 		<div class="input-area">
 
-			<form action="#" method="POST">
-				<textarea name="textarea" rows="8" cols="50">Converse</textarea>
+			<form id='mainform' action="/post" method="POST">
+				<textarea name="content" rows="8" cols="50">Converse</textarea>
 				<input type="submit" value="Send">
+				<input type="hidden" value="testName" name="name">
 			</form>
 					
 
 		</div>
 	</div>
+	<script type='text/javascript' src='js/lib/jquery.min.js'></script>
+	<script type='text/javascript' src='js/lib/underscore.min.js'></script>
+	<script type='text/javascript' src='js/lib/backbone.min.js'></script>
+	<script type='text/javascript' src='js/Application.js'></script>
 </body>
 </html>

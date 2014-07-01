@@ -3,16 +3,18 @@
  * 
  * This file is the entry point to the main application.  It lists module dependencies, sets up
  * environment variables, and starts a new server to listen to requests.
+ *
+ * TODO(erik): Make a grunt/gulp build system to compile models, views, from Source/ into Assets/js
  */
 
 var express = require('express');
+var db = require('./db');
 var routes = require('./routes');
 var user = require('./routes/user');
 var messaging = require('./routes/messaging');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
-var db = require('./db');
 
 
 var app = express();
