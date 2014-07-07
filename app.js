@@ -8,6 +8,7 @@
  */
 
 var express = require('express');
+var app = express();
 var db = require('./db');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -15,12 +16,11 @@ var user = require('./routes/user');
 var conversation = require('./routes/conversation');
 var group = require('./routes/group');
 var post = require('./routes/post');
-var http = require('http');
+var http = require('http').Server(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
 
-
-var app = express();
+var io = require('socket.io')(http);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -53,13 +53,10 @@ app.post('/post/update', post.update);
 
 app.get('/user/search', user.search);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+io.on('connection', function(socket){
+  console.log('a user connected');
 });
 
-// TODO(erik): Setup socket.io chat relay for realtime updates.
-// var io = require('socket.io')(http);
-
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
+http.listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
