@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var socket = io();
+
 	// Load comments
 	$.getJSON('/all', function (data) {
 		var text = '';

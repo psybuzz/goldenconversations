@@ -11,15 +11,55 @@ var mongoose = require('mongoose');
 var secret = require('./appconfig');
 var dbName = 'goldenconversations';
 
-// Message Schema
 var Schema = mongoose.Schema;
-var Message = new Schema({
-    name : String,
-    content  : String,
-    created  : Date
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
+// Post Schema
+var postSchema = new Schema({
+    username	: String,
+    content  	: String,
+    time  		: Date
 }, { collection: 'public' });
 
-mongoose.model('Message', Message, 'public');
+// User Schema
+var userSchema = new Schema({
+    username 			: String,
+    name  				: String,
+    joined  			: Date,
+    description			: String,
+    photo				: String,
+    userConversations	: [{ conversation: ObjectId, hallOfFame: Boolean }],
+    recentContacts		: [ObjectId],
+
+}, { collection: 'public' });
+
+// Conversation Schema
+var conversationSchema = new Schema({
+    invited             : [ObjectId],
+    participants        : [{ participant: ObjectId, isThrilled: Boolean }],
+    category            : String,
+    question            : String,
+    discussion          : [ObjectId],
+    isGroup             : Boolean,
+    lastEdited          : Date
+}, { collection: 'public' });
+
+// Groups Schema
+var groupSchema = new Schema({
+    invited             : [ObjectId],
+    members             : [ObjectId],
+    name                : String,
+    conversations       : [ObjectId]
+}, { collection: 'public' });
+
+var dbModels = {
+	'Post': mongoose.model('Post', postSchema, 'public'),
+	'User': mongoose.model('User', userSchema, 'public'),
+	'Conversation': mongoose.model('Conversation', conversationSchema, 'public'),
+	'Group': mongoose.model('Group', groupSchema, 'public')
+}
+
+exports.models = dbModels;
  
 // Connect to database and listen to events.
 mongoose.connect('mongodb://'+secret.userDecipher.decipher() + ':' +
@@ -34,4 +74,3 @@ db.once('open', function(){
 
 // Export the db andschema to external interfaces
 exports.db = db;
-exports.Message = Message;

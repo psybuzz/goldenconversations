@@ -8,16 +8,19 @@
  */
 
 var express = require('express');
+var app = express();
 var db = require('./db');
 var routes = require('./routes');
 var user = require('./routes/user');
-var messaging = require('./routes/messaging');
-var http = require('http');
+var user = require('./routes/user');
+var conversation = require('./routes/conversation');
+var group = require('./routes/group');
+var post = require('./routes/post');
+var http = require('http').Server(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
 
-
-var app = express();
+var io = require('socket.io')(http);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -33,18 +36,27 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/all', messaging.getMessage);
-app.post('/post', messaging.addMessage);
+app.post('/user/create', user.create);
+app.post('/conversation/create', conversation.create);
+app.post('/group/create', group.create);
+app.post('/post/create', post.create);
 
+app.post('/user/delete', user.delete);
+app.post('/conversation/delete', conversation.delete);
+app.post('/group/delete', group.delete);
+app.post('/post/delete', post.delete);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+app.post('/user/update', user.update);
+app.post('/conversation/update', conversation.update);
+app.post('/group/update', group.update);
+app.post('/post/update', post.update);
+
+app.get('/user/search', user.search);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
 });
 
-// TODO(erik): Setup socket.io chat relay for realtime updates.
-// var io = require('socket.io')(http);
-
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
+http.listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
