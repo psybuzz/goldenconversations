@@ -3,9 +3,10 @@ $(document).ready(function() {
 	$.getJSON('/all', function (data) {
 		var text = '';
 		for (var i = 0; i < data.length; i++) {
-			text += data[i].content + '<br>';
+			text += '<p>' + data[i].content + '</p><br>';
 		};
 		$('.display-area').append(text);
+        setScrollPos();
 	});
 });
 
@@ -22,7 +23,6 @@ $('#mainform').on('submit', function (e){
         timeout : 3000
     });
     var message = $('textarea').val();
-
 	function onSubmitError(err){
 		alert('Send failed.');
 	}
@@ -31,7 +31,7 @@ $('#mainform').on('submit', function (e){
     	if (data.success){
         	$('.display-area').append(message + '<br>');
     	} else {
-    		alert('Save failed.');
+    		alert('Nein. Write more. Unless you have written more than 10000 characters. Write less in that case. Thank you. ');
     	}
     }
 });

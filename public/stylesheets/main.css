@@ -434,63 +434,135 @@ th {
   padding: 0;
 }
 
-/* line 8, ../sass/main.scss */
+/* line 7, ../sass/main.scss */
 html,
 body {
   height: 100%;
   font-size: 16px;
+  font-family: "Merriweather", Georgia, serif;
+  box-sizing: border-box;
 }
-/* line 11, ../sass/main.scss */
-html .wrapper,
-body .wrapper {
+
+/* line 14, ../sass/main.scss */
+.wrapper {
   height: 100%;
+  box-sizing: border-box;
+  padding: 6rem;
+  position: relative;
 }
-/* line 13, ../sass/main.scss */
-html .wrapper .display-area,
-body .wrapper .display-area {
+/* line 19, ../sass/main.scss */
+.wrapper h1 {
+  margin: auto;
+  margin-bottom: 2rem;
+  max-width: 750px;
+  min-width: 280px;
+  position: relative;
+  padding-top: 1.5rem;
+  font-family: "Lato", "Lucidia Grande", serif;
+  font-weight: 700;
+  color: #d0d0d0;
+  font-size: 2.2rem;
+}
+/* line 30, ../sass/main.scss */
+.wrapper h1:before {
+  content: "Topic of Today";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+/* line 41, ../sass/main.scss */
+.display {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 750px;
+  min-width: 280px;
+  min-height: 280px;
   height: 45%;
+  overflow-y: scroll;
 }
 
-/* line 20, ../sass/main.scss */
-body {
-  margin: 0 30%;
-  font-family: "Lora", Georgia, sans-serif;
-}
-/* line 23, ../sass/main.scss */
-body h1 {
-  color: rgba(0, 0, 0, 0.7);
-}
-
-/* line 28, ../sass/main.scss */
+/* line 51, ../sass/main.scss */
 .display-area {
-  background-color: rgba(211, 211, 211, 0.2);
-  border-radius: 3px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(211, 211, 211, 0.2)), color-stop(100%, #ffffff));
-  background-image: -webkit-linear-gradient(rgba(211, 211, 211, 0.2), #ffffff);
-  background-image: -moz-linear-gradient(rgba(211, 211, 211, 0.2), #ffffff);
-  background-image: -o-linear-gradient(rgba(211, 211, 211, 0.2), #ffffff);
-  background-image: linear-gradient(rgba(211, 211, 211, 0.2), #ffffff);
+  color: #383838;
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+/* line 55, ../sass/main.scss */
+.display-area p, .display-area br {
+  margin: 0;
+}
+/* line 58, ../sass/main.scss */
+.display-area p {
+  line-height: 1.45rem;
 }
 
-/* line 35, ../sass/main.scss */
-.input-area {
-  margin-top: 1rem;
+/* line 63, ../sass/main.scss */
+.display-fade, .display-fade-bottom {
+  position: absolute;
+  height: 50px;
+  z-index: 10;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
 }
-/* line 37, ../sass/main.scss */
+
+/* line 70, ../sass/main.scss */
+.display-fade-bottom {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  background-image: -o-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  background-image: linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  margin-top: -50px;
+}
+
+/* line 76, ../sass/main.scss */
+.input-area {
+  margin: 0 auto;
+  margin-top: 2rem;
+  max-width: 750px;
+  min-width: 280px;
+  color: #383838;
+  font-size: 1.2rem;
+}
+/* line 83, ../sass/main.scss */
 .input-area form {
   width: 100%;
 }
-/* line 39, ../sass/main.scss */
+/* line 85, ../sass/main.scss */
 .input-area form textarea {
   width: 100%;
-  border: 1px solid rgba(128, 128, 128, 0.6);
+  border: none;
   border-radius: 2px;
-  padding: 1rem;
+  padding: 1rem 0;
   box-sizing: border-box;
 }
-/* line 49, ../sass/main.scss */
+/* line 93, ../sass/main.scss */
 .input-area form input {
   display: block;
   margin-top: 1rem;
   float: right;
+}
+/* line 98, ../sass/main.scss */
+.input-area form ::-webkit-input-placeholder {
+  color: #d0d0d0;
+}
+/* line 101, ../sass/main.scss */
+.input-area form :-moz-placeholder {
+  /* Firefox 18- */
+  color: #d0d0d0;
+}
+/* line 104, ../sass/main.scss */
+.input-area form ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #d0d0d0;
+}
+/* line 107, ../sass/main.scss */
+.input-area form :-ms-input-placeholder {
+  color: #d0d0d0;
 }

@@ -37,10 +37,8 @@ exports.addMessage = function(req, res){
 	}
 	cname = validator.toString(name);
 	ccontent = validator.toString(content);
-
 	var validName = validator.isLength(cname, 1, 140) && (validator.isNull(cname) == false);
-	var validContent = validator.isLength(ccontent, 1, 512) && (validator.isNull(ccontent) == false);
-
+	var validContent = validator.isLength(ccontent, 140, 10000) && (validator.isNull(ccontent) == false);
 	if (validName == false){
 		resError(res, "Invalid name");
 	} else if (validContent == false){
