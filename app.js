@@ -54,6 +54,8 @@ app.post('/post/update', post.update);
 
 app.get('/user/search', user.search);
 
+app.get('/all', conversation.getTestMessages);
+
 io.on('connection', function(socket){
   console.log('a user connected');
 });

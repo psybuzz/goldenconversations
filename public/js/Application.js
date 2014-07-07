@@ -3,12 +3,15 @@ $(document).ready(function() {
 
 	// Load comments
 	$.getJSON('/all', function (data) {
-		var text = '';
-		for (var i = 0; i < data.length; i++) {
-			text += '<p>' + data[i].content + '</p><br>';
-		};
-		$('.display-area').append(text);
-        setScrollPos();
+        console.log("data is", data);
+        if (data){
+    		var text = '';
+    		for (var i = 0; i < data.length; i++) {
+    			text += '<p>' + data[i].content + '</p><br>';
+    		};
+    		$('.display-area').append(text);
+            setScrollPos();
+        }
 	});
 });
 

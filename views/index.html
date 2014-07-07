@@ -17,7 +17,7 @@
 <body>
 	<div class="wrapper">
 		<div class="menu-bar"></div>
-		<h1>Will Brazil win the World Cup this year?</h1>
+		<h1 id="question"></h1>
 
 		<div class="display-fade"></div>
 		<div class="display">
@@ -29,9 +29,11 @@
 		
 		<div class="input-area">
 
-			<form id='mainform' action="/post" method="POST">
+			<form id='mainform' action="/post/create" method="POST">
 				<textarea name="content" rows="6" cols="50" placeholder="Write down your thoughts"></textarea>
 				<input type="submit" value="Send">
+				<input type="hidden" value="testName" name="username">
+				<input type="hidden" value="{{conversationId}}" name="conversationId">
 			</form>
 					
 
@@ -69,6 +71,9 @@
 			});
 					
 		}); // ready
+	</script>
+	<script type="text/javascript">
+		question.innerHTML = '{{title}}';
 	</script>
 </body>
 </html>
