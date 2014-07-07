@@ -11,15 +11,48 @@ var mongoose = require('mongoose');
 var secret = require('./appconfig');
 var dbName = 'goldenconversations';
 
-// Message Schema
 var Schema = mongoose.Schema;
-var Message = new Schema({
-    name : String,
-    content  : String,
-    created  : Date
+var ObjectId = mongoose.Schema.ObjectId;
+
+// Post Schema
+var postSchema = new Schema({
+    username	: String,
+    content  	: String,
+    time  		: Date
 }, { collection: 'public' });
 
-mongoose.model('Message', Message, 'public');
+// User Schema
+var userSchema = new Schema({
+    username 			: String,
+    name  				: String,
+    login  				: String,
+    joined  			: Date,
+    description			: String,
+    photo				: String,
+    userConversations	: [{ conversation: ObjectId, hallOfFame: boolean }],
+    recentContacts		: String,
+
+}, { collection: 'public' });
+
+// Conversation Schema
+var conversationSchema = new Schema({
+    user : String,
+    content  : String,
+    time  : Date
+}, { collection: 'public' });
+
+// Groups Schema
+var groupSchema = new Schema({
+    user : String,
+    content  : String,
+    time  : Date
+}, { collection: 'public' });
+
+var dbModels = {
+	'Post': mongoose.model('Post', postSchema, 'public'),
+	'User': mongoose.model('Post', postSchema, 'public'),
+	'Conversation': mongoose.model('Post', postSchema, 'public'),
+	'Group': mongoose.model('Post', postSchema, 'public'),
  
 // Connect to database and listen to events.
 mongoose.connect('mongodb://'+secret.userDecipher.decipher() + ':' +
