@@ -1,0 +1,73 @@
+@import 'partials/variables';
+@import "compass";
+
+.wrapper {
+	box-sizing: border-box;
+	padding: 6rem;
+
+
+
+	.centered {
+		width: 360px;
+		margin: 0 auto;
+	}
+	h1 {
+		position: relative;
+		padding-bottom: 1.8rem;
+		font-family: $sans-stack;
+		font-weight: 700;
+		color: $light-gray;
+		font-size: 2.2rem;
+		&:before {
+			content:"Where conversations happen.";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			font-weight: 400;
+			font-size: 1.1rem;
+		}
+		span {
+			color: $dark-gray;
+			font-weight: 700;
+		}
+	}
+
+	input {
+		font-size: 1.2rem;
+		height: 35px;
+		border: none;
+		border-bottom: 1px solid $light-gray;
+		display: block;
+		margin-top: 2rem;
+		font-family: $sans-stack;
+		font-weight: 300;
+		width: $mid-display;
+	}
+
+	.submit {
+		color: white;
+		font-weight: 300;
+		margin-top: 2.7rem;
+		height: 40px;
+		background-color: $light-gray;
+		border: none;
+		font-size: 1.1rem;
+		border-radius: 2px;
+		@include box-shadow(
+			rgba(gray, 0.2) -2px -1px 0 0 inset, 
+			rgba(gray, 0.1) 2px -1px 0 0 inset,
+			rgba(white, 0.5) 0 2px 0 0 inset,
+			rgba(gray, 0.7) 0 3px 0 0
+		);
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: $dark-gray;
+			@include box-shadow(
+				rgba(gray, 0.9) -2px -1px 0 0 inset, 
+				rgba(gray, 0.6) 2px -1px 0 0 inset,
+				rgba(white, 0.45) 0 2px 0 0 inset,
+				rgba(black, 0.6) 0 3px 0 0
+			);
+		}
+	}
+}

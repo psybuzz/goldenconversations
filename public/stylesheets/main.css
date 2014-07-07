@@ -444,125 +444,28 @@ body {
 }
 
 /* line 14, ../sass/main.scss */
-.wrapper {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 6rem;
-  position: relative;
-}
-/* line 19, ../sass/main.scss */
-.wrapper h1 {
-  margin: auto;
-  margin-bottom: 2rem;
-  max-width: 750px;
-  min-width: 280px;
-  position: relative;
-  padding-top: 1.5rem;
-  font-family: "Lato", "Lucidia Grande", serif;
-  font-weight: 700;
-  color: #d0d0d0;
-  font-size: 2.2rem;
-}
-/* line 30, ../sass/main.scss */
-.wrapper h1:before {
-  content: "Topic of Today";
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-weight: 300;
-  font-size: 1.1rem;
+*:focus {
+  outline: none;
 }
 
-/* line 41, ../sass/main.scss */
-.display {
-  margin: 0 auto;
-  padding: 20px 0;
-  max-width: 750px;
-  min-width: 280px;
-  min-height: 280px;
-  height: 45%;
-  overflow-y: scroll;
-}
-
-/* line 51, ../sass/main.scss */
-.display-area {
-  color: #383838;
-  font-weight: 400;
-  font-size: 1.05rem;
-}
-/* line 55, ../sass/main.scss */
-.display-area p, .display-area br {
-  margin: 0;
-}
-/* line 58, ../sass/main.scss */
-.display-area p {
-  line-height: 1.45rem;
-}
-
-/* line 63, ../sass/main.scss */
-.display-fade, .display-fade-bottom {
-  position: absolute;
-  height: 50px;
-  z-index: 10;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, rgba(255, 255, 255, 0)));
-  background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-  background-image: -moz-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-  background-image: -o-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-  background-image: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-}
-
-/* line 70, ../sass/main.scss */
-.display-fade-bottom {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
-  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  background-image: -o-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  background-image: linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  margin-top: -50px;
-}
-
-/* line 76, ../sass/main.scss */
-.input-area {
-  margin: 0 auto;
-  margin-top: 2rem;
-  max-width: 750px;
-  min-width: 280px;
-  color: #383838;
-  font-size: 1.2rem;
-}
-/* line 83, ../sass/main.scss */
-.input-area form {
-  width: 100%;
-}
-/* line 85, ../sass/main.scss */
-.input-area form textarea {
-  width: 100%;
-  border: none;
-  border-radius: 2px;
-  padding: 1rem 0;
-  box-sizing: border-box;
-}
-/* line 93, ../sass/main.scss */
-.input-area form input {
-  display: block;
-  margin-top: 1rem;
-  float: right;
-}
-/* line 98, ../sass/main.scss */
-.input-area form ::-webkit-input-placeholder {
+/* line 16, ../sass/main.scss */
+::-webkit-input-placeholder {
   color: #d0d0d0;
 }
-/* line 101, ../sass/main.scss */
-.input-area form :-moz-placeholder {
+
+/* line 20, ../sass/main.scss */
+:-moz-placeholder {
   /* Firefox 18- */
   color: #d0d0d0;
 }
-/* line 104, ../sass/main.scss */
-.input-area form ::-moz-placeholder {
+
+/* line 23, ../sass/main.scss */
+::-moz-placeholder {
   /* Firefox 19+ */
   color: #d0d0d0;
 }
-/* line 107, ../sass/main.scss */
-.input-area form :-ms-input-placeholder {
+
+/* line 26, ../sass/main.scss */
+:-ms-input-placeholder {
   color: #d0d0d0;
 }

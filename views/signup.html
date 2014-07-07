@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--[if lt IE 9]>
+	<script src="dist/html5shiv.js"></script>
+	<![endif]-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />	
+	<title>Golden</title>
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700|Merriweather:400,300italic,300,700,900' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/signup.css">
+</head>
+<body>
+<div class="wrapper">
+	<div class="centered">
+
+	<h1>Sign up for <span>Meaningful<span>.</h1>
+	<form id='signup' action="/post" method="POST">
+		<input type="text" placeholder="First Name" name="first_name" required>
+		<input type="text" placeholder="Last Name" name="last_name" required>
+		<input type="email" placeholder="Email" name="email" required>
+		<input type="password" placeholder="Password, minimum 8 characters" name="password" requred>
+		<input class="submit" type="submit" value="Sign Up">
+	</form>
+
+
+	<!-- <textarea name="description" rows="6" cols="40" placeholder="Enter a short bio."></textarea>
+	<form name="myphoto" id="myphoto" action="" method="post" enctype="multipart/form-data" >
+		<label for="upload" >Select  Image</label>
+		<input type="file" id="upload" name="upload" accept="image/*">
+		<input type="submit" value="Go" >
+	</form> -->
+
+	</div>
+</div>
+	
+</body>
+</html>

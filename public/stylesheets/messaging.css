@@ -1,0 +1,105 @@
+/* line 5, ../sass/messaging.scss */
+.wrapper {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 6rem;
+  position: relative;
+}
+/* line 10, ../sass/messaging.scss */
+.wrapper h1 {
+  margin: auto;
+  margin-bottom: 2rem;
+  max-width: 750px;
+  min-width: 280px;
+  position: relative;
+  padding-top: 1.5rem;
+  font-family: "Lato", "Lucidia Grande", serif;
+  font-weight: 700;
+  color: #d0d0d0;
+  font-size: 2.2rem;
+}
+/* line 21, ../sass/messaging.scss */
+.wrapper h1:before {
+  content: "Topic of Today";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+/* line 32, ../sass/messaging.scss */
+.display {
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 750px;
+  min-width: 280px;
+  min-height: 280px;
+  height: 45%;
+  overflow-y: scroll;
+}
+
+/* line 42, ../sass/messaging.scss */
+.display-area {
+  color: #383838;
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+/* line 46, ../sass/messaging.scss */
+.display-area p, .display-area br {
+  margin: 0;
+}
+/* line 49, ../sass/messaging.scss */
+.display-area p {
+  line-height: 1.45rem;
+}
+
+/* line 54, ../sass/messaging.scss */
+.display-fade, .display-fade-bottom {
+  position: absolute;
+  height: 50px;
+  z-index: 10;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+  background-image: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+}
+
+/* line 61, ../sass/messaging.scss */
+.display-fade-bottom {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  background-image: -o-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  background-image: linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  margin-top: -50px;
+}
+
+/* line 67, ../sass/messaging.scss */
+.input-area {
+  margin: 0 auto;
+  margin-top: 2rem;
+  max-width: 750px;
+  min-width: 280px;
+  color: #383838;
+  font-size: 1.2rem;
+}
+/* line 74, ../sass/messaging.scss */
+.input-area form {
+  width: 100%;
+}
+/* line 76, ../sass/messaging.scss */
+.input-area form textarea {
+  width: 100%;
+  border: none;
+  border-radius: 2px;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+/* line 84, ../sass/messaging.scss */
+.input-area form input {
+  display: block;
+  margin-top: 1rem;
+  float: right;
+}
