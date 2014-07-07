@@ -12,6 +12,10 @@ var db = require('./db');
 var routes = require('./routes');
 var user = require('./routes/user');
 var messaging = require('./routes/messaging');
+var user = require('./routes/user');
+var conversation = require('./routes/conversation');
+var group = require('./routes/group');
+var post = require('./routes/post');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
@@ -33,10 +37,22 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/all', messaging.getMessage);
-app.post('/post', messaging.addMessage);
+app.post('user/create', user.create);
+app.post('conversation/create', conversation.create);
+app.post('group/create', group.create);
+app.post('post/create', post.create);
 
+app.post('/user/delete', user.delete);
+app.post('/conversation/delete', conversation.delete);
+app.post('/group/delete', group.delete);
+app.post('/post/delete', post.delete);
+
+app.post('/user/update', user.update);
+app.post('/conversation/update', conversation.update);
+app.post('/group/update', group.update);
+app.post('/post/update', post.update);
+
+app.get('/user/search', user.search);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
