@@ -28,7 +28,7 @@ var userSchema = new Schema({
     joined  			: Date,
     description			: String,
     photo				: String,
-    userConversations	: [{ conversation: ObjectId, hallOfFame: boolean }],
+    userConversations	: [{ conversation: ObjectId, hallOfFame: Boolean }],
     recentContacts		: [ObjectId],
 
 }, { collection: 'public' });
@@ -36,18 +36,18 @@ var userSchema = new Schema({
 // Conversation Schema
 var conversationSchema = new Schema({
     invited             : [ObjectId],
-    participants:       : [{ participant: ObjectId, isThrilled: boolean }],
+    participants        : [{ participant: ObjectId, isThrilled: Boolean }],
     category            : String,
     question            : String,
-    discussion:         : [ObjectId];
-    isGroup             : boolean,
+    discussion          : [ObjectId],
+    isGroup             : Boolean,
     lastEdited          : Date
 }, { collection: 'public' });
 
 // Groups Schema
 var groupSchema = new Schema({
     invited             : [ObjectId],
-    members:            : [ObjectId],
+    members             : [ObjectId],
     name                : String,
     conversations       : [ObjectId]
 }, { collection: 'public' });
@@ -74,4 +74,3 @@ db.once('open', function(){
 
 // Export the db andschema to external interfaces
 exports.db = db;
-exports.Message = Message;

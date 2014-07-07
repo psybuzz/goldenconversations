@@ -2,7 +2,7 @@ var db = require('./../db.js');
 
 exports.create = function(req, res){
 	var group = new db.models.Group({
-	    members:            : req.body.groupMaker,
+	    members             : req.body.groupMaker,
 	    name                : req.body.name,
 	});
 

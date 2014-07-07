@@ -2,7 +2,7 @@ var db = require('./../db.js');
 
 exports.create = function(req, res){
 	var conversation = new db.models.Conversation({
-	    participants:       : req.body.iceBreaker,
+	    participants        : req.body.iceBreaker,
 	    category            : req.body.category,
 	    question            : req.body.question,
 	    isGroup             : req.body.isGroup,

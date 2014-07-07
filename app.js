@@ -11,7 +11,6 @@ var express = require('express');
 var db = require('./db');
 var routes = require('./routes');
 var user = require('./routes/user');
-var messaging = require('./routes/messaging');
 var user = require('./routes/user');
 var conversation = require('./routes/conversation');
 var group = require('./routes/group');
@@ -37,10 +36,10 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.index);
-app.post('user/create', user.create);
-app.post('conversation/create', conversation.create);
-app.post('group/create', group.create);
-app.post('post/create', post.create);
+app.post('/user/create', user.create);
+app.post('/conversation/create', conversation.create);
+app.post('/group/create', group.create);
+app.post('/post/create', post.create);
 
 app.post('/user/delete', user.delete);
 app.post('/conversation/delete', conversation.delete);
