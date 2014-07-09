@@ -12,7 +12,6 @@ var app = express();
 var db = require('./db');
 var routes = require('./routes');
 var user = require('./routes/user');
-var user = require('./routes/user');
 var conversation = require('./routes/conversation');
 var group = require('./routes/group');
 var post = require('./routes/post');

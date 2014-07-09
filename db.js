@@ -24,13 +24,14 @@ var postSchema = new Schema({
 // User Schema
 var userSchema = new Schema({
     username 			: String,
-    name  				: String,
+    firstName  			: String,
+    lastName            : String,
     joined  			: Date,
     description			: String,
     photo				: String,
     userConversations	: [{ conversation: ObjectId, hallOfFame: Boolean }],
     recentContacts		: [ObjectId],
-
+    password            : String
 }, { collection: 'public' });
 
 // Conversation Schema
