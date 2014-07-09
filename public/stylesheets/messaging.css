@@ -32,6 +32,7 @@
   /* line 11, ../sass/messaging.scss */
   .wrapper h1 {
     margin-bottom: 1rem;
+    font-size: 1.4rem;
   }
 }
 @media screen and (max-height: 750px) {
@@ -47,7 +48,7 @@
   }
 }
 
-/* line 43, ../sass/messaging.scss */
+/* line 44, ../sass/messaging.scss */
 .display {
   margin: 0 auto;
   padding: 20px 0;
@@ -58,34 +59,34 @@
   overflow-y: scroll;
 }
 @media screen and (max-width: 750px) {
-  /* line 43, ../sass/messaging.scss */
+  /* line 44, ../sass/messaging.scss */
   .display {
     padding-bottom: 10px;
   }
 }
 @media screen and (max-height: 750px) {
-  /* line 43, ../sass/messaging.scss */
+  /* line 44, ../sass/messaging.scss */
   .display {
     height: 180px;
   }
 }
 
-/* line 59, ../sass/messaging.scss */
+/* line 60, ../sass/messaging.scss */
 .display-area {
   color: #383838;
   font-weight: 400;
   font-size: 1.05rem;
 }
-/* line 63, ../sass/messaging.scss */
+/* line 64, ../sass/messaging.scss */
 .display-area p, .display-area br {
   margin: 0;
 }
-/* line 66, ../sass/messaging.scss */
+/* line 67, ../sass/messaging.scss */
 .display-area p {
   line-height: 1.45rem;
 }
 
-/* line 72, ../sass/messaging.scss */
+/* line 73, ../sass/messaging.scss */
 .display-fade, .display-fade-bottom {
   position: absolute;
   height: 50px;
@@ -97,7 +98,7 @@
   background-image: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
 }
 
-/* line 79, ../sass/messaging.scss */
+/* line 80, ../sass/messaging.scss */
 .display-fade-bottom {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
@@ -107,7 +108,7 @@
   margin-top: -50px;
 }
 
-/* line 85, ../sass/messaging.scss */
+/* line 86, ../sass/messaging.scss */
 .input-area {
   margin: 0 auto;
   margin-top: 2rem;
@@ -117,11 +118,11 @@
   color: #383838;
   font-size: 1.2rem;
 }
-/* line 93, ../sass/messaging.scss */
+/* line 94, ../sass/messaging.scss */
 .input-area form {
   width: 100%;
 }
-/* line 95, ../sass/messaging.scss */
+/* line 96, ../sass/messaging.scss */
 .input-area form textarea {
   width: 100%;
   border: none;
@@ -130,19 +131,19 @@
   box-sizing: border-box;
 }
 @media screen and (max-width: 750px) {
-  /* line 95, ../sass/messaging.scss */
+  /* line 96, ../sass/messaging.scss */
   .input-area form textarea {
     height: 90px;
     padding: 0;
   }
 }
-/* line 106, ../sass/messaging.scss */
+/* line 107, ../sass/messaging.scss */
 .input-area form input {
   display: block;
   margin-top: 1rem;
   float: right;
 }
-/* line 111, ../sass/messaging.scss */
+/* line 112, ../sass/messaging.scss */
 .input-area form input[type="submit"] {
   background-color: #d0d0d0;
   border: none;
@@ -156,7 +157,7 @@
   box-shadow: rgba(128, 128, 128, 0.7) 0 3px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 127, ../sass/messaging.scss */
+/* line 128, ../sass/messaging.scss */
 .input-area form input[type="submit"]:hover {
   background-color: #777777;
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 3px 0 0, rgba(128, 128, 128, 0.9) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.6) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.45) 0 2px 0 0 inset;
@@ -164,7 +165,7 @@
   box-shadow: rgba(0, 0, 0, 0.6) 0 3px 0 0, rgba(128, 128, 128, 0.9) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.6) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.45) 0 2px 0 0 inset;
 }
 @media screen and (max-width: 750px) {
-  /* line 85, ../sass/messaging.scss */
+  /* line 86, ../sass/messaging.scss */
   .input-area {
     margin-top: 0;
   }
