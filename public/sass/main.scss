@@ -9,6 +9,9 @@ body {
 	font-size: 16px;
 	font-family: $serif-stack;	
 	box-sizing: border-box;
+	@media screen and (max-width: $max-display) {
+	  	font-size: 13px;
+	}
 }
 
 *:focus {outline: none;}

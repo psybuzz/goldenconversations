@@ -4,12 +4,27 @@ $serif-stack:    'Merriweather', Georgia, serif;
 $sans-stack:  'Lato', 'Lucidia Grande', serif;
 
 // Colors
+$dark-black: 	#181818;
 $light-black: 	#383838;
 $dark-gray: 	#777;
 $light-gray: 	#D0D0D0;
 
+// Button shadows
+$bottom-shadow: 	rgba(gray, 0.7);
+$left-shadow:		rgba(gray, 0.2); 	
+$right-shadow: 		rgba(gray, 0.1);
+$top-shadow: 		rgba(white, 0.5);
+
+$bottom-shadow-dark: 	rgba(black, 0.6);
+$left-shadow-dark:		rgba(gray, 0.9);
+$right-shadow-dark: 	rgba(gray, 0.6);
+$top-shadow-dark: 		rgba(white, 0.45);
+
+
 // Width & Height
 $max-display: 750px;
-$min-display: 280px;
 $mid-display: 360px;
+$min-display: 280px;
 
+$min-height: 180px;
+$mobile-display: 300px;

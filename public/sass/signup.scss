@@ -4,12 +4,23 @@
 .wrapper {
 	box-sizing: border-box;
 	padding: 6rem;
+		@media screen and (max-height: $max-display) {
+		  	padding: 1rem;
+		}
+		
+		@media screen and (max-width: $max-display) {
+		  	padding: 0.5rem;
+		}
 
-
+		
 
 	.centered {
 		width: 360px;
 		margin: 0 auto;
+
+		@media screen and (max-width: $max-display) {
+		  	width: $mobile-display;
+		}
 	}
 	h1 {
 		position: relative;
@@ -42,6 +53,9 @@
 		font-family: $sans-stack;
 		font-weight: 300;
 		width: $mid-display;
+		@media screen and (max-width: $max-display) {
+		  	width: $mobile-display;
+		}
 	}
 
 	.submit {
@@ -54,19 +68,21 @@
 		font-size: 1.1rem;
 		border-radius: 2px;
 		@include box-shadow(
-			rgba(gray, 0.2) -2px -1px 0 0 inset, 
-			rgba(gray, 0.1) 2px -1px 0 0 inset,
-			rgba(white, 0.5) 0 2px 0 0 inset,
-			rgba(gray, 0.7) 0 3px 0 0
+			$bottom-shadow 0 3px 0 0,
+			$left-shadow -2px -1px 0 0 inset, 
+			$right-shadow 2px -1px 0 0 inset,
+			$top-shadow 0 2px 0 0 inset
+			
 		);
 		transition: all 0.3s ease;
 		&:hover {
 			background-color: $dark-gray;
 			@include box-shadow(
-				rgba(gray, 0.9) -2px -1px 0 0 inset, 
-				rgba(gray, 0.6) 2px -1px 0 0 inset,
-				rgba(white, 0.45) 0 2px 0 0 inset,
-				rgba(black, 0.6) 0 3px 0 0
+				$bottom-shadow-dark 0 3px 0 0,
+				$left-shadow-dark -2px -1px 0 0 inset, 
+				$right-shadow-dark 2px -1px 0 0 inset,
+				$top-shadow-dark 0 2px 0 0 inset
+				
 			);
 		}
 	}
