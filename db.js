@@ -19,19 +19,20 @@ var postSchema = new Schema({
     username	: String,
     content  	: String,
     time  		: Date
-}, { collection: 'public' });
+}, { collection: 'post' });
 
 // User Schema
 var userSchema = new Schema({
     username 			: String,
-    name  				: String,
+    firstName  			: String,
+    lastName            : String,
     joined  			: Date,
     description			: String,
     photo				: String,
     userConversations	: [{ conversation: ObjectId, hallOfFame: Boolean }],
     recentContacts		: [ObjectId],
-
-}, { collection: 'public' });
+    password            : String
+}, { collection: 'user' });
 
 // Conversation Schema
 var conversationSchema = new Schema({
@@ -42,7 +43,7 @@ var conversationSchema = new Schema({
     discussion          : [ObjectId],
     isGroup             : Boolean,
     lastEdited          : Date
-}, { collection: 'public' });
+}, { collection: 'conversation' });
 
 // Groups Schema
 var groupSchema = new Schema({
@@ -50,13 +51,13 @@ var groupSchema = new Schema({
     members             : [ObjectId],
     name                : String,
     conversations       : [ObjectId]
-}, { collection: 'public' });
+}, { collection: 'group' });
 
 var dbModels = {
-	'Post': mongoose.model('Post', postSchema, 'public'),
-	'User': mongoose.model('User', userSchema, 'public'),
-	'Conversation': mongoose.model('Conversation', conversationSchema, 'public'),
-	'Group': mongoose.model('Group', groupSchema, 'public')
+	'Post': mongoose.model('Post', postSchema, 'post'),
+	'User': mongoose.model('User', userSchema, 'user'),
+	'Conversation': mongoose.model('Conversation', conversationSchema, 'conversation'),
+	'Group': mongoose.model('Group', groupSchema, 'group')
 }
 
 exports.models = dbModels;

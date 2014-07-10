@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  Conversation.findOne( { question:"What is the best fruit in the world?" }, function (err, messages, count){
+  Conversation.findOne( { question:"What does 'je ne sais quoi?' mean?" }, function (err, messages, count){
 	if (err){
 		res.render('index', {title: 'Express' });
 	}

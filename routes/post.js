@@ -41,10 +41,6 @@ exports.create = function(req, res){
 						resError(res, "Could not find messages collection in DB.");
 					}
 					else{
-						console.log("convo is");
-						console.log(convo);
-						console.log("post is", post);
-						console.log("post._id is ", post._id);
 						convo.discussion.push(post._id);
 				    	convo.save(function(err, message){
 				    		if (err){

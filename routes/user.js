@@ -2,8 +2,10 @@ var db = require('./../db.js');
 
 exports.create = function(req, res){
 	var user = new db.models.User({
-		username 			: req.body.username,
-	    name  				: req.body.name,
+		username 			: req.body.email,
+	    firstName  			: req.body.first_name,
+	    lastName			: req.body.last_name,
+	    password			: req.body.password,
 	    joined  			: Date.now(),
 	    description			: req.body.description,
 	    photo				: req.body.photo,
@@ -13,7 +15,7 @@ exports.create = function(req, res){
 		if (err){
 			console.log(err);
 		} else{
-			res.send({status: 'OK', success: true});
+			res.send({status: 'OK', success: true, redirect: '/'});
 		}
 	});
 };

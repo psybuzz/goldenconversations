@@ -34,9 +34,11 @@ $('#mainform').on('submit', function (e){
 
     function onSubmitComment(data) {
     	if (data.success){
-        	$('.display-area').append(message + '<br>');
+        	$('.display-area').append('<p>' + message + '</p><br>');
+            setScrollPos();
+            $('textarea').val("");
     	} else {
     		alert('Nein. Write more. Unless you have written more than 10000 characters. Write less in that case. Thank you. ');
     	}
-    }
+    }    
 });
