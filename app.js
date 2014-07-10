@@ -18,6 +18,7 @@ var post = require('./routes/post');
 var http = require('http').Server(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
+var passport = require('passport');
 
 var io = require('socket.io')(http);
 
@@ -39,6 +40,8 @@ app.get('/home', routes.home);
 app.get('/signup', routes.signup);
 app.get('/login', routes.login);
 app.get('/signup', routes.signup);
+app.post('/login', passport.authenticate('local', { successRedirect: '/',
+                                                    failureRedirect: '/login' }));
 app.post('/user/create', user.create);
 app.post('/conversation/create', conversation.create);
 app.post('/group/create', group.create);

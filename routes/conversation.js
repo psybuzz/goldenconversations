@@ -45,25 +45,18 @@ exports.getTestMessages = function(req, res){
 
 		var results = [];
 		if (messages[0]){
-			console.log("messages[0]", messages[0]);
 			var jobs = messages[0].discussion.map(function(postId, index){
-				console.log("index is", index);
 				var d = Q.defer();
-				console.log("index is", index);
-					console.log("postId", postId);
 					Post.find({ _id: postId }, function(err, post){
 						if (err){
 							d.reject();
 						}
 						results[index] = post[0];
-						console.log("results in find is", results);
 						d.resolve(post);
 					});
 				return d.promise;
 			});
-			console.log("jobs", jobs);
 			Q.allSettled(jobs).then(function (){
-				console.log("results is", results);
 	    		res.send(results);	
 			})
 		}
