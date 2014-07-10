@@ -30,6 +30,7 @@ var userSchema = new Schema({
     description			: String,
     photo				: String,
     userConversations	: [{ conversation: ObjectId, hallOfFame: Boolean }],
+    groups              : [ObjectId],
     recentContacts		: [ObjectId],
     password            : String
 }, { collection: 'user' });
