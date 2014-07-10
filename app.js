@@ -18,8 +18,28 @@ var post = require('./routes/post');
 var http = require('http').Server(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
-var passport = require('passport');
 
+var passport = require('passport')
+
+// Passport
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.models.User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+var LocalStrategy = require('passport-local').Strategy;
+var login = require('./login');
 var io = require('socket.io')(http);
 
 // all environments
