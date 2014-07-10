@@ -36,6 +36,9 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.index);
+app.get('/home', routes.home);
+app.get('/signup', routes.signup);
+app.get('/login', routes.login);
 app.get('/signup', routes.signup);
 app.post('/user/create', user.create);
 app.post('/conversation/create', conversation.create);

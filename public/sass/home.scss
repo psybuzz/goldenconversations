@@ -1,0 +1,39 @@
+@import 'partials/variables';
+@import "compass";
+
+html, body {
+	font-size: 16px;
+	height: 0;
+}
+
+.wrapper {
+	margin: 0 auto;
+	max-width: 900px;
+	height: 50;
+	h2 {
+		font-size: 1.3rem;
+		color: $light-gray;
+		font-family: $sans-stack;
+	}
+
+
+
+	section {
+		float: right;
+	}
+	.home-conversations {
+		width: 50%;
+		float: left;
+
+		h3 {
+			font-size: 1.5rem;
+			font-weight: 700;
+			font-family: $sans-stack;
+			color: $dark-gray;
+			margin: 2rem 0;
+		}
+	}
+}
+
+
+
