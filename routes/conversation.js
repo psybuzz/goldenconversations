@@ -38,7 +38,7 @@ exports.update = function(req, res){
 
 exports.getTestMessages = function(req, res){
 	// find all messages
-    Conversation.find( { question:"What is the best fruit in the world?" }, function (err, messages, count){
+    Conversation.find( { question:"What does 'je ne sais quoi?' mean?" }, function (err, messages, count){
     	if (err){
 			resError(res, "Could not find messages collection in DB.");
 		}
