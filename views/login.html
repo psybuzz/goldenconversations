@@ -6,24 +6,25 @@
 	<![endif]-->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />	
-	<title>Meaningful - Sign Up</title>
+	<title>Meaningful - Login</title>
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700|Merriweather:400,300italic,300,700,900' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/signup.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/login.css">
 </head>
 <body>
 <div class="wrapper">
 	<div class="centered">
 
 	<h1>Sign up for <span>Meaningful<span>.</h1>
-	<form id='signup' action="/user/create" method="POST">
-		<input type="text" placeholder="First Name" name="first_name" required>
-		<input type="text" placeholder="Last Name" name="last_name" required>
+	<form id='signup' action="/post" method="POST">
+	
 		<input type="email" placeholder="Email" name="email" required>
-		<input type="password" placeholder="Password, minimum 8 characters" name="password" requred>
-		<input class="submit" type="submit" value="Sign Up">
+		<input type="password" placeholder="Password" name="password" requred>
+		<a class="forgot" href="#">Forgot your password?</a>
+		<input class="login" type="submit" value="Sign Up">
+		<input class="sigup" type="submit" value="Login">
 	</form>
 
 
@@ -33,8 +34,6 @@
 		<input type="file" id="upload" name="upload" accept="image/*">
 		<input type="submit" value="Go" >
 	</form> -->
-
-	<script type='text/javascript' src='js/signup.js'></script>
 
 	</div>
 </div>

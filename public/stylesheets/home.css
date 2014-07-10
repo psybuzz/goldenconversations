@@ -1,0 +1,35 @@
+/* line 4, ../sass/home.scss */
+html, body {
+  font-size: 16px;
+  height: 0;
+}
+
+/* line 9, ../sass/home.scss */
+.wrapper {
+  margin: 0 auto;
+  max-width: 900px;
+  height: 50;
+}
+/* line 13, ../sass/home.scss */
+.wrapper h2 {
+  font-size: 1.3rem;
+  color: #d0d0d0;
+  font-family: "Lato", "Lucidia Grande", serif;
+}
+/* line 21, ../sass/home.scss */
+.wrapper section {
+  float: right;
+}
+/* line 24, ../sass/home.scss */
+.wrapper .home-conversations {
+  width: 50%;
+  float: left;
+}
+/* line 28, ../sass/home.scss */
+.wrapper .home-conversations h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "Lato", "Lucidia Grande", serif;
+  color: #777777;
+  margin: 2rem 0;
+}

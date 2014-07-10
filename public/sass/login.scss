@@ -7,7 +7,7 @@
 		@media screen and (max-height: $max-display) {
 		  	padding: 1rem;
 		}
-
+		
 		@media screen and (max-width: $max-display) {
 		  	padding: 0.5rem;
 		}
@@ -43,6 +43,17 @@
 		}
 	}
 
+	.forgot {
+		display: block;
+		margin-top: 0.5rem;
+		font-family: $sans-stack;
+		color: $light-gray;
+		font-weight: 300;
+		font-size: 0.9rem;
+	
+		text-align: right;
+	}
+
 	input {
 		font-size: 1.2rem;
 		height: 35px;
@@ -58,10 +69,13 @@
 		}
 	}
 
-	.submit {
+	input[type="submit"] {
+		margin-right: 2%;
+		width: 49%; 
+		float: left;
 		color: white;
 		font-weight: 400;
-		margin-top: 2.7rem;
+		margin-top: 2rem;
 		height: 40px;
 		background-color: $light-gray;
 		border: none;
@@ -72,7 +86,6 @@
 			$left-shadow -2px -1px 0 0 inset, 
 			$right-shadow 2px -1px 0 0 inset,
 			$top-shadow 0 2px 0 0 inset
-			
 		);
 		transition: all 0.3s ease;
 		&:hover {
@@ -85,5 +98,27 @@
 				
 			);
 		}
+		&:last-of-type {
+			margin-right: 0;
+			background-color: $gray;
+			@include box-shadow(
+				$dark-bottom-shadow 0 4px 0 0,
+				$dark-left-shadow -2px -1px 0 0 inset, 
+				$dark-right-shadow 2px -1px 0 0 inset,
+				$dark-top-shadow 0 2px 0 0 inset
+			);
+			transition: all 0.3s ease;
+			&:hover {
+				background-color: $super-gray;
+				@include box-shadow(
+					$dark-bottom-shadow-dark 0 4px 0 0,
+					$dark-left-shadow-dark -2px -1px 0 0 inset, 
+					$dark-right-shadow-dark 2px -1px 0 0 inset,
+					$dark-top-shadow-dark 0 2px 0 0 inset
+					
+				);
+			}
+		}
+
 	}
 }

@@ -434,45 +434,45 @@ th {
   padding: 0;
 }
 
-/* line 7, ../sass/main.scss */
+/* line 8, ../sass/main.scss */
 html,
 body {
   height: 100%;
   font-size: 16px;
-  font-family: "Merriweather", Georgia, serif;
+  font-family: "Merriweather", Georgia, sans-serif;
   box-sizing: border-box;
 }
 @media screen and (max-width: 750px) {
-  /* line 7, ../sass/main.scss */
+  /* line 8, ../sass/main.scss */
   html,
   body {
     font-size: 13px;
   }
 }
 
-/* line 17, ../sass/main.scss */
+/* line 18, ../sass/main.scss */
 *:focus {
   outline: none;
 }
 
-/* line 19, ../sass/main.scss */
+/* line 20, ../sass/main.scss */
 ::-webkit-input-placeholder {
   color: #d0d0d0;
 }
 
-/* line 23, ../sass/main.scss */
+/* line 24, ../sass/main.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #d0d0d0;
 }
 
-/* line 26, ../sass/main.scss */
+/* line 27, ../sass/main.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #d0d0d0;
 }
 
-/* line 29, ../sass/main.scss */
+/* line 30, ../sass/main.scss */
 :-ms-input-placeholder {
   color: #d0d0d0;
 }
