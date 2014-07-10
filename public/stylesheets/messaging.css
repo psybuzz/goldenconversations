@@ -75,7 +75,7 @@
 .display-area {
   color: #383838;
   font-weight: 400;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
 }
 /* line 64, ../sass/messaging.scss */
 .display-area p, .display-area br {
@@ -151,7 +151,7 @@
   font-family: "Lato", "Lucidia Grande", serif;
   font-weight: 400;
   border-radius: 4px;
-  padding: 8px 15px;
+  padding: 7px 20px;
   -webkit-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;

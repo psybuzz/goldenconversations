@@ -60,7 +60,7 @@
 .display-area{
 	color: $light-black;
 	font-weight: 400;
-	font-size: 1.05rem;
+	font-size: 1.02rem;
 	p, br{
 		margin: 0;
 	}
@@ -116,7 +116,7 @@
 			font-family: $sans-stack;
 			font-weight: 400;
 			border-radius: 4px;
-			padding: 8px 15px;
+			padding: 7px 20px;
 			@include box-shadow(
 				rgba(gray, 0.7) 0 4px 0 0,
 				rgba(gray, 0.2) -2px -1px 0 0 inset, 
