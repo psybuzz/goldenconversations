@@ -62,12 +62,17 @@ app.get('/login', routes.login);
 app.get('/signup', routes.signup);
 app.post('/login', passport.authenticate('local'), 
 	function(req,res){
-		res.redirect('/home/' + req.user.username);
+		res.redirect('/home');
 	},
 	function(req,res){
 		res.redirect('/login');
 	}
 );
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/login');
+});
 
 app.post('/user/create', user.create);
 app.post('/conversation/create', conversation.create);
@@ -84,7 +89,7 @@ app.post('/conversation/update', conversation.update);
 app.post('/group/update', group.update);
 app.post('/post/update', post.update);
 
-app.get('/home/:id', routes.home);
+app.get('/home', routes.home);
 app.get('/conversation/:id', routes.index);
 app.get('/group/:id', routes.group);
 

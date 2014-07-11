@@ -22,6 +22,9 @@ exports.signup = function(req, res){
 };
 
 exports.home = function(req, res){
+	if (!req.user){
+		res.redirect('/login');
+	}
 	res.render('home', { 
 		title: 'Express',
 		user: req.user 
