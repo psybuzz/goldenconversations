@@ -5,31 +5,68 @@ html, body {
 }
 
 /* line 9, ../sass/home.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 16, ../sass/home.scss */
 .wrapper {
   margin: 0 auto;
   max-width: 900px;
   height: 50;
-}
-/* line 13, ../sass/home.scss */
-.wrapper h2 {
-  font-size: 1.3rem;
-  color: #d0d0d0;
-  font-family: "Lato", "Lucidia Grande", serif;
+  padding: 1.5rem 0;
 }
 /* line 21, ../sass/home.scss */
-.wrapper section {
-  float: right;
+.wrapper h2 {
+  margin-top: 2.4rem;
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  font-family: "Lato", "Lucidia Grande", serif;
+  text-transform: uppercase;
 }
-/* line 24, ../sass/home.scss */
-.wrapper .home-conversations {
-  width: 50%;
+/* line 29, ../sass/home.scss */
+.wrapper section {
   float: left;
 }
-/* line 28, ../sass/home.scss */
+/* line 32, ../sass/home.scss */
+.wrapper .home-conversations {
+  width: 60%;
+  float: left;
+}
+/* line 37, ../sass/home.scss */
 .wrapper .home-conversations h3 {
   font-size: 1.5rem;
   font-weight: 700;
   font-family: "Lato", "Lucidia Grande", serif;
-  color: #777777;
-  margin: 2rem 0;
+  color: #555555;
+  margin: 1.4rem 0 0.4rem 0;
+}
+/* line 45, ../sass/home.scss */
+.wrapper .home-conversations .name {
+  font-family: "Lato", "Lucidia Grande", serif;
+  color: #b0b0b0;
+  margin-right: 0.35rem;
+  font-weight: 400;
+  display: inline-block;
+  font-size: 0.9rem;
+}
+/* line 53, ../sass/home.scss */
+.wrapper .home-conversations .load-more, .wrapper .home-conversations .new-convo {
+  font-family: "Lato", "Lucidia Grande", serif;
+  font-weight: 300;
+  color: #333333;
+  padding: 1rem 1.5rem;
+  border: 1px solid #333333;
+  display: inline-block;
+  border-radius: 2rem;
+  margin: 1.5rem 0 2.5rem 0;
+}
+/* line 64, ../sass/home.scss */
+.wrapper .home-conversations .new-convo {
+  margin: 0;
+  text-decoration: none;
+}
+/* line 68, ../sass/home.scss */
+.wrapper .home-conversations .new-convo span {
+  text-decoration: underline;
 }

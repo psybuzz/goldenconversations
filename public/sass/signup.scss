@@ -68,20 +68,20 @@
 		font-size: 1.1rem;
 		border-radius: 4px;
 		@include box-shadow(
-			$bottom-shadow 0 4px 0 0,
-			$left-shadow -2px -1px 0 0 inset, 
-			$right-shadow 2px -1px 0 0 inset,
-			$top-shadow 0 2px 0 0 inset
+			$top-shadow 0 2px 0 0 inset,
+			$left-shadow -2px 0px 0 0 inset, 
+			$right-shadow 2px 0px 0 0 inset,
+			$bottom-shadow 0 4px 0 0
 			
 		);
 		transition: all 0.3s ease;
 		&:hover {
 			background-color: $dark-gray;
 			@include box-shadow(
-				$bottom-shadow-dark 0 4px 0 0,
-				$left-shadow-dark -2px -1px 0 0 inset, 
-				$right-shadow-dark 2px -1px 0 0 inset,
-				$top-shadow-dark 0 2px 0 0 inset
+				$top-shadow-dark 0 2px 0 0 inset,
+				$left-shadow-dark -2px 0px 0 0 inset, 
+				$right-shadow-dark 2px 0px 0 0 inset,
+				$bottom-shadow-dark 0 4px 0 0
 				
 			);
 		}

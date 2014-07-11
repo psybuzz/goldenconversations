@@ -10,7 +10,7 @@
 	position: relative;
 	h1 {
 		margin: auto;
-		margin-bottom: 2rem;
+		margin-bottom: 0.5rem;
 		max-width: $max-display;
 		min-width: $min-display;
 		position: relative;
@@ -43,7 +43,7 @@
 
 .display {
 	margin: 0 auto;
-	padding: 20px 0;
+	padding: 0.7rem 0;
 	max-width: $max-display;
 	min-width: $min-display;
 	height: 55%;
@@ -60,19 +60,22 @@
 .display-area{
 	color: $light-black;
 	font-weight: 400;
-	font-size: 1.02rem;
+	font-size: 1rem;
 	p, br{
 		margin: 0;
 	}
 	p {
 		line-height: 1.45rem;
+		@media screen and (max-width: $max-display) {
+			 font-size: 1.2rem;
+		}
 	}
 
 }
 
 .display-fade {
 	position: absolute;
-	height: 50px;
+	height: 1.8rem;
 	z-index: 10;
 	@include background-image(linear-gradient(white, rgba(white, 0)));
 }

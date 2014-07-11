@@ -6,34 +6,79 @@ html, body {
 	height: 0;
 }
 
+html,body {
+	height: 100%;
+}
+.personal-info {
+
+}
+
 .wrapper {
 	margin: 0 auto;
 	max-width: 900px;
 	height: 50;
+	padding: 1.5rem 0;
 	h2 {
-		font-size: 1.3rem;
+		margin-top: 2.4rem;
+		font-size: 1.2rem;
 		color: $light-gray;
 		font-family: $sans-stack;
+		text-transform: uppercase;
 	}
-
-
 
 	section {
-		float: right;
+		float: left;
 	}
 	.home-conversations {
-		width: 50%;
+		width: 60%;
 		float: left;
+
 
 		h3 {
 			font-size: 1.5rem;
 			font-weight: 700;
 			font-family: $sans-stack;
 			color: $dark-gray;
-			margin: 2rem 0;
+			margin: 1.4rem 0 0.4rem 0;
+		}
+
+		.name {
+			font-family: $sans-stack;
+			color: $light-gray;
+			margin-right: 0.35rem;
+			font-weight: 400;
+			display: inline-block;
+			font-size: 0.9rem;
+		}
+		.load-more {
+			font-family: $sans-stack;
+			font-weight: 300;
+			color: $super-gray;
+			padding: 1rem 1.5rem;
+			border: 1px solid $super-gray;
+			display: inline-block;
+			border-radius: 2rem;
+			margin: 1.5rem 0 2.5rem 0;
+		}
+
+		.new-convo {
+			@extend .load-more;
+			margin: 0;
+			text-decoration: none;
+			span {
+				text-decoration: underline;
+			}
+		}
+
+		.convo-intro {
+
 		}
 	}
 }
 
+.wrapper {
+
+
+}
 
 
