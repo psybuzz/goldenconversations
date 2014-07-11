@@ -39,7 +39,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 var LocalStrategy = require('passport-local').Strategy;
-var login = require('./login');
+var login = require('./authentication');
 var io = require('socket.io')(http);
 
 // all environments
@@ -60,8 +60,15 @@ app.get('/home', routes.home);
 app.get('/signup', routes.signup);
 app.get('/login', routes.login);
 app.get('/signup', routes.signup);
-app.post('/login', passport.authenticate('local', { successRedirect: '/',
-                                                    failureRedirect: '/login' }));
+app.post('/login', passport.authenticate('local'), 
+	function(req,res){
+		res.redirect('/home/' + req.user.username);
+	},
+	function(req,res){
+		res.redirect('/login');
+	}
+);
+
 app.post('/user/create', user.create);
 app.post('/conversation/create', conversation.create);
 app.post('/group/create', group.create);
@@ -77,8 +84,11 @@ app.post('/conversation/update', conversation.update);
 app.post('/group/update', group.update);
 app.post('/post/update', post.update);
 
-app.get('/user/search', user.search);
+app.get('/home/:id', routes.home);
+app.get('/conversation/:id', routes.index);
+app.get('/group/:id', routes.group);
 
+app.get('/user/search', user.search);
 app.get('/all', conversation.getTestMessages);
 
 io.on('connection', function(socket){
