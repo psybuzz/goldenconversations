@@ -22,7 +22,7 @@ exports.signup = function(req, res){
 };
 
 exports.home = function(req, res){
-  res.render('home', { title: 'Express' });
+  res.render('home', { title: 'Express', user: req.user });
 };
 
 exports.login = function(req, res){
