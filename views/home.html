@@ -14,73 +14,84 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/home.css">
 </head>
 <body>
-	<div>Welcome, {{user.firstName}} {{user.lastName}}!</div>
+	
+	<div class="personal-info">Welcome, {{user.firstName}} {{user.lastName}}!</div>
 	<div id="log-out"><a href="/logout">Log Out</a></div>
 	
 	<div class="wrapper">
-		<section class="home-contacts">
-			<h2>Recent Contacts</h2>
-			<div class="contacts-content">
-				
-			</div>
-		</section >
 
 		<section class="home-conversations">
-			<h2>Recent Conversations</h2>
+			
 			<div class="conversation-content">
-				<div class="convo1">
+				<h2>Conversations</h2>
+				<div class="convo1 convo">
 					<h3>What does 'je ne sais quoi?' mean?</h3>
 					<span class="name1 name">Nikil Selvam</span>
 					<span class="name2 name">Erik Luo</span>
 					<span class="name3 name">Tony Jing</span>
 				</div>
-				<div class="convo2">
+				<div class="convo2 convo">
 					<h3>The World Cup</h3>
 					<span class="name1 name">Nikil Selvam</span>
 					<span class="name2 name">Erik Luo</span>
 					<span class="name3 name">Tony Jing</span>
 					<span class="name4 name">John Smith</span>
 				</div>
-				<div class="convo3">
-					<h3>#Realtalk</h3>
+				<div class="convo3 convo">
+					<h3>What is the best fruit in the world?</h3>
 					<span class="name1 name">Nikil Selvam</span>
 					<span class="name2 name">Erik Luo</span>
 					<span class="name3 name">Tony Jing</span>
 					<span class="name4 name">Fifi Yeung</span>
-					<span class="name4 name">Sarah J.</span>
+					<span class="name5 name">Sarah J.</span>
+					<span class="name6 name">Thomas Jefferson</span>
 				</div>
-				<div class="convo4">
+				<div class="convo4 convo">
 					<h3>On the topic of work and bliss</h3>
 					<span class="name1 name">Nikil Selvam</span>
 					<span class="name2 name">Erik Luo</span>
 					<span class="name3 name">Tony Jing</span>
 				</div>
-				<div class="convo4">
-					<h3>How can we ask the tough questions in life and get real answers?</h3>
+				<div class="convo4 convo">
+					<h3>How can we ask ourselves, the tough questions in life and get real answers?</h3>
 					<span class="name1 name">Nikil Selvam</span>
 					<span class="name2 name">Erik Luo</span>
 					<span class="name3 name">Tony Jing</span>
 					<span class="name4 name">Wofu Uganda</span>
 				</div>
 				<a href="#" class="load-more">Load More</a>
+				<a href="#" class="new-thing"><span>Start a New Conversation</span></a>
 			</div>
 		</section>
 
-		<section class="home-mvp">
-			<h2>Hall of Fame</h2>
-			<div class="mvp-content">
-				
-			</div>
-		</section>
-
-		<section class="home-groups">
+		
+		<section class="home-groups right-side">
 			<h2>Groups</h2>
 			<div class="groups-content">
-			
+				<h3>The trio show</h3>
+				<h3>Sports</h3>
+				<h3>Inkterns</h3>
 			</div>
+			<a href="#" class="load-more">View All Groups</a>
+			<a href="#" class="new-thing"><span>Create a New Group</span></a>
 		</section>
-		<section class="home-new">
-			
+
+		<section class="home-contacts right-side">
+			<h2>Contacts</h2>
+			<div class="contacts-content">
+				<span class="name1 name">Nikil Selvam</span>
+				<span class="name2 name">Erik Luo</span>
+				<span class="name3 name">Tony Jing</span>
+				<span class="name4 name">Fifi Yeung</span>
+				<span class="name5 name">Sarah J.</span>
+
+			</div>
+		</section >
+	
+		<section class="home-mvp right-side">
+			<a href="#">Hall of Fame</a>
+			<div class="mvp-content">
+			</div>
 		</section>
 
 	</div>

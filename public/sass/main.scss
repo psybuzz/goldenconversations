@@ -18,17 +18,17 @@ body {
 *:focus {outline: none;}
 
 ::-webkit-input-placeholder {
-   color: $light-gray;
+   color: $light-main;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: $light-gray;  
+   color: $light-main;  
 }
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: $light-gray;  
+   color: $light-main;  
 }
 :-ms-input-placeholder {  
-   color: $light-gray;  
+   color: $light-main;  
 }
 
 

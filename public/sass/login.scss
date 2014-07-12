@@ -27,7 +27,7 @@
 		padding-bottom: 1.8rem;
 		font-family: $sans-stack;
 		font-weight: 700;
-		color: $light-gray;
+		color: $light-main;
 		font-size: 2.2rem;
 		&:before {
 			content:"Where conversations happen.";
@@ -38,7 +38,7 @@
 			font-size: 1.1rem;
 		}
 		span {
-			color: $dark-gray;
+			color: $dark-main;
 			font-weight: 700;
 		}
 	}
@@ -47,7 +47,7 @@
 		display: block;
 		margin-top: 0.5rem;
 		font-family: $sans-stack;
-		color: $light-gray;
+		color: $light-main;
 		font-weight: 300;
 		font-size: 0.9rem;
 	
@@ -58,7 +58,7 @@
 		font-size: 1.2rem;
 		height: 35px;
 		border: none;
-		border-bottom: 1px solid $light-gray;
+		border-bottom: 1px solid $light-main;
 		display: block;
 		margin-top: 2rem;
 		font-family: $sans-stack;
@@ -69,56 +69,66 @@
 		}
 	}
 
-	input[type="submit"] {
+	a.signup {
+		display: inline-block;
+		font-family: $sans-stack;
+		text-decoration: none;
+		padding: 0.45rem 0 0.35rem 0;
+		text-align: center;
 		margin-right: 2%;
 		width: 49%; 
 		float: left;
 		color: white;
 		font-weight: 400;
 		margin-top: 2rem;
-		height: 40px;
-		background-color: $light-gray;
+		// height: 40px;
+		background-color: $light-main;
 		border: none;
 		font-size: 1.1rem;
 		border-radius: 4px;
 		@include box-shadow(
-			$bottom-shadow 0 4px 0 0,
-			$left-shadow -2px -1px 0 0 inset, 
-			$right-shadow 2px -1px 0 0 inset,
-			$top-shadow 0 2px 0 0 inset
+			$bottom-sub 0 4px 0 0,
+			$left-sub -2px 0px 0 0 inset, 
+			$right-sub 2px 0px 0 0 inset,
+			$top-sub 0 2px 0 0 inset
 		);
 		transition: all 0.3s ease;
 		&:hover {
-			background-color: $dark-gray;
+			background-color: $dark-main;
 			@include box-shadow(
-				$bottom-shadow-dark 0 4px 0 0,
-				$left-shadow-dark -2px -1px 0 0 inset, 
-				$right-shadow-dark 2px -1px 0 0 inset,
-				$top-shadow-dark 0 2px 0 0 inset
+				$bottom-sub-dark 0 4px 0 0,
+				$left-sub-dark -2px 0px 0 0 inset, 
+				$right-sub-dark 2px 0px 0 0 inset,
+				$top-sub-dark 0 2px 0 0 inset
 				
 			);
 		}
-		&:last-of-type {
-			margin-right: 0;
-			background-color: $gray;
-			@include box-shadow(
-				$dark-bottom-shadow 0 4px 0 0,
-				$dark-left-shadow -2px -1px 0 0 inset, 
-				$dark-right-shadow 2px -1px 0 0 inset,
-				$dark-top-shadow 0 2px 0 0 inset
-			);
-			transition: all 0.3s ease;
-			&:hover {
-				background-color: $super-gray;
-				@include box-shadow(
-					$dark-bottom-shadow-dark 0 4px 0 0,
-					$dark-left-shadow-dark -2px -1px 0 0 inset, 
-					$dark-right-shadow-dark 2px -1px 0 0 inset,
-					$dark-top-shadow-dark 0 2px 0 0 inset
-					
-				);
-			}
+		
+		@media screen and (max-width: $max-display) {
+		  	padding: 0.75rem 0 0.65rem 0;
 		}
-
 	}
+	input.login {
+		@extend a.signup;
+		background-color: $main;
+		@include box-shadow(
+			$dark-bottom-main 0 4px 0 0,
+			$dark-left-main -2px 0px 0 0 inset, 
+			$dark-right-main 2px 0px 0 0 inset,
+			$dark-top-main 0 2px 0 0 inset
+		);
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: $super-main;
+			@include box-shadow(
+				$dark-bottom-main-dark 0 4px 0 0,
+				$dark-left-main-dark -2px 0px 0 0 inset, 
+				$dark-right-main-dark 2px 0px 0 0 inset,
+				$dark-top-main-dark 0 2px 0 0 inset
+				
+			);
+		}
+		margin-right: 0;
+
+	}	
 }

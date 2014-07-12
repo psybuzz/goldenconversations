@@ -1,36 +1,77 @@
 @import 'partials/variables';
 @import "compass";
 
-html, body {
+
+html,body {
 	font-size: 16px;
-	height: 0;
+	height: 100%;
 }
 
 .wrapper {
 	margin: 0 auto;
 	max-width: 900px;
-	height: 50;
+	height: 90%;
+	padding: 1.2rem 0;
 	h2 {
-		font-size: 1.3rem;
-		color: $light-gray;
+		margin-top: 2.6rem;
+		font-size: 1.2rem;
+		color: $light-main;
 		font-family: $sans-stack;
+		text-transform: uppercase;
 	}
-
-
 
 	section {
-		float: right;
-	}
-	.home-conversations {
-		width: 50%;
 		float: left;
+		margin-bottom: 3rem;
+		.load-more {
+			font-family: $sans-stack;
+			font-weight: 300;
+			color: $super-main;
+			display: block;
+			border-radius: 2px;
+			margin-top: 1.8rem;
+		}
+
+		.new-thing {
+			@extend .load-more;
+			margin: 0;
+			margin-top: 1rem;
+		}
 
 		h3 {
-			font-size: 1.5rem;
+			font-size: 1.7rem;
 			font-weight: 700;
 			font-family: $sans-stack;
-			color: $dark-gray;
-			margin: 2rem 0;
+			color: $dark-main;
+			margin: 1.7rem 0 0.5rem 0;
+		}
+	}
+
+	.right-side{
+		width: 35%;
+	}	
+	.home-conversations {
+		width: 55%;
+		float: left;
+		padding-left: 70px;
+
+		.name {
+			font-family: $sans-stack;
+			color: $light-main;
+			margin-right: 0.35rem;
+			font-weight: 400;
+			display: inline-block;
+			font-size: 0.9rem;
+		}
+	}
+
+	.home-groups {
+		margin-bottom: 1rem;
+		h3	{
+			margin-top: 0.9rem;
+
+			font-size: 1.4rem;
+			color: $main;
 		}
 	}
 }

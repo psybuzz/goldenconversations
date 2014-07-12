@@ -457,22 +457,22 @@ body {
 
 /* line 20, ../sass/main.scss */
 ::-webkit-input-placeholder {
-  color: #d0d0d0;
+  color: #b0b0b0;
 }
 
 /* line 24, ../sass/main.scss */
 :-moz-placeholder {
   /* Firefox 18- */
-  color: #d0d0d0;
+  color: #b0b0b0;
 }
 
 /* line 27, ../sass/main.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #d0d0d0;
+  color: #b0b0b0;
 }
 
 /* line 30, ../sass/main.scss */
 :-ms-input-placeholder {
-  color: #d0d0d0;
+  color: #b0b0b0;
 }
