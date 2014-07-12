@@ -27,7 +27,7 @@
 		padding-bottom: 1.8rem;
 		font-family: $sans-stack;
 		font-weight: 700;
-		color: $light-gray;
+		color: $light-main;
 		font-size: 2.2rem;
 		&:before {
 			content:"Where conversations happen.";
@@ -38,7 +38,7 @@
 			font-size: 1.1rem;
 		}
 		span {
-			color: $dark-gray;
+			color: $dark-main;
 			font-weight: 700;
 		}
 	}
@@ -47,7 +47,7 @@
 		font-size: 1.2rem;
 		height: 35px;
 		border: none;
-		border-bottom: 1px solid $light-gray;
+		border-bottom: 1px solid $light-main;
 		display: block;
 		margin-top: 2rem;
 		font-family: $sans-stack;
@@ -63,25 +63,25 @@
 		font-weight: 400;
 		margin-top: 2.7rem;
 		height: 40px;
-		background-color: $light-gray;
+		background-color: $light-main;
 		border: none;
 		font-size: 1.1rem;
 		border-radius: 4px;
 		@include box-shadow(
-			$top-shadow 0 2px 0 0 inset,
-			$left-shadow -2px 0px 0 0 inset, 
-			$right-shadow 2px 0px 0 0 inset,
-			$bottom-shadow 0 4px 0 0
+			$top-sub 0 2px 0 0 inset,
+			$left-sub -2px 0px 0 0 inset, 
+			$right-sub 2px 0px 0 0 inset,
+			$bottom-sub 0 4px 0 0
 			
 		);
 		transition: all 0.3s ease;
 		&:hover {
-			background-color: $dark-gray;
+			background-color: $dark-main;
 			@include box-shadow(
-				$top-shadow-dark 0 2px 0 0 inset,
-				$left-shadow-dark -2px 0px 0 0 inset, 
-				$right-shadow-dark 2px 0px 0 0 inset,
-				$bottom-shadow-dark 0 4px 0 0
+				$top-sub-dark 0 2px 0 0 inset,
+				$left-sub-dark -2px 0px 0 0 inset, 
+				$right-sub-dark 2px 0px 0 0 inset,
+				$bottom-sub-dark 0 4px 0 0
 				
 			);
 		}
