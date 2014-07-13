@@ -42,11 +42,17 @@ $dark-top-main-dark: 		rgba(white, 0.3);
 
 
 // Width & Height
+
+$shape-padding-left: 0;
 $max-display: 750px;
 $mid-display: 360px;
 $min-display: 280px;
+$super-wide: 1500px;
 
 $min-height: 180px;
 $mobile-display: 300px;
 
+
+// Transition effect
+$default-trans: all 0.5s ease;
 

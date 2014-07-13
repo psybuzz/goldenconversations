@@ -5,6 +5,8 @@
 html,body {
 	font-size: 16px;
 	height: 100%;
+
+
 }
 
 .wrapper {
@@ -12,6 +14,17 @@ html,body {
 	max-width: 900px;
 	height: 90%;
 	padding: 1.2rem 0;
+	padding-left: 200px;
+
+	@media screen and (max-width: $max-display) {
+		  	max-width: 100%;
+		  	padding: 0.8rem 0;
+	}
+
+	@media screen and (min-width: $super-wide) {
+		  	max-width: 1400px;
+	}
+
 	h2 {
 		margin-top: 2.6rem;
 		font-size: 1.2rem;
@@ -23,12 +36,21 @@ html,body {
 	section {
 		float: left;
 		margin-bottom: 3rem;
+
+		a {
+			color: $super-main;
+			transition: $default-trans;
+			opacity: 0.85;
+			&:hover {
+				color: $dark-black;
+				opacity: 1;
+			}
+		}
+
 		.load-more {
 			font-family: $sans-stack;
 			font-weight: 300;
-			color: $super-main;
 			display: block;
-			border-radius: 2px;
 			margin-top: 1.8rem;
 		}
 
@@ -45,15 +67,6 @@ html,body {
 			color: $dark-main;
 			margin: 1.7rem 0 0.5rem 0;
 		}
-	}
-
-	.right-side{
-		width: 35%;
-	}	
-	.home-conversations {
-		width: 55%;
-		float: left;
-		padding-left: 70px;
 
 		.name {
 			font-family: $sans-stack;
@@ -65,13 +78,91 @@ html,body {
 		}
 	}
 
+	.admin-bar {
+		margin-top: 1rem;
+		color: $main;
+		font-family: $sans-stack;
+		float: none;
+		display: block;
+		padding-left: $shape-padding-left;
+		margin-bottom: 1rem;
+		@media screen and (max-width: $max-display) {
+			padding-left: 2%;
+		  	width: 96%;
+		  	margin-bottom: 0;
+		}
+		.personal-info {
+			float: left;
+			margin-right: 0.7rem;
+		}
+		#log-out {
+			float: left;
+			font-family: $sans-stack;
+			font-weight: 300;
+		}
+	}
+
+	.right-side{
+		width: 31%;
+		margin-left: 2%;
+	}	
+	.home-conversations {
+		clear: both;
+		width: 55%;
+		padding-left: $shape-padding-left;
+		@media screen and (max-width: $max-display) {
+			padding: 2%;
+		  	width: 96%;
+		}
+		.convo {
+			position: relative;
+			img {
+				position: absolute;
+				left: -56px;
+				top: 0.32rem;;
+				width: 30px;
+				opacity: 0.95;
+			}
+		}
+	}
 	.home-groups {
 		margin-bottom: 1rem;
 		h3	{
 			margin-top: 0.9rem;
-
 			font-size: 1.4rem;
 			color: $main;
+		}
+	}
+
+	.home-contacts{
+		.name {
+			display: block;
+			font-size: 1rem;
+			margin-bottom: 0.5rem;
+			color: $main;
+		}
+	}
+	.home-mvp {
+		a {
+			color: $dark-black;
+			font-family: $sans-stack;
+			font-weight: 900;
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			font-style: italic;
+			text-decoration: none;
+			border:1px solid yellow;
+			opacity: 0.65;
+			transition: $default-trans;
+			padding: 0.9rem;
+			display: inline-block;
+			@include background-image(linear-gradient(left, yellow, yellow 20%, white 25%, yellow 30%, yellow));
+			@media screen and (max-width: $max-display) {
+				margin-top: 2.6rem;
+			}
+			&:hover {
+				opacity: 1;
+			}
 		}
 	}
 }

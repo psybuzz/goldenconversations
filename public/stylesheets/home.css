@@ -4,14 +4,28 @@ html, body {
   height: 100%;
 }
 
-/* line 10, ../sass/home.scss */
+/* line 12, ../sass/home.scss */
 .wrapper {
   margin: 0 auto;
   max-width: 900px;
   height: 90%;
   padding: 1.2rem 0;
+  padding-left: 200px;
 }
-/* line 15, ../sass/home.scss */
+@media screen and (max-width: 750px) {
+  /* line 12, ../sass/home.scss */
+  .wrapper {
+    max-width: 100%;
+    padding: 0.8rem 0;
+  }
+}
+@media screen and (min-width: 1500px) {
+  /* line 12, ../sass/home.scss */
+  .wrapper {
+    max-width: 1400px;
+  }
+}
+/* line 28, ../sass/home.scss */
 .wrapper h2 {
   margin-top: 2.6rem;
   font-size: 1.2rem;
@@ -19,26 +33,35 @@ html, body {
   font-family: "Lato", "Lucidia Grande", serif;
   text-transform: uppercase;
 }
-/* line 23, ../sass/home.scss */
+/* line 36, ../sass/home.scss */
 .wrapper section {
   float: left;
   margin-bottom: 3rem;
 }
-/* line 26, ../sass/home.scss */
+/* line 40, ../sass/home.scss */
+.wrapper section a {
+  color: #333333;
+  transition: all 0.5s ease;
+  opacity: 0.85;
+}
+/* line 44, ../sass/home.scss */
+.wrapper section a:hover {
+  color: #181818;
+  opacity: 1;
+}
+/* line 50, ../sass/home.scss */
 .wrapper section .load-more, .wrapper section .new-thing {
   font-family: "Lato", "Lucidia Grande", serif;
   font-weight: 300;
-  color: #333333;
   display: block;
-  border-radius: 2px;
   margin-top: 1.8rem;
 }
-/* line 35, ../sass/home.scss */
+/* line 57, ../sass/home.scss */
 .wrapper section .new-thing {
   margin: 0;
   margin-top: 1rem;
 }
-/* line 41, ../sass/home.scss */
+/* line 63, ../sass/home.scss */
 .wrapper section h3 {
   font-size: 1.7rem;
   font-weight: 700;
@@ -46,18 +69,8 @@ html, body {
   color: #555555;
   margin: 1.7rem 0 0.5rem 0;
 }
-/* line 50, ../sass/home.scss */
-.wrapper .right-side {
-  width: 35%;
-}
-/* line 53, ../sass/home.scss */
-.wrapper .home-conversations {
-  width: 55%;
-  float: left;
-  padding-left: 70px;
-}
-/* line 58, ../sass/home.scss */
-.wrapper .home-conversations .name {
+/* line 71, ../sass/home.scss */
+.wrapper section .name {
   font-family: "Lato", "Lucidia Grande", serif;
   color: #b0b0b0;
   margin-right: 0.35rem;
@@ -65,13 +78,109 @@ html, body {
   display: inline-block;
   font-size: 0.9rem;
 }
-/* line 68, ../sass/home.scss */
+/* line 81, ../sass/home.scss */
+.wrapper .admin-bar {
+  margin-top: 1rem;
+  color: #777777;
+  font-family: "Lato", "Lucidia Grande", serif;
+  float: none;
+  display: block;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 750px) {
+  /* line 81, ../sass/home.scss */
+  .wrapper .admin-bar {
+    padding-left: 2%;
+    width: 96%;
+    margin-bottom: 0;
+  }
+}
+/* line 94, ../sass/home.scss */
+.wrapper .admin-bar .personal-info {
+  float: left;
+  margin-right: 0.7rem;
+}
+/* line 98, ../sass/home.scss */
+.wrapper .admin-bar #log-out {
+  float: left;
+  font-family: "Lato", "Lucidia Grande", serif;
+  font-weight: 300;
+}
+/* line 105, ../sass/home.scss */
+.wrapper .right-side {
+  width: 31%;
+  margin-left: 2%;
+}
+/* line 109, ../sass/home.scss */
+.wrapper .home-conversations {
+  clear: both;
+  width: 55%;
+  padding-left: 0;
+}
+@media screen and (max-width: 750px) {
+  /* line 109, ../sass/home.scss */
+  .wrapper .home-conversations {
+    padding: 2%;
+    width: 96%;
+  }
+}
+/* line 117, ../sass/home.scss */
+.wrapper .home-conversations .convo {
+  position: relative;
+}
+/* line 119, ../sass/home.scss */
+.wrapper .home-conversations .convo img {
+  position: absolute;
+  left: -56px;
+  top: 0.32rem;
+  width: 30px;
+  opacity: 0.95;
+}
+/* line 128, ../sass/home.scss */
 .wrapper .home-groups {
   margin-bottom: 1rem;
 }
-/* line 70, ../sass/home.scss */
+/* line 130, ../sass/home.scss */
 .wrapper .home-groups h3 {
   margin-top: 0.9rem;
   font-size: 1.4rem;
   color: #777777;
+}
+/* line 138, ../sass/home.scss */
+.wrapper .home-contacts .name {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #777777;
+}
+/* line 146, ../sass/home.scss */
+.wrapper .home-mvp a {
+  color: #181818;
+  font-family: "Lato", "Lucidia Grande", serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-style: italic;
+  text-decoration: none;
+  border: 1px solid yellow;
+  opacity: 0.65;
+  transition: all 0.5s ease;
+  padding: 0.9rem;
+  display: inline-block;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #ffff00), color-stop(20%, #ffff00), color-stop(25%, #ffffff), color-stop(30%, #ffff00), color-stop(100%, #ffff00));
+  background-image: -webkit-linear-gradient(left, #ffff00, #ffff00 20%, #ffffff 25%, #ffff00 30%, #ffff00);
+  background-image: -moz-linear-gradient(left, #ffff00, #ffff00 20%, #ffffff 25%, #ffff00 30%, #ffff00);
+  background-image: -o-linear-gradient(left, #ffff00, #ffff00 20%, #ffffff 25%, #ffff00 30%, #ffff00);
+  background-image: linear-gradient(left, #ffff00, #ffff00 20%, #ffffff 25%, #ffff00 30%, #ffff00);
+}
+@media screen and (max-width: 750px) {
+  /* line 146, ../sass/home.scss */
+  .wrapper .home-mvp a {
+    margin-top: 2.6rem;
+  }
+}
+/* line 163, ../sass/home.scss */
+.wrapper .home-mvp a:hover {
+  opacity: 1;
 }
