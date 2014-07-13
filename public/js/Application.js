@@ -2,15 +2,16 @@ $(document).ready(function() {
     var socket = io();
 
 	// Load comments
-	$.getJSON('/all', function (data) {
-        console.log("data is", data);
-        if (data){
+	$.get('/conversation/posts', {conversationId: conversationId}, function (data) {
+        if (data.success){
     		var text = '';
-    		for (var i = 0; i < data.length; i++) {
-    			text += '<p>' + data[i].content + '</p><br>';
+    		for (var i = 0; i < data.message.length; i++) {
+    			text += '<p>' + data.message[i].content + '</p><br>';
     		};
     		$('.display-area').append(text);
             setScrollPos();
+        } else if (data.redirect){
+            window.location.href = data.redirect;
         }
 	});
 });

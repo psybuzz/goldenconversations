@@ -1,26 +1,46 @@
 var db = require('./../db.js');
 var Q = require('q');
+var resError = require('./messaging').resError;
+var findUserById = require('./user').findById;
 
 Conversation = db.models.Conversation;
+User = db.models.User;
 Post = db.models.Post;
 
 exports.create = function(req, res){
-	var conversation = new db.models.Conversation({
-	    participants        : req.body.iceBreaker,
-	    category            : req.body.category,
-	    question            : req.body.question,
-	    isGroup             : req.body.isGroup,
-	    lastEdited          : Date.now()
-	});
-
-	console.log(req.body.question);
-
-	conversation.save(function(err){
-		if (err){
-			console.log(err);
-		} else{
-			res.send({status: 'OK', success: true});
+	var iceBreakerId = req.body.iceBreaker;
+	User.findById(iceBreakerId, function (err, user){
+    	if (err){
+			resError(res, "Could not find user.");
 		}
+		
+		var conversation = new db.models.Conversation({
+		    participants        : [{
+		    						user: iceBreakerId,
+		    						firstName: user.firstName, 
+		    						lastName: user.lastName,
+		    						isThrilled: false
+		    						}],
+		    category            : req.body.category,
+		    question            : req.body.question,
+		    isGroup             : req.body.isGroup,
+		    lastEdited          : Date.now()
+		});
+
+		conversation.save(function(err){
+			if (err){
+				resError(res, err);
+			} else{
+				user.userConversations.push({conversation: conversation.id, hallOfFame: false});
+				user.save(function(err){
+					if (err){
+						resError(res, err);
+					} else {
+						res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
+					}
+				});
+			}
+		});
 	});
 };
 
@@ -62,3 +82,86 @@ exports.getTestMessages = function(req, res){
 		}
     });
 };
+
+// Gets all the posts within a certain conversation.
+exports.allPosts = function(req, res){
+	if (!req.user || !req.user._id) {
+		resError(res, "Access denied.", "/error");
+		return;
+	}
+
+    Conversation.findById( req.query.conversationId, function (err, convo){
+    	if (err){
+			resError(res, "Could not find posts for your conversation.");
+		}
+		var participantIds = convo.participants.map(function (p) {
+			return p.user;
+		})
+		if (participantIds.indexOf(req.user._id) === -1){
+			resError(res, "Access denied.", "/error");
+			return;
+		}
+
+		var results = [];
+		var jobs = convo.discussion.map(function(postId, index){
+			var d = Q.defer();
+			Post.findById(postId, function(err, post){
+				if (err){
+					d.reject();
+				}
+				results[index] = post;
+				d.resolve(post);
+			});
+			return d.promise;
+		});
+		Q.allSettled(jobs).then(function (){
+    		res.send({status: 'OK', success: true, message: results});	
+		})
+    });
+};
+
+// Sends back a list of a given user's conversations.
+exports.search = function(req, res){
+	var userId = req.query.userId;
+	var recent = req.query.recent || true;
+	var limit = req.query.limit || undefined;
+
+	console.log('searching for user:', userId)
+
+	User.findById(userId, function (err, user){
+    	if (err || !user){
+			resError(res, "Could not find user.");
+			return;
+		}
+
+		var discussion = user.userConversations;
+		var results = [];
+		var jobs = discussion.map(function (convoObj, index) {
+			var convoId = convoObj.conversation;
+			var d = Q.defer();
+			Conversation.findById(convoId, function(err, convo){
+				if (err){
+					resError(res, "Could not find conversations");
+					d.reject();
+				}
+
+				results[index] = {
+					id: convoId,
+					participants: convo.participants,
+					category: convo.category,
+					question: convo.question,
+					isGroup: convo.isGroup,
+					lastEdited: convo.lastEdited
+				};
+				d.resolve();
+			});
+			return d.promise;
+		});
+
+		Q.allSettled(jobs).then(function (){
+    		res.send({status: 'OK', success: true, message: results});
+		}, function(err){
+			resError(res, "Could not fetch all conversations.");
+		});
+    });
+}

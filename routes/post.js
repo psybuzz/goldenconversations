@@ -1,5 +1,6 @@
 var db = require('./../db.js');
 var validator = require('validator');
+var resError = require('./messaging').resError;
 
 // sends response with an error message, and logs it in the console
 function resError(res, message){

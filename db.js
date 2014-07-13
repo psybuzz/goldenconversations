@@ -22,6 +22,8 @@ var postSchema = new Schema({
 }, { collection: 'post' });
 
 // User Schema
+// Whenever a user updates their name, we need to update their listed name in the 'participants'
+// field in all of their conversations.
 var userSchema = new Schema({
     username 			: String,
     firstName  			: String,
@@ -38,7 +40,7 @@ var userSchema = new Schema({
 // Conversation Schema
 var conversationSchema = new Schema({
     invited             : [ObjectId],
-    participants        : [{ participant: ObjectId, isThrilled: Boolean }],
+    participants        : [{ user: ObjectId, firstName: String, lastName: String, isThrilled: Boolean }],
     category            : String,
     question            : String,
     discussion          : [ObjectId],

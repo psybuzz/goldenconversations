@@ -1,4 +1,6 @@
 var db = require('./../db.js');
+var resError = require('./messaging').resError;
+var Q = require('Q');
 
 exports.create = function(req, res){
 	var user = new db.models.User({
@@ -40,3 +42,16 @@ exports.search = function(req, res){
 		res.send(docs);
 	});
 };
+
+exports.findById = function(id) {
+	var d = Q.defer();
+	User.findById(id, function(err, user){
+		if (err){
+			resError("internal", "Could not find user by id");
+			d.reject();
+			return;
+		}
+		d.resolve(user);
+	});
+	return d.promise;
+}

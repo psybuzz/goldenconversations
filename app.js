@@ -18,13 +18,13 @@ var post = require('./routes/post');
 var http = require('http').Server(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
-
-var passport = require('passport')
+var passport = require('passport');
+var io = require('socket.io')(http);
 
 // Passport
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(express.session({ secret: 'mr tolkein' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -37,10 +37,7 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-
-var LocalStrategy = require('passport-local').Strategy;
 var login = require('./authentication');
-var io = require('socket.io')(http);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -52,17 +49,27 @@ app.engine('html', handlebars({
 app.use(express.favicon());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.csrf());
+app.use(function (req, res, next) {
+  res.cookie('XSRF-TOKEN', req.csrfToken());
+  res.locals.csrfToken = req.csrfToken();
+  console.log(res.locals.csrfToken)
+  next();
+})
 
-app.get('/', routes.index);
-app.get('/home', routes.home);
+
+// Routes.
+app.use(app.router);
+
+app.get('/', routes.home);
+app.get('/testing', routes.testing);
 app.get('/signup', routes.signup);
 app.get('/login', routes.login);
 app.get('/signup', routes.signup);
 app.post('/login', passport.authenticate('local'), 
 	function(req,res){
-		res.redirect('/home');
+		res.redirect('/');
 	},
 	function(req,res){
 		res.redirect('/login');
@@ -89,12 +96,18 @@ app.post('/conversation/update', conversation.update);
 app.post('/group/update', group.update);
 app.post('/post/update', post.update);
 
+app.get('/user/search', user.search);
+app.get('/conversation/search', conversation.search)	// must come before /conversation/:id
+app.get('/conversation/posts', conversation.allPosts);
+
 app.get('/home', routes.home);
-app.get('/conversation/:id', routes.index);
+app.get('/conversation/:id', routes.conversation);
 app.get('/group/:id', routes.group);
 
-app.get('/user/search', user.search);
 app.get('/all', conversation.getTestMessages);
+
+app.use(routes.error404);
+app.use(routes.error500)
 
 io.on('connection', function(socket){
   console.log('a user connected');
