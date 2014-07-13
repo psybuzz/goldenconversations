@@ -19,7 +19,7 @@
 
 	<h1><span>Meaningful<span>.</h1>
 	<form id='login' action="/login" method="POST">
-	
+		<input type="hidden" name="_csrf" value={{csrfToken}} />
 		<input type="email" placeholder="Email" name="username" required>
 		<input type="password" placeholder="Password" name="password" requred>
 		<a class="forgot" href="#">Forgot your password?</a>

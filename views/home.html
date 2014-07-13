@@ -9,12 +9,12 @@
 	<title>Meaningful - Home</title>
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700|Merriweather:400,300italic,300,700,900' rel='stylesheet' type='text/css'>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/home.css">
 </head>
 <body>
-	
 	<div class="personal-info">Welcome, {{user.firstName}} {{user.lastName}}!</div>
 	<div id="log-out"><a href="/logout">Log Out</a></div>
 	
@@ -24,43 +24,45 @@
 			
 			<div class="conversation-content">
 				<h2>Conversations</h2>
-				<div class="convo1 convo">
-					<h3>What does 'je ne sais quoi?' mean?</h3>
-					<span class="name1 name">Nikil Selvam</span>
-					<span class="name2 name">Erik Luo</span>
-					<span class="name3 name">Tony Jing</span>
-				</div>
-				<div class="convo2 convo">
-					<h3>The World Cup</h3>
-					<span class="name1 name">Nikil Selvam</span>
-					<span class="name2 name">Erik Luo</span>
-					<span class="name3 name">Tony Jing</span>
-					<span class="name4 name">John Smith</span>
-				</div>
-				<div class="convo3 convo">
-					<h3>What is the best fruit in the world?</h3>
-					<span class="name1 name">Nikil Selvam</span>
-					<span class="name2 name">Erik Luo</span>
-					<span class="name3 name">Tony Jing</span>
-					<span class="name4 name">Fifi Yeung</span>
-					<span class="name5 name">Sarah J.</span>
-					<span class="name6 name">Thomas Jefferson</span>
-				</div>
-				<div class="convo4 convo">
-					<h3>On the topic of work and bliss</h3>
-					<span class="name1 name">Nikil Selvam</span>
-					<span class="name2 name">Erik Luo</span>
-					<span class="name3 name">Tony Jing</span>
-				</div>
-				<div class="convo4 convo">
-					<h3>How can we ask ourselves, the tough questions in life and get real answers?</h3>
-					<span class="name1 name">Nikil Selvam</span>
-					<span class="name2 name">Erik Luo</span>
-					<span class="name3 name">Tony Jing</span>
-					<span class="name4 name">Wofu Uganda</span>
+				<div id="conversation-entries">
+					<!-- <div class="convo1 convo">
+						<h3>What does 'je ne sais quoi?' mean?</h3>
+						<span class="name1 name">Nikil Selvam</span>
+						<span class="name2 name">Erik Luo</span>
+						<span class="name3 name">Tony Jing</span>
+					</div>
+					<div class="convo2 convo">
+						<h3>The World Cup</h3>
+						<span class="name1 name">Nikil Selvam</span>
+						<span class="name2 name">Erik Luo</span>
+						<span class="name3 name">Tony Jing</span>
+						<span class="name4 name">John Smith</span>
+					</div>
+					<div class="convo3 convo">
+						<h3>What is the best fruit in the world?</h3>
+						<span class="name1 name">Nikil Selvam</span>
+						<span class="name2 name">Erik Luo</span>
+						<span class="name3 name">Tony Jing</span>
+						<span class="name4 name">Fifi Yeung</span>
+						<span class="name5 name">Sarah J.</span>
+						<span class="name6 name">Thomas Jefferson</span>
+					</div>
+					<div class="convo4 convo">
+						<h3>On the topic of work and bliss</h3>
+						<span class="name1 name">Nikil Selvam</span>
+						<span class="name2 name">Erik Luo</span>
+						<span class="name3 name">Tony Jing</span>
+					</div>
+					<div class="convo4 convo">
+						<h3>How can we ask ourselves, the tough questions in life and get real answers?</h3>
+						<span class="name1 name">Nikil Selvam</span>
+						<span class="name2 name">Erik Luo</span>
+						<span class="name3 name">Tony Jing</span>
+						<span class="name4 name">Wofu Uganda</span>
+					</div> -->
 				</div>
 				<a href="#" class="load-more">Load More</a>
-				<a href="#" class="new-thing"><span>Start a New Conversation</span></a>
+				<a href="#" id="new-convo" class="new-thing"><span>Start a New Conversation</span></a>
 			</div>
 		</section>
 
@@ -95,6 +97,13 @@
 		</section>
 
 	</div>
+	
+	<script type='text/javascript'>
+		var username = '{{user.username}}';
+		var userId = '{{user._id}}';
+		var token = '{{csrfToken}}';
+	</script>
+	<script type='text/javascript' src='/js/home.js'></script>
 	
 </body>
 </html>

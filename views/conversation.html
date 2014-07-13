@@ -25,10 +25,6 @@
 		</div>
 		<div class="display-fade-bottom"></div>
 		
-		{{csrfToken}}
-		{{conversationId}}
-		{{title}}
-		
 		<div class="input-area">
 
 			<form id='mainform' action="/post/create" method="POST">
@@ -36,6 +32,7 @@
 				<input type="submit" value="Send">
 				<input type="hidden" value="testName" name="username">
 				<input type="hidden" value="{{conversationId}}" name="conversationId">
+				<input type="hidden" value="{{csrfToken}}" name="_csrf">
 			</form>
 					
 
@@ -76,6 +73,8 @@
 	</script>
 	<script type="text/javascript">
 		question.innerHTML = '{{title}}';
+		token = '{{csrfToken}}';
+		conversationId = '{{conversationId}}';
 	</script>
 </body>
 </html>

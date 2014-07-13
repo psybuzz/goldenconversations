@@ -1,4 +1,5 @@
 var db = require('./../db.js');
+var resError = require('./messaging').resError;
 
 exports.create = function(req, res){
 	var group = new db.models.Group({
