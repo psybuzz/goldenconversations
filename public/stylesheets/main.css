@@ -434,7 +434,7 @@ th {
   padding: 0;
 }
 
-/* line 8, ../sass/main.scss */
+/* line 7, ../sass/main.scss */
 html,
 body {
   height: 100%;
@@ -443,36 +443,48 @@ body {
   box-sizing: border-box;
 }
 @media screen and (max-width: 750px) {
-  /* line 8, ../sass/main.scss */
+  /* line 7, ../sass/main.scss */
   html,
   body {
     font-size: 13px;
   }
 }
 
-/* line 18, ../sass/main.scss */
+/* line 17, ../sass/main.scss */
 *:focus {
   outline: none;
 }
 
-/* line 20, ../sass/main.scss */
+/* line 19, ../sass/main.scss */
 ::-webkit-input-placeholder {
   color: #b0b0b0;
 }
 
-/* line 24, ../sass/main.scss */
+/* line 23, ../sass/main.scss */
 :-moz-placeholder {
   /* Firefox 18- */
   color: #b0b0b0;
 }
 
-/* line 27, ../sass/main.scss */
+/* line 26, ../sass/main.scss */
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #b0b0b0;
 }
 
-/* line 30, ../sass/main.scss */
+/* line 29, ../sass/main.scss */
 :-ms-input-placeholder {
   color: #b0b0b0;
+}
+
+/* line 33, ../sass/main.scss */
+#lean_overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  display: none;
 }
