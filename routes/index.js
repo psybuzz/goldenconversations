@@ -60,7 +60,16 @@ exports.conversation = function (req, res) {
 		var participantIds = convo.participants.map(function (p) {
 			return p.user;
 		})
-		if (participantIds.indexOf(req.user._id) === -1){
+		var found = false;
+		var userString = JSON.stringify(req.user._id);
+		for (var i = 0; i < participantIds.length; i++) {
+			console.log(JSON.stringify(participantIds[i]), userString, JSON.stringify(participantIds[i]) === userString)
+			if (JSON.stringify(participantIds[i]) === userString){
+				found = true;
+			}
+		};
+		console.log('found'. found)
+		if (!found){
 			res.redirect('error', {
 				title: "Looks like you're not a part of that conversation.",
 				message: "Ask the owners politely to invite you?"
