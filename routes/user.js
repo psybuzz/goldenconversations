@@ -1,6 +1,7 @@
 var db = require('./../db.js');
 var resError = require('./messaging').resError;
 var Q = require('Q');
+var Utils = require('./../utils');
 
 exports.create = function(req, res){
 	var user = new db.models.User({
@@ -35,11 +36,22 @@ exports.update = function(req, res){
 };
 
 exports.search = function(req, res){
-	User.find({ username: req.body.username}, function(err, docs, count){
-		if (err){
-			console.log(err);
-		}
-		res.send(docs);
+	var fields = 'username firstName lastName';
+
+	User.find({ username: new RegExp('^'+req.query.query, 'i')}, fields, function(err, docs, count){
+		if (err){ console.log(err) };
+
+
+		User.find({ firstName: new RegExp('^'+req.query.query, 'i')}, fields, function(err2, docs2, count){
+			if (err2){ console.log(err2) };
+
+			User.find({ lastName: new RegExp('^'+req.query.query, 'i')}, fields, function(err3, docs3, count){
+				if (err3){ console.log(err3) };
+
+				var result = Utils.union(docs, docs2, docs3);
+				res.send({status: 'OK', success: true, message: result});
+			});
+		});
 	});
 };
 

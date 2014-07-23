@@ -123,7 +123,7 @@ exports.allPosts = function(req, res){
 // Sends back a list of a given user's conversations.
 exports.search = function(req, res){
 	var userId = req.query.userId;
-	var recent = req.query.recent || true;
+	var recent = req.query.recent || false;
 	var limit = req.query.limit || undefined;
 
 	console.log('searching for user:', userId)
@@ -135,12 +135,15 @@ exports.search = function(req, res){
 		}
 
 		var discussion = user.userConversations;
+		if (limit){
+			discussion = discussion.slice(0, limit);
+		}
 		var results = [];
 		var jobs = discussion.map(function (convoObj, index) {
 			var convoId = convoObj.conversation;
 			var d = Q.defer();
 			Conversation.findById(convoId, function(err, convo){
-				if (err){
+				if (err || (Date.now() - convo.lastEdited > 365*24*60*60*1000){
 					resError(res, "Could not find conversations");
 					d.reject();
 				}
