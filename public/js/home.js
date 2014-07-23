@@ -1,15 +1,45 @@
-// Launch the dialog when clicking on the 'Start a new conversation' link.
-$('#new-convo').click(function(evt) {
+function peopleTypeEvent () {
+	var q = $('#people_input').val();
+	if (q == ''){
+		$('#search_names').html('');
+		return;
+	}
+
+	$.get('/user/search?query='+q, function(data){
+		var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="name">{{firstName}} {{lastName}}</span>{{/each}}';
+		var namesTemplate = Handlebars.compile(namesHTML);
+		if (data.success){
+			console.log(namesTemplate, data.message, namesTemplate(data))
+			$('#search_names').html(namesTemplate(data));
+		}
+	});
+}
+$('#people_input').keyup(_.debounce(peopleTypeEvent, 150));
+
+var addedPeople = [];
+$('#search_names').on('click', '.name', function (e) {
+	var id = $(this).attr('id').slice(5);
+
+	// TODO: De-dupe these pushes.
+	// TODO: Remove firstName, lastName.  These should be filled in by the server.
+	addedPeople.push({
+		user: id,
+		firstName: $(this).attr('firstName'),
+		lastName: $(this).attr('lastName')
+	})
+})
+
+$('#new-input-modal button[type=submit]').click(function(evt) {
 	evt.preventDefault();
 
-	var question = prompt('Let\'s discuss:');
+	var question = $('input.good_input').val();
 	if (question == '') return;
-	alert('creating your new conversation...');
 
 	$.post('/conversation/create', {
 		iceBreaker	        : userId,
 	    category            : 'funny',
 	    question            : question,
+	    people  			: addedPeople,
 	    isGroup             : false,
 	    _csrf				: token
 	}, function (data) {
@@ -33,6 +63,7 @@ $.get('/conversation/search', {
 	userId: userId
 }, function(data){
 	if (data.success){
+		console.log(data)
 		var container = $('#conversation-entries');
 		for (var i = 0; i < data.message.length; i++) {
 			var convo = data.message[i];
