@@ -152,7 +152,7 @@ exports.search = function(req, res){
 			var convoId = convoObj.conversation;
 			var d = Q.defer();
 			Conversation.findById(convoId, function(err, convo){
-				if (err || (Date.now() - convo.lastEdited > 365*24*60*60*1000){
+				if (err || (Date.now() - convo.lastEdited > 365*24*60*60*1000)){
 					resError(res, "Could not find conversations");
 					d.reject();
 				}
