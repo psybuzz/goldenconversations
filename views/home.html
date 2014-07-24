@@ -66,8 +66,8 @@
 
 					</div>
 				</div>
-				<a href="#new-input-modal" id="new-convo1" class="load-more">Load More</a>
-				<a href="#" id="new-convo" class="new-thing"><span>Start a New Conversation</span></a>
+				<a href="#"class="load-more">Load More</a>
+				<a href="#new-input-modal" id="new-convo" class="new-thing"><span>Start a New Conversation</span></a>
 			</div>
 		</section>
 
@@ -133,7 +133,7 @@
 		var username = '{{user.username}}';
 		var userId = '{{user._id}}';
 		var token = '{{csrfToken}}';
-		$("#new-convo1").leanModal({ top : 100, overlay : 0.5, closeButton: ".modal_close" });
+		$("#new-convo").leanModal({ top : 100, overlay : 0.5, closeButton: ".modal_close" });
 	</script>
 	<script type='text/javascript' src='/js/home.js'></script>
 	<script type="text/javascript">

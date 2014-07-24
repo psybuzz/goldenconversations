@@ -2,23 +2,23 @@
 $('#new-convo').click(function(evt) {
 	evt.preventDefault();
 
-	var question = prompt('Let\'s discuss:');
-	if (question == '') return;
-	alert('creating your new conversation...');
+	// var question = prompt('Let\'s discuss:');
+	// if (question == '') return;
+	// alert('creating your new conversation...');
 
-	$.post('/conversation/create', {
-		iceBreaker	        : userId,
-	    category            : 'funny',
-	    question            : question,
-	    isGroup             : false,
-	    _csrf				: token
-	}, function (data) {
-		console.log(data);
-		if (data.success){
-			alert('your conversation is created!');
-			window.location.href = data.redirect;
-		}
-	});
+	// $.post('/conversation/create', {
+	// 	iceBreaker	        : userId,
+	//     category            : 'funny',
+	//     question            : question,
+	//     isGroup             : false,
+	//     _csrf				: token
+	// }, function (data) {
+	// 	console.log(data);
+	// 	if (data.success){
+	// 		alert('your conversation is created!');
+	// 		window.location.href = data.redirect;
+	// 	}
+	// });
 });
 
 // Compile Handlebars template for conversation entries.
