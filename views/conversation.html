@@ -17,7 +17,12 @@
 <body>
 	<div class="wrapper">
 		<div class="menu-bar"></div>
-		<h1 id="question"></h1>
+		<h1 id="question">{{title}}</h1>
+		<div id="participants">
+			{{#each participants}}
+				<span class='name'>{{firstName}} {{lastName}}</span>
+			{{/each}}
+		</div>
 
 		<div class="display-fade"></div>
 		<div class="display">
@@ -72,9 +77,22 @@
 		}); // ready
 	</script>
 	<script type="text/javascript">
-		question.innerHTML = '{{title}}';
 		token = '{{csrfToken}}';
 		conversationId = '{{conversationId}}';
+
+		// for fun!
+		// random colors to all, and to all, a good night.
+		$('#participants').css({
+			'margin': 'auto',
+			'max-width': '750px'
+		});
+		$('#participants .name').each(function(i, span){
+			$(span).css({
+				'marginRight': '30px',
+				'color': 'dimgray'
+			});
+			$(span)[0].innerHTML = "<div style='display:inline-block; margin-right: 5px; border-radius:100%; background-color: rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+"); width: 20px; height: 20px'></div>" + $(span)[0].innerHTML;
+		});
 	</script>
 </body>
 </html>

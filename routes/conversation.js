@@ -9,18 +9,27 @@ Post = db.models.Post;
 
 exports.create = function(req, res){
 	var iceBreakerId = req.body.iceBreaker;
+
 	User.findById(iceBreakerId, function (err, user){
-    	if (err){
-			resError(res, "Could not find user.");
-		}
-		
+    	if (err) resError(res, "Could not find user.");
+
+    	/*
+		* people should be passed as an array:
+		* [{user: id}, {user: id2}, ...]
+		*/
+		// TODO: User.findById and fill in the firstName, lastName for each person in people array.
+		var people = req.body.people || [];
+		people = people.concat([{
+			user: iceBreakerId,
+			firstName: user.firstName, 
+			lastName: user.lastName
+		}]);
+		for (var i = 0; i < people.length; i++) {
+			people[i].isThrilled = false;
+		};
+
 		var conversation = new db.models.Conversation({
-		    participants        : [{
-		    						user: iceBreakerId,
-		    						firstName: user.firstName, 
-		    						lastName: user.lastName,
-		    						isThrilled: false
-		    						}],
+		    participants        : people,
 		    category            : req.body.category,
 		    question            : req.body.question,
 		    isGroup             : req.body.isGroup,
@@ -28,18 +37,27 @@ exports.create = function(req, res){
 		});
 
 		conversation.save(function(err){
-			if (err){
-				resError(res, err);
-			} else{
-				user.userConversations.push({conversation: conversation.id, hallOfFame: false});
-				user.save(function(err){
-					if (err){
-						resError(res, err);
-					} else {
-						res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
-					}
+			if (err) resError(res, err);
+
+			var jobs = people.map(function(person, index){
+				var d = Q.defer();
+				User.findById(person.user, function(err, user){
+					if (err) d.reject();
+
+					// TODO: Check that we aren't pushing in a duplicate conversation.
+					user.userConversations.push({conversation: conversation.id, hallOfFame: false});
+					user.save(function(err){
+						if (err) d.reject();
+						
+						d.resolve();	
+					});
 				});
-			}
+				return d.promise;
+			});
+			Q.allSettled(jobs).then(function (){
+				console.log(people)
+	    		res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});	
+			});
 		});
 	});
 };

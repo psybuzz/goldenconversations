@@ -68,7 +68,7 @@ exports.conversation = function (req, res) {
 				found = true;
 			}
 		};
-		console.log('found'. found)
+		
 		if (!found){
 			res.redirect('error', {
 				title: "Looks like you're not a part of that conversation.",
@@ -77,10 +77,12 @@ exports.conversation = function (req, res) {
 			return;
 		}
 		
+		console.log(convo)
 		res.render('conversation', {
 			title				: convo.question,
 			conversationId 		: convo.id,
-			user				: req.user
+			user				: req.user,
+			participants 		: convo.participants
 		});
 	});
 }
