@@ -17,6 +17,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 // Post Schema
 var postSchema = new Schema({
     username	: String,
+    userid      : String,
     content  	: String,
     time  		: Date
 }, { collection: 'post' });

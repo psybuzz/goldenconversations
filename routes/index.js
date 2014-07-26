@@ -77,11 +77,14 @@ exports.conversation = function (req, res) {
 			return;
 		}
 		
-		console.log(convo)
+
+		var userName = req.user.firstName + " " + req.user.lastName;
+		var userId = req.user._id;
 		res.render('conversation', {
 			title				: convo.question,
 			conversationId 		: convo.id,
-			user				: req.user,
+			user				: userName,
+			userId				: userId,
 			participants 		: convo.participants
 		});
 	});
