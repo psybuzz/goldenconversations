@@ -36,7 +36,7 @@ exports.create = function (req, res){
 
 		// People data should fill in the first and last names of all the users.
 		var peopleData = [];
-		var jobs = people.map(function (entry, index) {
+		var jobs = people.map(function (entry, index){
 			return Q.promise(function (resolve, reject){
 				var fields = 'username firstName lastName';
 
@@ -217,7 +217,7 @@ exports.search = function (req, res){
 			discussion = discussion.slice(0, limit);
 		}
 		var results = [];
-		var jobs = discussion.map(function (convoObj, index) {
+		var jobs = discussion.map(function (convoObj, index){
 			var convoId = convoObj.conversation;
 			var d = Q.defer();
 			Conversation.findById(convoId, function (err, convo){
