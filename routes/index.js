@@ -41,23 +41,18 @@ exports.conversation = function (req, res) {
 	}
 
 	var id = req.params.id;
-
-	console.log('fetching convo with id', id)
 	Conversation.findOne( { _id: id }, function (err, convo){
 		if (err){
 			res.render('error', {title: 'Conversation not found', message: 'Forgeeeet about it!' });
 			return;
 		}
 
-		console.log('CONVO FOUND')
 		var participantIds = convo.participants.map(function (p) {
 			return p._id;
 		})
-		console.log('IDSSSS', participantIds)
 		var found = false;
 		var userString = JSON.stringify(req.user._id);
 		for (var i = 0; i < participantIds.length; i++) {
-			console.log(JSON.stringify(participantIds[i]), userString, JSON.stringify(participantIds[i]) === userString)
 			if (JSON.stringify(participantIds[i]) === userString){
 				found = true;
 			}
