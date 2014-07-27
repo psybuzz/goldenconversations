@@ -20,13 +20,7 @@ var addedPeople = [];
 $('#search_names').on('click', '.name', function (e) {
 	var id = $(this).attr('id').slice(5);
 
-	// TODO: De-dupe these pushes.
-	// TODO: Remove firstName, lastName.  These should be filled in by the server.
-	addedPeople.push({
-		user: id,
-		firstName: $(this).attr('firstName'),
-		lastName: $(this).attr('lastName')
-	})
+	addedPeople.push({user: id});
 })
 
 $('#new-input-modal button[type=submit]').click(function(evt) {
