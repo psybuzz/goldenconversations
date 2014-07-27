@@ -4,6 +4,8 @@ var Q = require('q');
 var Utils = require('./../utils');
 
 exports.create = function(req, res){
+	// TODO(erik): Check that names are at least 2 letters long.  Return an error message if they
+	// are not.
 	var user = new db.models.User({
 		username 			: req.body.email,
 	    firstName  			: req.body.first_name,
