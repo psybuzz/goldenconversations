@@ -5,7 +5,6 @@ var resError = require('./messaging').resError;
  */
 
 exports.testing = function(req, res){
-	
 };
 
 exports.signup = function(req, res){
