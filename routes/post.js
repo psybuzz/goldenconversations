@@ -26,6 +26,7 @@ exports.create = function(req, res){
 	} else if (validContent == false){
 		resError(res, "Invalid content");
 	} else {
+		//new comment here
 		// Replace the newlines in the user's post with break tags in order to save the message properly.
 		// This will allow us to display the post properly when the conversation page is loaded again in situations
 		// where the user uses newlines in their post (such as when creating lists or when creating spacing between
@@ -77,3 +78,5 @@ exports.update = function(req, res){
 		if (err) return console.log(err);
 	});
 };
+
+//also here
