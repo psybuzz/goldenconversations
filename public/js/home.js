@@ -20,7 +20,7 @@ var addedPeople = [];
 $('#search_names').on('click', '.name', function (e) {
 	var id = $(this).attr('id').slice(5);
 
-	addedPeople.push({user: id});
+	addedPeople.push({'_id': id});
 })
 
 $('#new-input-modal button[type=submit]').click(function(evt) {

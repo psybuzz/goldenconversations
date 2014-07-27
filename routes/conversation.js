@@ -14,9 +14,8 @@ Post = db.models.Post;
  * @param {ObjectId} req.body.iceBreaker The ID of the ice breaking user.
  * @param {Array.<Object>} req.body.people An array of objects, each containing the id of a
  *      participant.
- * 
  */
-exports.create = function(req, res){
+exports.create = function (req, res){
 	var iceBreakerId = req.body.iceBreaker;
 
 	User.findById(iceBreakerId, function (err, user){
@@ -25,23 +24,23 @@ exports.create = function(req, res){
     	/*
     	* We fill in the firstName, lastName here on the server, so the client request only needs
     	* to pass in an array of people:
-		* [{user: id}, {user: id2}, ...]
+		* [{_id: id}, {_id: id2}, ...]
 		*/
 		var people = req.body.people || [];
 
 		// Add the ice breaker to the list of participants and de-duplicate.
-		people.push({user: iceBreakerId});
-		people = Utils.union(people, function(person){
-			return person.user;		// use id's for deduping comparison
+		people.push({'_id': iceBreakerId});
+		people = Utils.union(people, function (person){
+			return person._id;		// use id's for deduping comparison
 		})
 
 		// People data should fill in the first and last names of all the users.
 		var peopleData = [];
-		var jobs = people.map(function(entry, index) {
-			return Q.promise(function(resolve, reject){
+		var jobs = people.map(function (entry, index) {
+			return Q.promise(function (resolve, reject){
 				var fields = 'username firstName lastName';
 
-				User.findById(entry.user /* ObjectId */, fields, function(err, otherUser){
+				User.findById(entry._id, fields, function (err, otherUser){
 					if (err){
 						reject('Could not find other user by id');
 					} else {
@@ -53,7 +52,7 @@ exports.create = function(req, res){
 		});
 
 		Q.allSettled(jobs)
-			.then(function(){
+			.then(function (){
 				people = peopleData;
 
 				for (var i = 0; i < people.length; i++) {
@@ -68,29 +67,30 @@ exports.create = function(req, res){
 				    lastEdited          : Date.now()
 				});
 
-				conversation.save(function(err){
+				conversation.save(function (err){
 					if (err) {
 						resError(res, err);
 						return;
 					}
 
-					var jobs = people.map(function(person, index){
+					var jobs = people.map(function (person, index){
 						var d = Q.defer();
-						User.findById(person._id, function(err, otherPerson){
+						User.findById(person._id, function (err, otherPerson){
 							if (err || !otherPerson) {
 								d.reject();
 								return;
 							}
 
-							// Check that we aren't pushing in a duplicate conversation.
-							var convoIds = otherPerson.userConversations.map(function(convo){
+							// Check that we aren't pushing in a duplicate conversation. If the user
+							// already has the conversation in his/her list, we simply continue.
+							var convoIds = otherPerson.userConversations.map(function (convo){
 								return convo.conversation;
 							});
 
 							if (convoIds.indexOf(conversation.id) === -1){
 								// If we are inviting someone to a conversation they have not seen.
 								otherPerson.userConversations.push({conversation: conversation.id, hallOfFame: false});
-								otherPerson.save(function(err){
+								otherPerson.save(function (err){
 									if (err) {
 										d.reject();
 										return;
@@ -113,13 +113,13 @@ exports.create = function(req, res){
 };
 
 exports.delete = function(req, res){
-	Conversation.findByIdAndRemove(req.body.objectId, function(err){
+	Conversation.findByIdAndRemove(req.body.objectId, function (err){
 		if (err) return console.log(err);
 	});
 };
 
 exports.update = function(req, res){
-	Conversation.findByIdAndUpdate(req.body.objectId, req.body.updata, function(err){
+	Conversation.findByIdAndUpdate(req.body.objectId, req.body.updata, function (err){
 		if (err) return console.log(err);
 	});
 };
@@ -133,9 +133,9 @@ exports.getTestMessages = function(req, res){
 
 		var results = [];
 		if (messages[0]){
-			var jobs = messages[0].discussion.map(function(postId, index){
+			var jobs = messages[0].discussion.map(function (postId, index){
 				var d = Q.defer();
-					Post.find({ _id: postId }, function(err, post){
+					Post.find({ _id: postId }, function (err, post){
 						if (err){
 							d.reject();
 							return;
@@ -153,7 +153,7 @@ exports.getTestMessages = function(req, res){
 };
 
 // Gets all the posts within a certain conversation.
-exports.allPosts = function(req, res){
+exports.allPosts = function (req, res){
 	if (!req.user || !req.user._id) {
 		resError(res, "Access denied.", "/error");
 		return;
@@ -180,9 +180,9 @@ exports.allPosts = function(req, res){
 		}
 
 		var results = [];
-		var jobs = convo.discussion.map(function(postId, index){
+		var jobs = convo.discussion.map(function (postId, index){
 			var d = Q.defer();
-			Post.findById(postId, function(err, post){
+			Post.findById(postId, function (err, post){
 				if (err){
 					d.reject();
 					return;
@@ -199,7 +199,7 @@ exports.allPosts = function(req, res){
 };
 
 // Sends back a list of a given user's conversations.
-exports.search = function(req, res){
+exports.search = function (req, res){
 	var userId = req.query.userId;
 	var recent = req.query.recent || false;
 	var limit = req.query.limit || undefined;
@@ -220,7 +220,7 @@ exports.search = function(req, res){
 		var jobs = discussion.map(function (convoObj, index) {
 			var convoId = convoObj.conversation;
 			var d = Q.defer();
-			Conversation.findById(convoId, function(err, convo){
+			Conversation.findById(convoId, function (err, convo){
 				if (err || !convo || (Date.now() - convo.lastEdited > 365*24*60*60*1000)){
 					d.reject("Could not find conversations");
 					return;
@@ -248,7 +248,7 @@ exports.search = function(req, res){
 				}
 			};
 			res.send({status: 'OK', success: true, message: cleanResults});
-		}, function(err){
+		}, function (err){
 			resError(res, "Could not fetch all conversations.");
 		});
     });
