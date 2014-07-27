@@ -112,19 +112,19 @@ exports.create = function (req, res){
 	});
 };
 
-exports.delete = function(req, res){
+exports.delete = function (req, res){
 	Conversation.findByIdAndRemove(req.body.objectId, function (err){
 		if (err) return console.log(err);
 	});
 };
 
-exports.update = function(req, res){
+exports.update = function (req, res){
 	Conversation.findByIdAndUpdate(req.body.objectId, req.body.updata, function (err){
 		if (err) return console.log(err);
 	});
 };
 
-exports.getTestMessages = function(req, res){
+exports.getTestMessages = function (req, res){
 	// find all messages
     Conversation.find( { question:"What does 'je ne sais quoi?' mean?" }, function (err, messages, count){
     	if (err){
