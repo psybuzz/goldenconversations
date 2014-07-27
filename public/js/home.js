@@ -6,7 +6,7 @@ function peopleTypeEvent () {
 	}
 
 	$.get('/user/search?query='+q, function(data){
-		var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="name">{{firstName}} {{lastName}}</span>{{/each}}';
+		var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="modal-name">{{firstName}} {{lastName}}</span>{{/each}}';
 		var namesTemplate = Handlebars.compile(namesHTML);
 		if (data.success){
 			console.log(namesTemplate, data.message, namesTemplate(data))
