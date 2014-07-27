@@ -5,17 +5,6 @@ var resError = require('./messaging').resError;
  */
 
 exports.testing = function(req, res){
-	Conversation.findOne( { question:"What does 'je ne sais quoi?' mean?" }, function (err, messages, count){
-		if (err){
-			res.render('testing', {title: 'Express' });
-		}
-		else{
-			res.render('testing', {
-				title				: messages.question,
-				conversationId 		: messages.id
-			});
-		}
-	});
 };
 
 exports.signup = function(req, res){
