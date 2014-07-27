@@ -6,6 +6,7 @@ $(document).ready(function() {
         if (data.success){
     		var text = '';
     		for (var i = 0; i < data.message.length; i++) {
+                text += '<span class="userShape" data_id="' + data.message[i].userid + '">' + data.message[i].username + ': </span>';
     			text += '<p>' + data.message[i].content + '</p><br>';
     		};
     		$('.display-area').append(text);
@@ -66,7 +67,8 @@ $('#mainform').on('submit', function (e){
 
     function onSubmitComment(data) {
     	if (data.success){
-        	$('.display-area').append('<p>' + message + '</p><br>');
+        	$('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
+                    user + ': </span><p>' + message + '</p><br>');
             setScrollPos();
             $('textarea').val("");
     	} else {

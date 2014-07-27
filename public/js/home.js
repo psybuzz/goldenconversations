@@ -26,6 +26,7 @@ $('#search_names').on('click', '.name', function (e) {
 $('#new-input-modal button[type=submit]').click(function(evt) {
 	evt.preventDefault();
 
+
 	var question = $('input.good_input').val();
 	if (question == '') return;
 

@@ -37,7 +37,8 @@
 			<form id='mainform' action="/post/create" method="POST">
 				<textarea name="content" rows="4" cols="50" placeholder="Write down your thoughts"></textarea>
 				<input type="submit" value="Send">
-				<input type="hidden" value="testName" name="username">
+				<input type="hidden" value="{{user}}" name="username">
+				<input type="hidden" value="{{userId}}" name="userId">
 				<input type="hidden" value="{{conversationId}}" name="conversationId">
 				<input type="hidden" value="{{csrfToken}}" name="_csrf">
 			</form>
@@ -79,6 +80,8 @@
 		}); // ready
 	</script>
 	<script type="text/javascript">
+		user = '{{user}}';
+		userId = '{{userId}}';
 		token = '{{csrfToken}}';
 		conversationId = '{{conversationId}}';
 

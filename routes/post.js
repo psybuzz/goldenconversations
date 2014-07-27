@@ -29,6 +29,7 @@ exports.create = function(req, res){
 		// Create and save the post
 		var post = new db.models.Post({
 		    username	: req.body.username,
+		    userid		: req.body.userId,
 		    content  	: req.body.content,
 		    time  		: Date.now()
 		});
