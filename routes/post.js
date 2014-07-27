@@ -31,7 +31,7 @@ exports.create = function(req, res){
 		// where the user uses newlines in their post (such as when creating lists or when creating spacing between
 		// typed paragraph). Note that we also need to replace newlines with break tags in the display screen
 		// immediately after the user hits 'Send' on their post. This is acheived by performing the same logic
-		// on the value of the text field when #mainform is submited
+		// on the value of the text field when #mainform is submited.
 		content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
 		// Create and save the post
