@@ -68,43 +68,53 @@
 	</div>
 	<div id="new-input-modal">
 		<div class="modal_close">x</div>
-		<form>
-			  <div class="txt-fld">
-			    <input class="good_input" name="Topic" type="text" placeholder="Topic">
-
-			  </div>
-			  <div class="txt-fld people-select">
-			    <input id="people_input" name="People" type="text" placeholder="People">
-			    <div id="search_names">
-			    	<span class="name1 name">Nikil Selvam</span>
-					<span class="name2 name">Erik Luo</span>
-					<span class="name3 name">Tony Jing</span>
-					<span class="name4 name">Fifi Yeung</span>
-					<span class="name5 name">Sarah J.</span>
-			    </div>
-
-			  </div>
-			  <div class="txt-fld">
+		<form id="convo-creation-form">
+			<input type="hidden" name="_csrf" value={{csrfToken}} />
+			<div class="txt-fld">
+				<input class="good_input" name="Topic" type="text" placeholder="Topic" autocomplete="off" required>
+			</div>
+			<div class="txt-fld people-select">
+			  	<ul class="names-list"></ul>
+			    <input id="people_input" name="People" type="text" placeholder="People" autocomplete="off" >
+			    <ul id="search_names">
+			    </ul>
+			</div>
+			<div class="txt-fld">
 			   <textarea name="content" rows="3" cols="20" placeholder="Write down your thoughts"></textarea>
-			  </div>
-			  <div class="btn-fld">
+			</div>
+			<div class="btn-fld">
 			  <button type="submit">Create</button>
-			  </div>
-
-
+			</div>
 		</form>
-		
 	</div>
 	<script type='text/javascript'>
 		var username = '{{user.username}}';
 		var userId = '{{user._id}}';
 		var token = '{{csrfToken}}';
-		$("#new-convo").leanModal({ top : 100, overlay : 0.5, closeButton: ".modal_close" });
+		$("#new-convo").leanModal({
+			top : 100, 
+			overlay : 0.5, 
+			closeButton: ".modal_close" 
+		});
 	</script>
 	<script type='text/javascript' src='/js/home.js'></script>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#search_names').on('click', '.modal-name', function(){
+				var name = $(this).text();
+				var id = $(this).attr('data-id');
+				
+				$('.names-list').append('<li data-id="' + id + '" class="selected-name">' + name + '<div class="name_remove">X</div></li>')
+				$('#search_names li').remove();
+				$('#people_input').val('').attr('placeholder', 'Add More').focus().css({
+					display: 'inline'
+				});
 
-
+				$('.name_remove').click(function(){
+					$(this).parent().remove();
+				});
+			});
+		}); // ready
 	</script>
 </body>
 </html>
