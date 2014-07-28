@@ -118,7 +118,9 @@ exports.delete = function (req, res){
 		return;
 	}
 	var convoPromise = Q.promise(function (resolve, reject){
+		console.log('START DELETE', req.body.conversationId)
 		Conversation.findById( req.body.conversationId, function (err, convo){
+			console.log('FOUND>>>')
 	    	if (err){
 				reject(res, "Could not find your conversation.");
 				return;
@@ -129,20 +131,24 @@ exports.delete = function (req, res){
 			var found = participantIdStrings.indexOf(userString) !== -1;
 
 			if (found){
+				console.log('RESOLVING CONVO')
 				resolve(convo);
 			} else {
 				reject(res, "Access denied.", "/error");
 			}
 		});
 	}).then(function (convo) {
+		console.log('REMOVING POSTS')
 		// Remove associated posts.
 		var posts = convo.discussion;
 		var removeJobs = posts.map(function (postId){
 			return Q.promise(function (resolve, reject) {
-				Post.findByIdAndRemove(req.body.objectId, function(err){
+				console.log('RRRRR', postId)
+				Post.findByIdAndRemove(postId, function(err){
 					if (err){
 						reject('Could not find post.');
 					} else {
+						console.log('RPR...')
 						resolve();
 					}
 				});
@@ -151,6 +157,7 @@ exports.delete = function (req, res){
 		
 		return [convo, Q.allSettled(removeJobs)];
 	}, resError).spread(function (convo, results){
+		console.log('CREAM SPREAd')
 		// Associated posts removed.
 		results.forEach(function (result){
 	        if (result.state !== "fulfilled"){
@@ -167,19 +174,31 @@ exports.delete = function (req, res){
 						reject('Could not find user.');
 						return;
 					}
+					console.log('FOUND USER:', user.firstName, 'with', user.userConversations.length, 'convos')
+					console.log(user.userConversations.map(function (c){return c.conversation}))
+					console.log('looking for', convo._id)
+							
+
 
 					// Get the index of the conversation to remove within the user's list.
 					var index = user
 							.userConversations
-							.map(function (c){return c.conversation})
-							.indexOf(convo._id);
+							.map(function (c){return JSON.stringify(c.conversation)})
+							.indexOf(JSON.stringify(convo._id));
+					console.log('REMOVING CONVO', user.userConversations[index], index)
 					if (index !== -1){
 						user.userConversations.splice(index, 1);
+						var index2 = user
+							.userConversations
+							.map(function (c){return JSON.stringify(c.conversation)})
+							.indexOf(JSON.stringify(convo._id));
+						console.log('***** after remove, i is', index2)
 					}
 					user.save(function (saveErr){
 						if (saveErr){
 							reject('Could not save user\'s list after removal');
 						} else {
+							console.log('SAVED USER REMOV')
 							resolve();
 						}
 					});
@@ -199,6 +218,8 @@ exports.delete = function (req, res){
 		// Remove the actual conversation.
 		Conversation.findByIdAndRemove(req.body.conversationId, function (err){
 			if (err) return resError(res, message);
+
+			console.log('>>>>>>>>>>>>>>>>>>>>>>>>')
 
 			// Redirect back home.
 			res.send({success: true, redirect: '/home'});
