@@ -2,19 +2,23 @@
 
 /**
  * Returns the union of two arrays by merging them and de-duplicating the contents.
+ * Useful for ensuring there are no duplicate entries in a list.
  *
- * If only one array is passed in, 
+ * Example uses:
+ * Utils.union([1,1,2,3], [3,4,5], [1,5,7])		// should return [1,2,3,4,5,7]
+ * 
+ * Utils.union({x: 1, y:2}, {x:50, y:2}, {z:5, y:3}, function(e){return e.y})	// compare using 'y'
+ * // should return [{x:1, y:2}, {z:5, y:3}]
  *
  * @param {Arrays}
  * OR
  * @param {Array}
- * @param {Function} mapping function to hash with.  Useful for de-duplication:
- *      e.g. 
+ * @param {Function} mapping function to hash with.
  */
 exports.union = function () {
 	var args = Array.prototype.slice.call(arguments, 0);
-	hash = {};
-	union = [];
+	var hash = {};
+	var union = [];
 
 	if (typeof args[1] === 'function'){
 		var items = args[0];

@@ -41,7 +41,7 @@ var userSchema = new Schema({
 // Conversation Schema
 var conversationSchema = new Schema({
     invited             : [ObjectId],
-    participants        : [{ user: ObjectId, firstName: String, lastName: String, isThrilled: Boolean }],
+    participants        : [{ _id: ObjectId, firstName: String, lastName: String, isThrilled: Boolean }],
     category            : String,
     question            : String,
     discussion          : [ObjectId],
