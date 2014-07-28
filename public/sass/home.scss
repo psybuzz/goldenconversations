@@ -1,5 +1,6 @@
 @import 'partials/variables';
 @import "compass";
+@import "compass/css3/box-shadow";
 
 
 html,body {
@@ -21,7 +22,7 @@ html,body {
 	}
 
 	@media screen and (min-width: $super-wide) {
-		  	max-width: 1400px;
+		  	max-width: 1100px;
 	}
 
 	h2 {
@@ -106,12 +107,24 @@ html,body {
 	}
 
 	.right-side{
-		width: 31%;
+		float: right;
+		clear: right;
+		width: 33%;
 		margin-left: 2%;
+		@media screen and (max-width: $max-display) {
+		  	float: none;;
+		  	width: 80%;
+		  	margin-right: 2%;
+		  	box-sizing: border-box;
+		  	&:last-child a{
+		  		margin-top: 0;
+		  		margin-right: 0;
+		  	}
+		}
 	}	
 	.home-conversations {
 		clear: both;
-		width: 55%;
+		width: 64%;
 		padding-left: $shape-padding-left;
 		@media screen and (max-width: $max-display) {
 			padding: 2%;
@@ -212,10 +225,43 @@ html,body {
 		padding: 0.5rem 0;
 	}
 
+	textarea {
+		margin-top: 0;
+		padding-top: 2rem;
+		clear: both;
+	}
+	
+
+	#search_names {
+		border-radius: 3px;
+		position: absolute;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		background-color: white;
+		@include box-shadow($light-box-shadow);
+		
+		.modal-name {
+			background-color: white;
+			font-weight: 400;
+			padding: 1.1rem;
+			cursor: pointer;
+			margin: 0;
+			&:hover {
+				background-color:$super-main;
+				color: white;
+			}
+		}
+	}
+
+
 	.people-select {
 		margin-bottom: 2rem;
+		position: relative;
 		input[name="People"] {
+			margin-top: 0;
 			margin-bottom: 0;
+			// float: left;
 		}
 		span {
 			font-size: 0.9rem;
@@ -227,8 +273,35 @@ html,body {
 			padding: 5px 8px;
 			color: $dark-main;
 		}
-	}
 
+		.names-list{
+			margin: 0;
+			top: -1.2rem;
+			list-style-type: none;
+			padding: 0;
+			// position: absolute;
+			float: left;
+		}
+		.selected-name {
+			background-color: $light-gray;
+			padding: 5px;
+			margin-right: 5px;
+			position: relative;
+			padding-right: 1.1rem;
+			margin-bottom: 0.68rem;
+			display: inline-block;
+			border-radius: 3px;
+			.name_remove{
+				position: absolute;
+				top: 10px;
+				right: 6px;
+				display: inline-block;
+				font-weight: 300;
+				font-size: 0.5em;
+				cursor: pointer;
+			}
+		}
+	}
 	button {
 		float: right;
 		background-color: $light-main;
