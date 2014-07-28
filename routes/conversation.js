@@ -23,10 +23,11 @@ exports.create = function (req, res){
 
     	/*
     	* We fill in the firstName, lastName here on the server, so the client request only needs
-    	* to pass in an array of people:
-		* [{_id: id}, {_id: id2}, ...]
+    	* to pass in an array of ids:
+		* [id1, id2, ...]
 		*/
 		var people = req.body.people || [];
+		people = people.map(function (id){return {'_id': id}});
 
 		// Add the ice breaker to the list of participants and de-duplicate.
 		people.push({'_id': iceBreakerId});
