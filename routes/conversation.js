@@ -55,7 +55,7 @@ exports.create = function (req, res){
 			.then(function (){
 				people = peopleData;
 
-				for (var i = 0; i < people.length; i++) {
+				for (var i = 0; i < people.length; i++){
 					people[i].isThrilled = false;
 				};
 
@@ -68,7 +68,7 @@ exports.create = function (req, res){
 				});
 
 				conversation.save(function (err){
-					if (err) {
+					if (err){
 						resError(res, err);
 						return;
 					}
@@ -76,7 +76,7 @@ exports.create = function (req, res){
 					var jobs = people.map(function (person, index){
 						var d = Q.defer();
 						User.findById(person._id, function (err, otherPerson){
-							if (err || !otherPerson) {
+							if (err || !otherPerson){
 								d.reject();
 								return;
 							}
@@ -91,7 +91,7 @@ exports.create = function (req, res){
 								// If we are inviting someone to a conversation they have not seen.
 								otherPerson.userConversations.push({conversation: conversation.id, hallOfFame: false});
 								otherPerson.save(function (err){
-									if (err) {
+									if (err){
 										d.reject();
 										return;
 									}
@@ -243,7 +243,7 @@ exports.getTestMessages = function (req, res){
 
 // Gets all the posts within a certain conversation.
 exports.allPosts = function (req, res){
-	if (!req.user || !req.user._id) {
+	if (!req.user || !req.user._id){
 		resError(res, "Access denied.", "/error");
 		return;
 	}
@@ -252,13 +252,13 @@ exports.allPosts = function (req, res){
     	if (err){
 			resError(res, "Could not find posts for your conversation.");
 		}
-		var participantIds = convo.participants.map(function (p) {
+		var participantIds = convo.participants.map(function (p){
 			return p._id;
 		})
 
 		var found = false;
 		var userString = JSON.stringify(req.user._id);
-		for (var i = 0; i < participantIds.length; i++) {
+		for (var i = 0; i < participantIds.length; i++){
 			if (JSON.stringify(participantIds[i]) === userString){
 				found = true;
 			}
