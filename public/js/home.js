@@ -26,7 +26,6 @@ $('#convo-creation-form').submit(function(evt) {
 		addedPeople.push($(this).attr('data-id'));
 	});
 
-	console.log(addedPeople);
 	var question = $('input.good_input').val();
 	$('#convo-creation-form button').attr('disabled', 'disabled');
 
