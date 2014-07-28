@@ -118,14 +118,14 @@ exports.delete = function (req, res){
 		return;
 	}
 	var convoPromise = Q.promise(function (resolve, reject){
-		Conversation.findById( req.query.conversationId, function (err, convo){
+		Conversation.findById( req.body.conversationId, function (err, convo){
 	    	if (err){
 				reject(res, "Could not find your conversation.");
 				return;
 			}
 			var participantIds = convo.participants.map(function (p){return p._id});
 			var userString = JSON.stringify(req.user._id);
-			var participantIdStrings.map(function (id){return JSON.stringify(id)});
+			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
 			var found = participantIdStrings.indexOf(userString) !== -1;
 
 			if (found){
@@ -197,7 +197,7 @@ exports.delete = function (req, res){
 	    });
 
 		// Remove the actual conversation.
-		Conversation.findByIdAndRemove(req.query.conversationId, function (err){
+		Conversation.findByIdAndRemove(req.body.conversationId, function (err){
 			if (err) return resError(res, message);
 
 			// Redirect back home.

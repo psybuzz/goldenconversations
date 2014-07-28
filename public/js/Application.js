@@ -52,3 +52,17 @@ $('#mainform').on('submit', function (e){
     	}
     }    
 });
+
+// Delete conversation button
+$('#deleteConvo').click(function (){
+    alert('Deleting your conversation...')
+    $.post('/conversation/delete', {
+        conversationId: conversationId,
+        _csrf: token
+    }, function (data){
+        console.log(data)
+        alert('Deleted!')
+    }, function (err){
+        console.log(err)
+    });
+});
