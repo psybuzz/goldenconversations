@@ -1,3 +1,36 @@
+function peopleTypeEvent () {
+    var q = $('#people_input').val();
+    if (q == ''){
+        $('#search_names').html('');
+        return;
+    }
+
+    $.get('/user/search?query='+q, function(data){
+        var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="name">{{firstName}} {{lastName}}</span>{{/each}}';
+        var namesTemplate = Handlebars.compile(namesHTML);
+        if (data.success){
+            console.log(namesTemplate, data.message, namesTemplate(data))
+            $('#search_names').html(namesTemplate(data));
+        }
+    });
+}
+$('#people_input').keyup(_.debounce(peopleTypeEvent, 150));
+
+var addedPeople = [];
+$('#search_names').on('click', '.name', function (e) {
+    var id = $(this).attr('id').slice(5);
+
+    addedPeople.push({'_id': id});
+})
+
+$('#new-input-modal button[type=submit]').click(function(evt) {
+    evt.preventDefault();
+
+    // Remove the modal for now.
+    document.getElementById('new-input-modal').style.display = 'none';
+    document.getElementById('lean_overlay').style.display = 'none';
+});
+
 $(document).ready(function() {
     var socket = io();
 
