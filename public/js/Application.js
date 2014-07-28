@@ -55,14 +55,23 @@ $('#mainform').on('submit', function (e){
 
 // Delete conversation button
 $('#deleteConvo').click(function (){
-    alert('Deleting your conversation...')
-    $.post('/conversation/delete', {
-        conversationId: conversationId,
-        _csrf: token
-    }, function (data){
-        console.log(data)
-        alert('Deleted!')
-    }, function (err){
-        console.log(err)
-    });
+    if (confirm('Are you sure you want to be rid of this nasty conversation forever?')){
+        $.ajax({
+            type: "POST",
+            url: '/conversation/delete',
+            dataType: 'json',
+            data: {
+                conversationId: conversationId,
+                _csrf: token
+            },
+            success: function (data) {
+                if (data.success){
+                    alert('Successfully deleted your conversation!');
+                    window.location.href = data.redirect;
+                } else{
+                    alert('Whoops, something went wrong...');
+                }
+            }
+        });
+    }
 });
