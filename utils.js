@@ -43,4 +43,22 @@ exports.union = function () {
 	}
 
 	return union;
+};
+
+/*
+ * Returns a cleaned array without null or undefined entries.
+ *
+ * e.g. Utils.clean([1,2,undefined,3,null])		// should return [1,2,3]
+ *
+ * @param {Array} a list of entries, some of which may be null or undefined.
+ */
+exports.denullify = function (list){
+	var cleanList = [];
+	for (var i = 0; i < list.length; i++) {
+		if (list[i] !== null && typeof list[i] !== 'undefined'){
+			cleanList.push(list[i]);
+		}
+	}
+
+	return cleanList;
 }
