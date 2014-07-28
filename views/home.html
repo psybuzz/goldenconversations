@@ -68,14 +68,14 @@
 	</div>
 	<div id="new-input-modal">
 		<div class="modal_close">x</div>
-		<form>
+		<form id="convo-creation-form">
 			<input type="hidden" name="_csrf" value={{csrfToken}} />
 			  <div class="txt-fld">
-			    <input class="good_input" name="Topic" type="text" placeholder="Topic">
+			    <input class="good_input" name="Topic" type="text" placeholder="Topic" autocomplete="off"  required>
 			  </div>
 			  <div class="txt-fld people-select">
 			  	<ul class="names-list"></ul>
-			    <input id="people_input" name="People" type="text" placeholder="People">
+			    <input id="people_input" name="People" type="text" placeholder="People" autocomplete="off" >
 			    <ul id="search_names">
 			    </ul>
 			  </div>

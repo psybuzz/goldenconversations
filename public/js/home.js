@@ -17,19 +17,18 @@ function peopleTypeEvent () {
 }
 $('#people_input').keyup(_.debounce(peopleTypeEvent, 400));
 
-var addedPeople = [];
-$('#search_names').on('click', '.name', function (e) {
-	var id = $(this).attr('id').slice(5);
 
-	addedPeople.push({'_id': id});
-})
-
-$('#new-input-modal button[type=submit]').click(function(evt) {
+$('#convo-creation-form').submit(function(evt) {
 	evt.preventDefault();
 
+	var addedPeople = [];
+	$('.names-list li').each(function(){
+		addedPeople.push($(this).attr('data-id'));
+	});
 
+	console.log(addedPeople);
 	var question = $('input.good_input').val();
-	if (question == '') return;
+	$('#convo-creation-form button').attr('disabled', 'disabled');
 
 	$.post('/conversation/create', {
 		iceBreaker	        : userId,
