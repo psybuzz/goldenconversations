@@ -225,6 +225,11 @@ html,body {
 		padding: 0.5rem 0;
 	}
 
+	textarea {
+		margin-top: 0;
+		padding-top: 2rem;
+		clear: both;
+	}
 	
 
 	#search_names {
@@ -234,7 +239,7 @@ html,body {
 		margin: 0;
 		padding: 0;
 		background-color: white;
-		@include box-shadow(rgba(black,0.12) 0px 3px 4px);
+		@include box-shadow($light-box-shadow);
 		
 		.modal-name {
 			background-color: white;
@@ -256,6 +261,7 @@ html,body {
 		input[name="People"] {
 			margin-top: 0;
 			margin-bottom: 0;
+			// float: left;
 		}
 		span {
 			font-size: 0.9rem;
@@ -273,7 +279,8 @@ html,body {
 			top: -1.2rem;
 			list-style-type: none;
 			padding: 0;
-			position: absolute;
+			// position: absolute;
+			float: left;
 		}
 		.selected-name {
 			background-color: $light-gray;
