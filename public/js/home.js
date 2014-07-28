@@ -1,12 +1,13 @@
 function peopleTypeEvent () {
 	var q = $('#people_input').val();
+
 	if (q == ''){
 		$('#search_names').html('');
 		return;
 	}
 
 	$.get('/user/search?query='+q, function(data){
-		var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="modal-name">{{firstName}} {{lastName}}</span>{{/each}}';
+		var namesHTML = '{{#each message}}<li data-id="{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="modal-name">{{firstName}} {{lastName}}</li>{{/each}}';
 		var namesTemplate = Handlebars.compile(namesHTML);
 		if (data.success){
 			console.log(namesTemplate, data.message, namesTemplate(data))
@@ -14,19 +15,13 @@ function peopleTypeEvent () {
 		}
 	});
 }
-$('#people_input').keyup(_.debounce(peopleTypeEvent, 150));
+$('#people_input').keyup(_.debounce(peopleTypeEvent, 400));
 
 var addedPeople = [];
 $('#search_names').on('click', '.name', function (e) {
 	var id = $(this).attr('id').slice(5);
 
-	// TODO: De-dupe these pushes.
-	// TODO: Remove firstName, lastName.  These should be filled in by the server.
-	addedPeople.push({
-		user: id,
-		firstName: $(this).attr('firstName'),
-		lastName: $(this).attr('lastName')
-	})
+	addedPeople.push({user: id});
 })
 
 $('#new-input-modal button[type=submit]').click(function(evt) {

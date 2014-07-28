@@ -16,49 +16,61 @@ exports.create = function(req, res){
     	/*
 		* people should be passed as an array:
 		* [{user: id}, {user: id2}, ...]
+		* We should be filling in the firstName, lastName here on the server.
 		*/
 		// TODO: User.findById and fill in the firstName, lastName for each person in people array.
 		var people = req.body.people || [];
-		people = people.concat([{
-			user: iceBreakerId,
-			firstName: user.firstName, 
-			lastName: user.lastName
-		}]);
-		for (var i = 0; i < people.length; i++) {
-			people[i].isThrilled = false;
-		};
-
-		var conversation = new db.models.Conversation({
-		    participants        : people,
-		    category            : req.body.category,
-		    question            : req.body.question,
-		    isGroup             : req.body.isGroup,
-		    lastEdited          : Date.now()
+		people = Utils.union(people, function(person){
+			return person.user;		// use id's for deduping comparison
+		})
+		var jobs = people.map(function(entry) {
+			return findUserById(entry.id);
 		});
+		Q.allSettled(jobs)
+			.then(function(){
+				people = jobs;
+				people = people.concat([{
+					user: iceBreakerId,
+					firstName: user.firstName, 
+					lastName: user.lastName
+				}]);
 
-		conversation.save(function(err){
-			if (err) resError(res, err);
+				for (var i = 0; i < people.length; i++) {
+					people[i].isThrilled = false;
+				};
 
-			var jobs = people.map(function(person, index){
-				var d = Q.defer();
-				User.findById(person.user, function(err, user){
-					if (err) d.reject();
+				var conversation = new db.models.Conversation({
+				    participants        : people,
+				    category            : req.body.category,
+				    question            : req.body.question,
+				    isGroup             : req.body.isGroup,
+				    lastEdited          : Date.now()
+				});
 
-					// TODO: Check that we aren't pushing in a duplicate conversation.
-					user.userConversations.push({conversation: conversation.id, hallOfFame: false});
-					user.save(function(err){
-						if (err) d.reject();
-						
-						d.resolve();	
+				conversation.save(function(err){
+					if (err) resError(res, err);
+
+					var jobs = people.map(function(person, index){
+						var d = Q.defer();
+						User.findById(person.user, function(err, user){
+							if (err) d.reject();
+
+							// TODO: Check that we aren't pushing in a duplicate conversation.
+							user.userConversations.push({conversation: conversation.id, hallOfFame: false});
+							user.save(function(err){
+								if (err) d.reject();
+								
+								d.resolve();	
+							});
+						});
+						return d.promise;
+					});
+					Q.allSettled(jobs).then(function (){
+						console.log(people)
+			    		res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});	
 					});
 				});
-				return d.promise;
-			});
-			Q.allSettled(jobs).then(function (){
-				console.log(people)
-	    		res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});	
-			});
-		});
+			})
 	});
 };
 

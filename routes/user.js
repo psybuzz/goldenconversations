@@ -1,6 +1,6 @@
 var db = require('./../db.js');
 var resError = require('./messaging').resError;
-var Q = require('Q');
+var Q = require('q');
 var Utils = require('./../utils');
 
 exports.create = function(req, res){

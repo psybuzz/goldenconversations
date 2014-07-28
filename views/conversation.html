@@ -16,7 +16,9 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="menu-bar"></div>
+		<div class="menu-bar">
+			<a id="return-home" href="/home">< all conversations</a>
+		</div>
 		<h1 id="question">{{title}}</h1>
 		<div id="participants">
 			{{#each participants}}
@@ -25,6 +27,14 @@
 		</div>
 
 		<div class="display-fade"></div>
+		<span>
+			<h2 class="optionsTitle">Options</h2>
+			<ul class="options">
+				<li><a href ="/home">Invite others</a></li>
+				<li><a href="/home">Archive conversation</a></li>
+				<li><a href ="/home">Leave conversation</a></li>
+			</ul>
+		</span>
 		<div class="display">
 			<div class="display-area"></div>
 		</div>
@@ -35,7 +45,8 @@
 			<form id='mainform' action="/post/create" method="POST">
 				<textarea name="content" rows="4" cols="50" placeholder="Write down your thoughts"></textarea>
 				<input type="submit" value="Send">
-				<input type="hidden" value="testName" name="username">
+				<input type="hidden" value="{{user}}" name="username">
+				<input type="hidden" value="{{userId}}" name="userId">
 				<input type="hidden" value="{{conversationId}}" name="conversationId">
 				<input type="hidden" value="{{csrfToken}}" name="_csrf">
 			</form>
@@ -77,6 +88,8 @@
 		}); // ready
 	</script>
 	<script type="text/javascript">
+		user = '{{user}}';
+		userId = '{{userId}}';
 		token = '{{csrfToken}}';
 		conversationId = '{{conversationId}}';
 

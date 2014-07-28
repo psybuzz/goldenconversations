@@ -247,39 +247,42 @@ html, body {
   height: 2.5rem;
   padding: 0.5rem 0;
 }
-/* line 228, ../sass/home.scss */
-#new-input-modal #people_input {
-  margin-top: 1.3rem;
-}
-/* line 232, ../sass/home.scss */
+/* line 230, ../sass/home.scss */
 #new-input-modal #search_names {
-  position: relative;
-}
-/* line 234, ../sass/home.scss */
-#new-input-modal #search_names .modal-name {
-  position: absolute;
-  bottom: -3.5rem;
-  left: 0;
-  font-size: 1.3rem;
-  font-weight: 400;
-  background-color: white;
-  padding: 1.1rem 1.5rem;
   border-radius: 3px;
-  cursor: pointer;
+  position: absolute;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
   -webkit-box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
   -moz-box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
 }
-/* line 248, ../sass/home.scss */
+/* line 239, ../sass/home.scss */
+#new-input-modal #search_names .modal-name {
+  background-color: white;
+  font-weight: 400;
+  padding: 1.1rem;
+  cursor: pointer;
+  margin: 0;
+}
+/* line 245, ../sass/home.scss */
+#new-input-modal #search_names .modal-name:hover {
+  background-color: #333333;
+  color: white;
+}
+/* line 253, ../sass/home.scss */
 #new-input-modal .people-select {
   margin-bottom: 2rem;
   position: relative;
 }
-/* line 251, ../sass/home.scss */
+/* line 256, ../sass/home.scss */
 #new-input-modal .people-select input[name="People"] {
+  margin-top: 0;
   margin-bottom: 0;
 }
-/* line 254, ../sass/home.scss */
+/* line 260, ../sass/home.scss */
 #new-input-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
@@ -290,23 +293,36 @@ html, body {
   padding: 5px 8px;
   color: #555555;
 }
-/* line 264, ../sass/home.scss */
-#new-input-modal .people-select .selected-name {
-  position: relative;
-  padding-right: 1.5rem;
-  margin-bottom: 0.68rem;
+/* line 271, ../sass/home.scss */
+#new-input-modal .people-select .names-list {
+  margin: 0;
+  top: -1.2rem;
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
 }
-/* line 268, ../sass/home.scss */
+/* line 278, ../sass/home.scss */
+#new-input-modal .people-select .selected-name {
+  background-color: #e0e0e0;
+  padding: 5px;
+  margin-right: 5px;
+  position: relative;
+  padding-right: 1.1rem;
+  margin-bottom: 0.68rem;
+  display: inline-block;
+  border-radius: 3px;
+}
+/* line 287, ../sass/home.scss */
 #new-input-modal .people-select .selected-name .name_remove {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 6px;
   display: inline-block;
   font-weight: 300;
   font-size: 0.5em;
   cursor: pointer;
 }
-/* line 279, ../sass/home.scss */
+/* line 298, ../sass/home.scss */
 #new-input-modal button {
   float: right;
   background-color: #b0b0b0;
@@ -321,7 +337,7 @@ html, body {
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 296, ../sass/home.scss */
+/* line 315, ../sass/home.scss */
 #new-input-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;

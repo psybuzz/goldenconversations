@@ -26,10 +26,19 @@ exports.create = function(req, res){
 	} else if (validContent == false){
 		resError(res, "Invalid content");
 	} else {
+		// Replace the newlines in the user's post with break tags in order to save the message properly.
+		// This will allow us to display the post properly when the conversation page is loaded again in situations
+		// where the user uses newlines in their post (such as when creating lists or when creating spacing between
+		// typed paragraph). Note that we also need to replace newlines with break tags in the display screen
+		// immediately after the user hits 'Send' on their post. This is acheived by performing the same logic
+		// on the value of the text field when #mainform is submited.
+		content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
 		// Create and save the post
 		var post = new db.models.Post({
 		    username	: req.body.username,
-		    content  	: req.body.content,
+		    userid		: req.body.userId,
+		    content  	: content,
 		    time  		: Date.now()
 		});
 		post.save(function(err, message){
