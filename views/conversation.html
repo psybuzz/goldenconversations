@@ -33,7 +33,7 @@
 			<h2 class="optionsTitle">Options</h2>
 			<ul class="options">
 				<li><a href="#new-input-modal" id="invite">Invite others</a></li>
-				<li><a href="/home">Archive conversation</a></li>
+				<li><a href="#archive-modal" id="archive">Archive conversation</a></li>
 				<li><a href ="/home">Leave conversation</a></li>
 				<li><a href ="/home">Delete conversation</a></li>
 			</ul>
@@ -60,17 +60,28 @@
 	<div id="new-input-modal">
 		<div class="modal_close">x</div>
 		<form>
-			  <div class="txt-fld people-select">
-			    <input id="people_input" name="People" type="text" placeholder="Invite others">
+			 <div class="txt-fld people-select">
+				<input id="people_input" name="People" type="text" placeholder="Invite others">
 			    <div id="search_names"></div>
-			  </div>
-			  <div class="btn-fld">
-			  <button type="submit">Add to conversation</button>
-			  </div>
+			 </div>
+			 <div class="btn-fld">
+			 	<button type="submit">Add to conversation</button>
+			 </div>
+		</form>
+	</div>
+	<div id="archive-modal">
+		<div class="modal_close">x</div>
+		<form>
+			 <div class="question">Are you sure that you want to archive this conversation?</div>
+			<div class="btn-fld">
+				<button class="yes">Yes</button>
+				<button class="no">No</button>
+		  </div>
 		</form>
 	</div>
 	<script type='text/javascript'>
 		$("#invite").leanModal({ top : 100, overlay : 0.5, closeButton: ".modal_close" });
+		$("#archive").leanModal({ top : 100, overlay : 0.5, closeButton: ".modal_close" });
 	</script>
 	<script type='text/javascript' src='/js/lib/jquery.min.js'></script>
 	<script type='text/javascript' src='/js/lib/underscore.min.js'></script>
