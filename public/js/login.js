@@ -17,18 +17,8 @@ $('#login').submit(function (evt){
 	});
 });
 
-// Hide the invalid login message when the user starts typing in the email field if the
-// invalid login message is visible.
-$('form input[type="email"]').on("change keyup paste click", function (){
-	if ($('.invalidLogin').is(':visible')){
-		$('.invalidLogin').hide();
-	}
-});
-
-// Hide the invalid login message when the user starts typing in the password field if the
-// invalid login message is visible.
-$('form input[type="password"]').on("change keyup paste click", function (){
-	if ($('.invalidLogin').is(':visible')){
-		$('.invalidLogin').hide();
-	}
+// Hide the invalid login message when the user starts typing in either the email field or the 
+// password field.
+$('form input[type="email"], form input[type="password"]').on("change keyup paste click", function (){
+	$('.invalidLogin').hide();
 });
