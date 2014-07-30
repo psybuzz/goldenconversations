@@ -248,8 +248,8 @@ exports.allPosts = function (req, res){
 		return;
 	}
 
-    Conversation.findById( req.query.conversationId, function (err, convo){
-    	if (err){
+	Conversation.findById(req.query.conversationId, function (err, convo){
+		if (err){
 			resError(res, "Could not find posts for your conversation.");
 		}
 		var participantIds = convo.participants.map(function (p){

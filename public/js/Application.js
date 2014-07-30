@@ -64,7 +64,7 @@ $('#deleteConvo').click(function (){
                 conversationId: conversationId,
                 _csrf: token
             },
-            success: function (data) {
+            success: function (data){
                 if (data.success){
                     alert('Successfully deleted your conversation!');
                     window.location.href = data.redirect;
