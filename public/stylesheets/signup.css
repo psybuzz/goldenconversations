@@ -15,18 +15,22 @@
     padding: 0.5rem;
   }
 }
-/* line 17, ../sass/signup.scss */
+/* line 15, ../sass/signup.scss */
+.wrapper #return-home {
+  color: #777777;
+}
+/* line 19, ../sass/signup.scss */
 .wrapper .centered {
   width: 360px;
   margin: 0 auto;
 }
 @media screen and (max-width: 750px) {
-  /* line 17, ../sass/signup.scss */
+  /* line 19, ../sass/signup.scss */
   .wrapper .centered {
     width: 300px;
   }
 }
-/* line 25, ../sass/signup.scss */
+/* line 27, ../sass/signup.scss */
 .wrapper h1 {
   position: relative;
   padding-bottom: 1.8rem;
@@ -35,7 +39,7 @@
   color: #b0b0b0;
   font-size: 2.2rem;
 }
-/* line 32, ../sass/signup.scss */
+/* line 34, ../sass/signup.scss */
 .wrapper h1:before {
   content: "Where conversations happen.";
   position: absolute;
@@ -44,12 +48,12 @@
   font-weight: 400;
   font-size: 1.1rem;
 }
-/* line 40, ../sass/signup.scss */
+/* line 42, ../sass/signup.scss */
 .wrapper h1 span {
   color: #555555;
   font-weight: 700;
 }
-/* line 46, ../sass/signup.scss */
+/* line 48, ../sass/signup.scss */
 .wrapper input {
   font-size: 1.2rem;
   height: 35px;
@@ -62,12 +66,12 @@
   width: 360px;
 }
 @media screen and (max-width: 750px) {
-  /* line 46, ../sass/signup.scss */
+  /* line 48, ../sass/signup.scss */
   .wrapper input {
     width: 300px;
   }
 }
-/* line 61, ../sass/signup.scss */
+/* line 63, ../sass/signup.scss */
 .wrapper .submit {
   color: white;
   font-weight: 400;
@@ -82,7 +86,7 @@
   box-shadow: rgba(255, 255, 255, 0.5) 0 2px 0 0 inset, rgba(128, 128, 128, 0.3) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.2) 2px 0px 0 0 inset, rgba(128, 128, 128, 0.8) 0 4px 0 0;
   transition: all 0.3s ease;
 }
-/* line 78, ../sass/signup.scss */
+/* line 80, ../sass/signup.scss */
 .wrapper .submit:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(255, 255, 255, 0.45) 0 2px 0 0 inset, gray -2px 0px 0 0 inset, rgba(128, 128, 128, 0.7) 2px 0px 0 0 inset, rgba(0, 0, 0, 0.7) 0 4px 0 0;
