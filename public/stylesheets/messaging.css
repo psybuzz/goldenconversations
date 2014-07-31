@@ -202,7 +202,7 @@
 }
 
 /* line 171, ../sass/messaging.scss */
-#new-input-modal, #archive-modal {
+#new-input-modal, .choice-modal {
   display: none;
   position: fixed;
   top: 8%;
@@ -216,7 +216,7 @@
   font-weight: 300;
 }
 /* line 184, ../sass/messaging.scss */
-#new-input-modal .modal_close, #archive-modal .modal_close {
+#new-input-modal .modal_close, .choice-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
   display: inline-block;
@@ -227,7 +227,7 @@
   right: 3rem;
 }
 /* line 197, ../sass/messaging.scss */
-#new-input-modal input, #archive-modal input {
+#new-input-modal input, .choice-modal input {
   width: 100%;
   margin-bottom: 2rem;
   border: none;
@@ -237,15 +237,15 @@
   padding: 0.5rem 0;
 }
 /* line 207, ../sass/messaging.scss */
-#new-input-modal .people-select, #archive-modal .people-select {
+#new-input-modal .people-select, .choice-modal .people-select {
   margin-bottom: 2rem;
 }
 /* line 210, ../sass/messaging.scss */
-#new-input-modal .people-select input[name="People"], #archive-modal .people-select input[name="People"] {
+#new-input-modal .people-select input[name="People"], .choice-modal .people-select input[name="People"] {
   margin-bottom: 0;
 }
 /* line 214, ../sass/messaging.scss */
-#new-input-modal .people-select span, #archive-modal .people-select span {
+#new-input-modal .people-select span, .choice-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
   display: inline-block;
@@ -256,12 +256,12 @@
   color: #555555;
 }
 /* line 226, ../sass/messaging.scss */
-#new-input-modal .question, #archive-modal .question {
+#new-input-modal .question, .choice-modal .question {
   font-size: 1.5rem;
   margin-bottom: 2em;
 }
 /* line 231, ../sass/messaging.scss */
-#new-input-modal button, #archive-modal button {
+#new-input-modal button, .choice-modal button {
   float: right;
   background-color: #b0b0b0;
   border: none;
@@ -276,23 +276,23 @@
   transition: all 0.3s ease;
 }
 /* line 247, ../sass/messaging.scss */
-#new-input-modal button:hover, #archive-modal button:hover {
+#new-input-modal button:hover, .choice-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
 }
 /* line 258, ../sass/messaging.scss */
-#new-input-modal .no, #new-input-modal .yes, #archive-modal .no, #archive-modal .yes {
+#new-input-modal .no, #new-input-modal .yes, .choice-modal .no, .choice-modal .yes {
   width: 25%;
 }
 /* line 262, ../sass/messaging.scss */
-#new-input-modal .no, #archive-modal .no {
+#new-input-modal .no, .choice-modal .no {
   margin-right: 2%;
   background-color: #b0b0b0;
 }
 /* line 267, ../sass/messaging.scss */
-#new-input-modal .yes, #archive-modal .yes {
+#new-input-modal .yes, .choice-modal .yes {
   background-color: #777777;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.69) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.49) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.6) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.69) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.49) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.6) 0 2px 0 0 inset;
