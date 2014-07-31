@@ -83,22 +83,12 @@
 		// Set the question of the choice modal and attach the approriate 'action' data attribute
 		// to the choice modal.
 		function setAction (action){
-			var question = document.querySelector('.choice-modal .question');
-			question.innerHTML = 'Are you sure that you want to ' + action + ' this conversation?';
-
+			$('.choice-modal .question').html('Are you sure that you want to ' + action + ' this conversation?')
 			$('.choice-modal').data('action', action);
 		}
 
-		$('#archive').click(function (){
-			setAction('archive');
-		});
-
-		$('#leave').click(function (){
-			setAction('leave');
-		});
-
-		$('#delete').click(function (){
-			setAction('delete');
+		$('#archive, #leave, #delete').click(function (){
+			setAction($(this).attr('id'));
 		});
 
 		// Display the corresponding leanModal when one of the options is clicked.
