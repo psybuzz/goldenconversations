@@ -44,7 +44,7 @@ exports.conversation = function (req, res) {
 
 	console.log('fetching convo with id', id)
 	Conversation.findOne( { _id: id }, function (err, convo){
-		if (err){
+		if (err || !convo){
 			res.render('error', {title: 'Conversation not found', message: 'Forgeeeet about it!' });
 			return;
 		}

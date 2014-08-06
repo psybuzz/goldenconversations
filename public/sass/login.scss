@@ -54,6 +54,16 @@
 		text-align: right;
 	}
 
+	.invalidLogin {
+			color: red;
+			position: absolute;
+			width: 205px;
+			margin-left: 25px;
+			margin-top: -120px;
+			font-family: $sans-stack;
+			display: none;
+	}
+
 	input {
 		font-size: 1.2rem;
 		height: 35px;
@@ -129,6 +139,5 @@
 			);
 		}
 		margin-right: 0;
-
 	}	
 }

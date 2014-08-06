@@ -23,10 +23,11 @@ exports.create = function (req, res){
 
     	/*
     	* We fill in the firstName, lastName here on the server, so the client request only needs
-    	* to pass in an array of people:
-		* [{_id: id}, {_id: id2}, ...]
+    	* to pass in an array of ids:
+		* [id1, id2, ...]
 		*/
 		var people = req.body.people || [];
+		people = people.map(function (id){return {'_id': id}});
 
 		// Add the ice breaker to the list of participants and de-duplicate.
 		people.push({'_id': iceBreakerId});
@@ -55,7 +56,7 @@ exports.create = function (req, res){
 			.then(function (){
 				people = peopleData;
 
-				for (var i = 0; i < people.length; i++) {
+				for (var i = 0; i < people.length; i++){
 					people[i].isThrilled = false;
 				};
 
@@ -68,7 +69,7 @@ exports.create = function (req, res){
 				});
 
 				conversation.save(function (err){
-					if (err) {
+					if (err){
 						resError(res, err);
 						return;
 					}
@@ -76,7 +77,7 @@ exports.create = function (req, res){
 					var jobs = people.map(function (person, index){
 						var d = Q.defer();
 						User.findById(person._id, function (err, otherPerson){
-							if (err || !otherPerson) {
+							if (err || !otherPerson){
 								d.reject();
 								return;
 							}
@@ -91,7 +92,7 @@ exports.create = function (req, res){
 								// If we are inviting someone to a conversation they have not seen.
 								otherPerson.userConversations.push({conversation: conversation.id, hallOfFame: false});
 								otherPerson.save(function (err){
-									if (err) {
+									if (err){
 										d.reject();
 										return;
 									}
@@ -113,8 +114,97 @@ exports.create = function (req, res){
 };
 
 exports.delete = function (req, res){
-	Conversation.findByIdAndRemove(req.body.objectId, function (err){
-		if (err) return console.log(err);
+	if (!req.user || !req.user._id){
+		resError(res, "Access denied.", "/error");
+		return;
+	}
+
+	var convoPromise = Q.promise(function (resolve, reject){
+		Conversation.findById( req.body.conversationId, function (err, convo){
+	    	if (err){
+				reject(res, "Could not find your conversation.");
+				return;
+			}
+			var participantIds = convo.participants.map(function (p){return p._id});
+			var userString = JSON.stringify(req.user._id);
+			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
+			var found = participantIdStrings.indexOf(userString) !== -1;
+
+			if (found){
+				resolve(convo);
+			} else{
+				reject(res, "Access denied.", "/error");
+			}
+		});
+	}).then(function (convo){
+		// Remove associated posts.
+		var posts = convo.discussion;
+		var removeJobs = posts.map(function (postId){
+			return Q.promise(function (resolve, reject){
+				Post.findByIdAndRemove(postId, function(err){
+					if (err){
+						reject('Could not find post.');
+					} else{
+						resolve();
+					}
+				});
+			});
+		});
+		
+		return [convo, Q.allSettled(removeJobs)];
+	}, resError).spread(function (convo, results){
+		// Associated posts removed.
+		results.forEach(function (result){
+	        if (result.state !== "fulfilled"){
+	            console.log('Some dangling posts were not removed!', result.reason);
+	        }
+	    });
+
+		// Remove convo from each participant's list of conversations.
+		var userIds = convo.participants.map(function (p){return p._id});
+		var removeJobs = userIds.map(function (userId){
+			return Q.promise(function (resolve, reject){
+				User.findById(userId, function(err, user){
+					if (err){
+						reject('Could not find user.');
+						return;
+					}
+
+					// Get the index of the conversation to remove within the user's list.
+					var index = user
+							.userConversations
+							.map(function (c){return JSON.stringify(c.conversation)})
+							.indexOf(JSON.stringify(convo._id));
+					if (index !== -1){
+						user.userConversations.splice(index, 1);
+					}
+					user.save(function (saveErr){
+						if (saveErr){
+							reject('Could not save user\'s list after removal');
+						} else{
+							resolve();
+						}
+					});
+				});
+			});
+		}); // removeJobs
+
+		return Q.allSettled(removeJobs);
+	}).then(function (results){
+		// Associated user convo lists updated.
+		results.forEach(function (result){
+			if (result.state !== "fulfilled"){
+				console.log('Some users\' conversation lists were not updated!', result.reason);
+			}
+		});
+
+		// Remove the actual conversation.
+		Conversation.findByIdAndRemove(req.body.conversationId, function (err){
+			if (err) return resError(res, message);
+
+			// Redirect back home.
+			res.send({success: true, redirect: '/home'});
+		});
 	});
 };
 
@@ -154,22 +244,22 @@ exports.getTestMessages = function (req, res){
 
 // Gets all the posts within a certain conversation.
 exports.allPosts = function (req, res){
-	if (!req.user || !req.user._id) {
+	if (!req.user || !req.user._id){
 		resError(res, "Access denied.", "/error");
 		return;
 	}
 
-    Conversation.findById( req.query.conversationId, function (err, convo){
-    	if (err){
+	Conversation.findById(req.query.conversationId, function (err, convo){
+		if (err){
 			resError(res, "Could not find posts for your conversation.");
 		}
-		var participantIds = convo.participants.map(function (p) {
+		var participantIds = convo.participants.map(function (p){
 			return p._id;
 		})
 
 		var found = false;
 		var userString = JSON.stringify(req.user._id);
-		for (var i = 0; i < participantIds.length; i++) {
+		for (var i = 0; i < participantIds.length; i++){
 			if (JSON.stringify(participantIds[i]) === userString){
 				found = true;
 			}
@@ -241,12 +331,7 @@ exports.search = function (req, res){
 
 		Q.allSettled(jobs).then(function (){
 			// Clean up results by removing null entries.
-			var cleanResults = [];
-			for (var i = 0; i < results.length; i++) {
-				if (results[i]){
-					cleanResults.push(results[i]);
-				}
-			};
+			var cleanResults = Utils.denullify(results);
 			res.send({status: 'OK', success: true, message: cleanResults});
 		}, function (err){
 			resError(res, "Could not fetch all conversations.");

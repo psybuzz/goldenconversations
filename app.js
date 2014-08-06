@@ -68,11 +68,15 @@ app.get('/signup', routes.signup);
 app.get('/login', routes.login);
 app.get('/signup', routes.signup);
 app.post('/login', passport.authenticate('local'), 
-	function(req,res){
-		res.redirect('/');
+	function (req, res){
+      res.send({
+          success: true
+      });
 	},
-	function(req,res){
-		res.redirect('/login');
+	function (req, res){
+      res.send({
+          success: false,
+      });
 	}
 );
 

@@ -32,10 +32,10 @@
 		<span>
 			<h2 class="optionsTitle">Options</h2>
 			<ul class="options">
-				<li><a href="#new-input-modal" id="invite">Invite others</a></li>
-				<li><a href="/home">Archive conversation</a></li>
-				<li><a href ="/home">Leave conversation</a></li>
-				<li><a href ="/home">Delete conversation</a></li>
+				<li><a href="#new-input-modal" id="invite" rel="leanModal">Invite others</a></li>
+				<li><a href=".choice-modal" id="archive" rel="leanModal">Archive conversation</a></li>
+				<li><a href =".choice-modal" id="leave" rel="leanModal">Leave conversation</a></li>
+				<li><a href =".choice-modal" id="delete" rel="leanModal">Delete conversation</a></li>
 			</ul>
 		</span>
 		<div class="display">
@@ -60,17 +60,43 @@
 	<div id="new-input-modal">
 		<div class="modal_close">x</div>
 		<form>
-			  <div class="txt-fld people-select">
-			    <input id="people_input" name="People" type="text" placeholder="Invite others">
+			 <div class="txt-fld people-select">
+				<input id="people_input" name="People" type="text" placeholder="Invite others">
 			    <div id="search_names"></div>
-			  </div>
-			  <div class="btn-fld">
-			  <button type="submit">Add to conversation</button>
-			  </div>
+			 </div>
+			 <div class="btn-fld">
+			 	<button type="submit">Add to conversation</button>
+			 </div>
+		</form>
+	</div>
+	<div class="choice-modal">
+		<div class="modal_close">x</div>
+		<form>
+			 <div class="question"></div>
+			<div class="btn-fld">
+				<button class="yes">Yes</button>
+				<button class="no">No</button>
+		  </div>
 		</form>
 	</div>
 	<script type='text/javascript'>
-		$("#invite").leanModal({ top : 100, overlay : 0.5, closeButton: ".modal_close" });
+		// Set the question of the choice modal and attach the approriate 'action' data attribute
+		// to the choice modal.
+		function setAction (action){
+			$('.choice-modal .question').html('Are you sure that you want to ' + action + ' this conversation?')
+			$('.choice-modal').data('action', action);
+		}
+
+		$('#archive, #leave, #delete').click(function (){
+			setAction($(this).attr('id'));
+		});
+
+		// Display the corresponding leanModal when one of the options is clicked.
+		$("a[rel*=leanModal]").leanModal({
+			top : 100,
+			overlay : 0.5,
+			closeButton: ".modal_close"
+		});
 	</script>
 	<script type='text/javascript' src='/js/lib/jquery.min.js'></script>
 	<script type='text/javascript' src='/js/lib/underscore.min.js'></script>
