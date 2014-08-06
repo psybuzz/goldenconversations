@@ -50,11 +50,11 @@
 		<section class="home-contacts right-side">
 			<h2>Contacts</h2>
 			<div class="contacts-content">
-				<span class="name1 name">Nikil Selvam</span>
+		<!-- 		<span class="name1 name">Nikil Selvam</span>
 				<span class="name2 name">Erik Luo</span>
 				<span class="name3 name">Tony Jing</span>
 				<span class="name4 name">Fifi Yeung</span>
-				<span class="name5 name">Sarah J.</span>
+				<span class="name5 name">Sarah J.</span> -->
 
 			</div>
 		</section >
@@ -100,20 +100,42 @@
 	<script type='text/javascript' src='/js/home.js'></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('#new-convo').click(function(){
+				$('.good_input').focus().val('').attr('placeholder', 'Topic');
+				$('#people_input').val('').attr('placeholder', 'People');
+				$('textarea').val('').attr('placeholder', 'Write down your thoughts');
+			});
+
 			$('#search_names').on('click', '.modal-name', function(){
 				var name = $(this).text();
 				var id = $(this).attr('data-id');
 				
-				$('.names-list').append('<li data-id="' + id + '" class="selected-name">' + name + '<div class="name_remove">X</div></li>')
+				$('<li  style="display: none;" data-id="' + id + '" class="selected-name">' + name + '<div class="name_remove">X</div></li>').appendTo($('.names-list')).fadeIn('fast');
 				$('#search_names li').remove();
-				$('#people_input').val('').attr('placeholder', 'Add More').focus().css({
-					display: 'inline'
-				});
+				if($('.names-list li').length == 1){
+					$('#people_input').css({
+						display: 'none'
+					}).slideDown('fast');
+				}
+				$('#people_input').val('').attr('placeholder', 'Add More').focus();
 
 				$('.name_remove').click(function(){
 					$(this).parent().remove();
 				});
-			});
+
+				$('.modal_close').click(function(){
+					$('.names-list li').remove();
+				});
+			}); // search on click
+			
+			$('#people_input').keyup(_.debounce(compareDataId, 401));
+
+			function compareDataId() {
+				$('.modal-name').each(function(){
+					var dataId = $(this).attr('data-id');
+					for
+				}); // selected-name each
+			}
 		}); // ready
 	</script>
 </body>
