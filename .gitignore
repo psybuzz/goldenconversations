@@ -1,4 +1,3 @@
 *.sass-cache
-*config.js
-appconfig.js
+secret.js
 *.DS_Store
