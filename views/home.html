@@ -83,7 +83,7 @@
 			   <textarea name="content" rows="3" cols="20" placeholder="Write down your thoughts"></textarea>
 			</div>
 			<div class="btn-fld">
-			  <button type="submit">Create</button>
+			  <button id="create-submit-button" type="button">Create</button>
 			</div>
 		</form>
 	</div>
@@ -110,9 +110,10 @@
 					display: 'inline'
 				});
 
-				$('.name_remove').click(function(){
-					$(this).parent().remove();
-				});
+			});
+
+			$('#convo-creation-form').on('click', '.name_remove', function(){
+				$(this).parent().remove();
 			});
 		}); // ready
 	</script>

@@ -1,4 +1,5 @@
 // Nice little utility functions.
+// TODO(erik): Consider requiring Underscore to cover these utility functions.
 
 /**
  * Returns the union of two arrays by merging them and de-duplicating the contents.
