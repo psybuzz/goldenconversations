@@ -1,4 +1,5 @@
 // Nice little utility functions.
+var validator = require('validator');
 
 /**
  * Returns the union of two arrays by merging them and de-duplicating the contents.
@@ -45,10 +46,10 @@ exports.union = function () {
 	return union;
 };
 
-/*
+/**
  * Returns a cleaned array without null or undefined entries.
  *
- * e.g. Utils.clean([1,2,undefined,3,null])		// should return [1,2,3]
+ * e.g. Utils.denullify([1,2,undefined,3,null])		// should return [1,2,3]
  *
  * @param {Array} a list of entries, some of which may be null or undefined.
  */
@@ -61,4 +62,20 @@ exports.denullify = function (list){
 	}
 
 	return cleanList;
+}
+
+/**
+ * Sanitizes all fields within the property of an object using the validator node module.
+ *
+ * e.g. Utils.escape(req.body)		// req.body.id, req.body.username, ... are all escaped.
+ *
+ * BEFORE - req.body.username === "Mr. Dangerous <script>!";
+ * AFTER - req.body.username === "Mr.%20Dangerous%20%3Cscript%3E!";
+ */
+exports.escape = function (dirtyObj){
+	for (prop in dirtyObj){
+		if (dirtyObj.hasOwnProperty(prop)){
+			dirtyObj[prop] = validator.escape(dirtyObj[prop]);
+		}
+	}
 }
