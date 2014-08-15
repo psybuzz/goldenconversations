@@ -67,8 +67,8 @@ var dbModels = {
 exports.models = dbModels;
  
 // Connect to database and listen to events.
-mongoose.connect('mongodb://'+secret.userDecipher.decipher() + ':' +
-		secret.passDecipher.decipher() +
+mongoose.connect('mongodb://'+secret.user() + ':' +
+		secret.pass() +
 		'@ds061208.mongolab.com:61208/'+dbName);
 
 var db = mongoose.connection;
