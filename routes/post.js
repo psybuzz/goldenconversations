@@ -1,6 +1,7 @@
 var db = require('./../db.js');
 var validator = require('validator');
 var resError = require('./messaging').resError;
+var Utils = require('./../utils');
 
 // sends response with an error message, and logs it in the console
 function resError(res, message){
@@ -9,6 +10,9 @@ function resError(res, message){
 }
 
 exports.create = function(req, res){
+	// Escape the request body for security.
+	Utils.escape(req.body);
+
 	// validate comment info
 	var name = req.body.username;
 	var content = req.body.content;
@@ -73,6 +77,9 @@ exports.delete = function(req, res){
 };
 
 exports.update = function(req, res){
+	// Escape the request body for security.
+	Utils.escape(req.body);
+	
 	Post.findByIdAndUpdate(req.body.objectId, req.body.updata, function(err){
 		if (err) return console.log(err);
 	});

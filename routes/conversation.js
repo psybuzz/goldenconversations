@@ -16,6 +16,9 @@ Post = db.models.Post;
  *      participant.
  */
 exports.create = function (req, res){
+	// Escape the request body for security.
+	Utils.escape(req.body);
+
 	var iceBreakerId = req.body.iceBreaker;
 
 	User.findById(iceBreakerId, function (err, user){
@@ -209,6 +212,9 @@ exports.delete = function (req, res){
 };
 
 exports.update = function (req, res){
+	// Escape the request body for security.
+	Utils.escape(req.body);
+
 	Conversation.findByIdAndUpdate(req.body.objectId, req.body.updata, function (err){
 		if (err) return console.log(err);
 	});
@@ -290,6 +296,9 @@ exports.allPosts = function (req, res){
 
 // Sends back a list of a given user's conversations.
 exports.search = function (req, res){
+	// Escape the request query for security.
+	Utils.escape(req.query);
+
 	var userId = req.query.userId;
 	var recent = req.query.recent || false;
 	var limit = req.query.limit || undefined;

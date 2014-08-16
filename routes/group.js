@@ -1,7 +1,11 @@
 var db = require('./../db.js');
 var resError = require('./messaging').resError;
+var Utils = require('./../utils');
 
 exports.create = function(req, res){
+	// Escape the request body for security.
+	Utils.escape(req.body);
+
 	var group = new db.models.Group({
 	    members             : req.body.groupMaker,
 	    name                : req.body.name,
@@ -23,6 +27,9 @@ exports.delete = function(req, res){
 };
 
 exports.update = function(req, res){
+	// Escape the request body for security.
+	Utils.escape(req.body);
+
 	Group.findByIdAndUpdate(req.body.objectId, req.body.updata, function(err){
 		if (err) return console.log(err);
 	});
