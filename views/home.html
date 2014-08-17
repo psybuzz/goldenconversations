@@ -126,9 +126,13 @@
 				$('.modal_close').click(function(){
 					$('.names-list li').remove();
 				});
+				var numOfNames = $('li.selected-name').length;
+				if(numOfNames >= 5){
+					$('#people_input').attr('placeholder', "To keep the conversation close and meaningful, you can invite up to 5 people.").css('font-size', '16px');
+					$('textarea').focus();
+				}
 			}); // search on click
 			
-	
 		}); // ready
 	</script>
 </body>

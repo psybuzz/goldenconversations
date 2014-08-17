@@ -12,8 +12,22 @@ function peopleTypeEvent () {
 		if (data.success){
 			console.log(namesTemplate, data.message, namesTemplate(data))
 			$('#search_names').html(namesTemplate(data));
-		}
-	});
+
+			 // creating var to see if new names duplicate existing ones
+
+			$('.selected-name').each(function(){
+				var selectedName = $(this).attr('data-id');
+
+				$('.modal-name').each(function(){
+					var newName	= $(this).attr('data-id');
+					if(selectedName === newName){
+						$('.modal-name[data-id="'+newName+'"]').remove();
+					}
+				});
+			}); // click on each new name
+
+		} // if data success
+	}); // get data
 }
 $('#people_input').keyup(_.debounce(peopleTypeEvent, 400));
 
