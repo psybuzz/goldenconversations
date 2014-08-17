@@ -25,6 +25,7 @@ if (typeof process.env.MAILMAN_USER === 'undefined' ||
 	process.env.MAILMAN_USER = secret.mailmanUser;
 	process.env.MAILMAN_PASS = secret.mailmanPass;
 }
+console.log('Using mail user/pass', process.env.MAILMAN_USER, process.env.MAILMAN_PASS)
 
 // Create a reusable transporter that uses our Gmail account.
 var transporter = nodemailer.createTransport({
