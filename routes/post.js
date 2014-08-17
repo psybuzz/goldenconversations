@@ -1,6 +1,9 @@
 var db = require('./../db.js');
 var validator = require('validator');
 var resError = require('./messaging').resError;
+var Mailman = require('./../mailman.js').Mailman;
+
+User = db.models.User;
 
 // sends response with an error message, and logs it in the console
 function resError(res, message){
@@ -58,6 +61,36 @@ exports.create = function(req, res){
 							} else {
 								res.send({status: 'OK', success: true});
 							}
+						});
+
+						// Try to send emails to participants.
+						var participantIds = convo.participants.map(function (user){
+							return user._id;
+						});
+						var promise = User.find({ _id: { $in: participantIds }}).exec();
+						promise.then(function (participants){
+							var currentUser = participants.filter(function (user){
+								return user._id.toString() === req.body.userId;
+							})[0];
+							var emails = participants.map(function (user){return user.username});
+							var subject = 'GC: ' + currentUser.firstName + ' responded to the question: ' + convo.question;
+							if (subject.length > 70){
+								subject = subject.slice(0, 70) + '...';
+							}
+							var contentSnippet = content.slice(0, 140) + '...';
+
+							// TODO(erik): Sanitize the question by escaping HTML entities.
+							Mailman.sendMail({
+								recipients: emails,
+								subject: subject,
+								html: 'Hello,<br><br>In a follow-up to the conversation<br><h3>' +
+									convo.question + '</h3>' + currentUser.firstName +
+									' added: ' + contentSnippet + '<br>' +
+									'<br>Continue the conversation on <a href="http://goldenconversations.heroku.com/">Golden Conversations</a>.',
+								callback: function(){
+									console.log('New conversation notification emails have been sent.');
+								}
+							});
 						});
 					}
 			    });
