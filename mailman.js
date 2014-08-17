@@ -25,7 +25,6 @@ if (typeof process.env.MAILMAN_USER === 'undefined' ||
 	process.env.MAILMAN_USER = secret.mailmanUser;
 	process.env.MAILMAN_PASS = secret.mailmanPass;
 }
-console.log('Using mail user/pass', process.env.MAILMAN_USER, process.env.MAILMAN_PASS)
 
 // Create a reusable transporter that uses our Gmail account.
 var transporter = nodemailer.createTransport({
@@ -95,6 +94,7 @@ var Mailman = {
 	 *      returned. It resolves or rejects depending on whether the sending was successful.
 	 */
 	sendMail: function (options){
+		console.log('Using mail user/pass', process.env.MAILMAN_USER, process.env.MAILMAN_PASS)
 		var deferred = Q.defer();
 		var callback = options.callback;
 		var mailOptions = {};
