@@ -3,9 +3,9 @@
 
 
 .wrapper {
-	height: 90%;
+	height: 100%;
 	box-sizing: border-box;
-	padding: 6rem;
+	padding: 5rem;
 	padding-top: 4.5rem;
 	position: relative;
 
@@ -65,11 +65,12 @@
 }
 
 .display {
+
 	margin: 0 auto;
 	padding: 0.7rem 0;
 	max-width: $max-display;
 	min-width: $min-display;
-	height: 55%;
+	height: 65%;
 	min-height: $min-height;
 	overflow-y: scroll;
 	@media screen and (max-width: $max-display) {
@@ -99,6 +100,7 @@
 .display-fade {
 	position: absolute;
 	height: 1.8rem;
+	margin-top: 24px;
 	z-index: 10;
 	@include background-image(linear-gradient(white, rgba(white, 0)));
 }
@@ -106,7 +108,7 @@
 .display-fade-bottom {
 	@extend .display-fade;
 	@include background-image(linear-gradient(rgba(white, 0), white));
-	margin-top: -50px;
+	margin-top: -24px;
 }
 
 .input-area {
@@ -114,7 +116,8 @@
 	margin-top: 2rem;
 	max-width: $max-display;
 	min-width: $min-display;
-	max-height: 400px;
+	height: 5%;
+	min-height: 30px;
 	color: $light-black;
 	font-size: 1.1rem;
 	form {
@@ -126,7 +129,7 @@
 			padding: 1rem 0;
 			box-sizing: border-box;
 			@media screen and (max-width: $max-display) {
-			  	height: 90px;
+			  	// height: 90px;
 			  	padding: 0;
 			}
 		}
