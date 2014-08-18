@@ -316,7 +316,7 @@ html, body {
   display: inline-block;
   border-radius: 3px;
 }
-/* line 292, ../sass/home.scss */
+/* line 291, ../sass/home.scss */
 #new-input-modal .people-select .selected-name .name_remove {
   position: absolute;
   top: 10px;
@@ -326,7 +326,7 @@ html, body {
   font-size: 0.5em;
   cursor: pointer;
 }
-/* line 303, ../sass/home.scss */
+/* line 302, ../sass/home.scss */
 #new-input-modal button {
   float: right;
   background-color: #b0b0b0;
@@ -341,7 +341,7 @@ html, body {
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 320, ../sass/home.scss */
+/* line 319, ../sass/home.scss */
 #new-input-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
