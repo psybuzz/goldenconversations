@@ -18,26 +18,22 @@
 	<div class="wrapper">
 		<div class="menu-bar"></div>
 		<h1 id="question"></h1>
-
-		<div class="display-fade"></div>
+		
 		<div class="display">
+			<div class="display-fade"></div>
 			<div class="display-area"></div>
+			<div class="display-fade-bottom"></div>
 		</div>
-		<div class="display-fade-bottom"></div>
 		
-
 		
-		<div class="input-area">
-
-			<form id='mainform' action="/post/create" method="POST">
-				<textarea name="content" rows="2" cols="50" placeholder="Write down your thoughts"></textarea>
-				<input type="submit" value="Send">
-				<input type="hidden" value="testName" name="username">
-				<input type="hidden" value="{{conversationId}}" name="conversationId">
-			</form>
-					
-
-		</div>
+	</div>
+	<div class="input-area">
+		<form id='mainform' action="/post/create" method="POST">
+			<textarea name="content" rows="2" cols="50" placeholder="Write down your thoughts"></textarea>
+			<input class="send-button" type="submit" value="Post">
+			<input type="hidden" value="testName" name="username">
+			<input type="hidden" value="{{conversationId}}" name="conversationId">
+		</form>
 	</div>
 	<script type='text/javascript' src='js/lib/jquery.min.js'></script>
 	<script type='text/javascript' src='js/lib/underscore.min.js'></script>
