@@ -19,7 +19,7 @@
 <body>
 	<div class="wrapper">
 		<section class="admin-bar">
-			<div class="personal-info">Welcome, <a href="#">{{user.firstName}} {{user.lastName}}!</a></div>
+			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{user.firstName}} {{user.lastName}}!</a></div>
 			<div id="log-out"><a href="/logout">Log Out</a></div>
 		</section>
 
@@ -31,7 +31,7 @@
 
 				<a href="#"class="load-more">Load More</a>
 
-				<a href="#new-input-modal" id="new-convo" class="new-thing"><span>Start a New Conversation</span></a>
+				<a href="#new-input-modal" id="new-convo" class="new-thing" rel="leanModal"><span>Start a New Conversation</span></a>
 			</div>
 		</section>
 
@@ -50,11 +50,11 @@
 		<section class="home-contacts right-side">
 			<h2>Contacts</h2>
 			<div class="contacts-content">
-				<span class="name1 name">Nikil Selvam</span>
-				<span class="name2 name">Erik Luo</span>
-				<span class="name3 name">Tony Jing</span>
-				<span class="name4 name">Fifi Yeung</span>
-				<span class="name5 name">Sarah J.</span>
+				<span class="name1 name"><a href="#user-modal" rel="leanModal">Nikil Selvam</a></span>
+				<span class="name2 name"><a href="#user-modal" rel="leanModal">Erik Luo</a></span>
+				<span class="name3 name"><a href="#user-modal" rel="leanModal">Tony Jing</a></span>
+				<span class="name4 name"><a href="#user-modal" rel="leanModal">Fifi Yeung</a></span>
+				<span class="name5 name"><a href="#user-modal" rel="leanModal">Sarah J.</a></span>
 
 			</div>
 		</section >
@@ -87,15 +87,25 @@
 			</div>
 		</form>
 	</div>
+	<div id="user-modal">
+		<div class="modal_close">x</div>
+		<div id="name" class="info">User: {{user.firstName}} {{user.lastName}}</div>
+		<div id="email" class="info">Email: {{user.username}}</div>
+		<div id="joined" class="info">Joined: {{user.joined}}</div>
+		<div id="conversations" class="info">Number of conversations participated in: {{user.userConversations.length}}</div>
+		<div id="bio" class="info">Bio: {{user.description}}</div>
+	</div>
 	<script type='text/javascript'>
 		var username = '{{user.username}}';
 		var userId = '{{user._id}}';
 		var token = '{{csrfToken}}';
-		$("#new-convo").leanModal({
-			top : 100, 
-			overlay : 0.5, 
-			closeButton: ".modal_close" 
-		});
+
+		// Display the appropriate leanModal when a link with a corresponding leanModal is clicked.
+ 		$("a[rel*=leanModal]").leanModal({
+ 			top : 100,
+ 			overlay : 0.5,
+ 			closeButton: ".modal_close"
+ 		});
 	</script>
 	<script type='text/javascript' src='/js/home.js'></script>
 	<script type="text/javascript">
