@@ -11,8 +11,19 @@ function searchAndLoadNames (){
 		if (data.success){
 			console.log(namesTemplate, data.message, namesTemplate(data))
 			$('#search_names').html(namesTemplate(data));
-		}
-	});
+
+			// Check if any user included in the search results has already been selected for this conversation. If so, do not display this user's name in the search results.
+			$('.selected-name').each(function(){
+				var selectedName = $(this).attr('data-id');
+				$('.modal-name').each(function(){
+					var newName	= $(this).attr('data-id');
+					if (selectedName === newName){
+						$('.modal-name[data-id="'+newName+'"]').remove();
+					}
+				});
+			}); 
+		} 
+	}); 
 }
 var searchAndLoadNamesDebounced = _.debounce(searchAndLoadNames, 400);
 

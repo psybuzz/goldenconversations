@@ -250,10 +250,9 @@ html, body {
 /* line 228, ../sass/home.scss */
 #new-input-modal textarea {
   margin-top: 0;
-  padding-top: 2rem;
   clear: both;
 }
-/* line 235, ../sass/home.scss */
+/* line 234, ../sass/home.scss */
 #new-input-modal #search_names {
   border-radius: 3px;
   position: absolute;
@@ -265,7 +264,7 @@ html, body {
   -moz-box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
 }
-/* line 244, ../sass/home.scss */
+/* line 243, ../sass/home.scss */
 #new-input-modal #search_names .modal-name {
   background-color: white;
   font-weight: 400;
@@ -273,22 +272,22 @@ html, body {
   cursor: pointer;
   margin: 0;
 }
-/* line 250, ../sass/home.scss */
+/* line 249, ../sass/home.scss */
 #new-input-modal #search_names .modal-name:hover {
   background-color: #333333;
   color: white;
 }
-/* line 258, ../sass/home.scss */
+/* line 257, ../sass/home.scss */
 #new-input-modal .people-select {
   margin-bottom: 2rem;
   position: relative;
 }
-/* line 261, ../sass/home.scss */
+/* line 260, ../sass/home.scss */
 #new-input-modal .people-select input[name="People"] {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 266, ../sass/home.scss */
+/* line 264, ../sass/home.scss */
 #new-input-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
@@ -299,15 +298,14 @@ html, body {
   padding: 5px 8px;
   color: #555555;
 }
-/* line 277, ../sass/home.scss */
+/* line 275, ../sass/home.scss */
 #new-input-modal .people-select .names-list {
   margin: 0;
   top: -1.2rem;
   list-style-type: none;
   padding: 0;
-  float: left;
 }
-/* line 285, ../sass/home.scss */
+/* line 282, ../sass/home.scss */
 #new-input-modal .people-select .selected-name {
   background-color: #e0e0e0;
   padding: 5px;
@@ -318,7 +316,7 @@ html, body {
   display: inline-block;
   border-radius: 3px;
 }
-/* line 294, ../sass/home.scss */
+/* line 291, ../sass/home.scss */
 #new-input-modal .people-select .selected-name .name_remove {
   position: absolute;
   top: 10px;
@@ -328,7 +326,7 @@ html, body {
   font-size: 0.5em;
   cursor: pointer;
 }
-/* line 305, ../sass/home.scss */
+/* line 302, ../sass/home.scss */
 #new-input-modal button {
   float: right;
   background-color: #b0b0b0;
@@ -343,7 +341,7 @@ html, body {
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 322, ../sass/home.scss */
+/* line 319, ../sass/home.scss */
 #new-input-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
