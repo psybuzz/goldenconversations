@@ -86,7 +86,7 @@ $('#mainform').on('submit', function (e){
     }    
 });
 
-// TOOD: Have this logic execute only when a conversation has no users attached to it anymore since we don't 
+// TODO: Have this logic execute only when a conversation has no users attached to it anymore since we don't 
 // have an explicit 'Delete' button and since a conversation with no more users (once all of them have left)
 // is the the only use case in which we want to delete a conversation.
 $('#deleteConvo').click(function (){
