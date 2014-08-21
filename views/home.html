@@ -83,7 +83,7 @@
 			   <textarea name="content" rows="3" cols="20" placeholder="Write down your thoughts"></textarea>
 			</div>
 			<div class="btn-fld">
-			  <button type="submit">Create</button>
+			  <button id="create-submit-button" type="button">Create</button>
 			</div>
 		</form>
 	</div>
@@ -110,20 +110,42 @@
 	<script type='text/javascript' src='/js/home.js'></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('#new-convo').click(function(){
+				$('.good_input').focus().val('').attr('placeholder', 'Topic');
+				$('#people_input').val('').attr('placeholder', 'People');
+				$('textarea').val('').attr('placeholder', 'Write down your thoughts');
+			});
+
+			var numOfNames;
+
 			$('#search_names').on('click', '.modal-name', function(){
 				var name = $(this).text();
 				var id = $(this).attr('data-id');
 				
-				$('.names-list').append('<li data-id="' + id + '" class="selected-name">' + name + '<div class="name_remove">X</div></li>')
+				$('<li  style="display: none;" data-id="' + id + '" class="selected-name">' + name + '<div class="name_remove">X</div></li>').appendTo($('.names-list')).fadeIn('fast');
 				$('#search_names li').remove();
-				$('#people_input').val('').attr('placeholder', 'Add More').focus().css({
-					display: 'inline'
+				if ($('.names-list li').length === 1){
+					$('#people_input').hide().slideDown('fast');
+				}
+				$('#people_input').val('').attr('placeholder', 'Add More').focus();
+
+				$('.modal_close').click(function(){
+					$('.names-list li').remove();
 				});
 
-				$('.name_remove').click(function(){
-					$(this).parent().remove();
-				});
-			});
+				numOfNames = $('li.selected-name').length;
+				if (numOfNames >= 5){
+					$('#people_input').hide();
+					$('textarea').focus();
+				}
+			}); // search on click
+		
+			$('#convo-creation-form').on('click', '.name_remove', function(){
+				$(this).parent().remove();
+				if (numOfNames >= 4){
+					$('#people_input').show().focus();
+				}
+ 			});
 		}); // ready
 	</script>
 </body>

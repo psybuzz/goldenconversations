@@ -1,7 +1,6 @@
-function peopleTypeEvent () {
+function searchAndLoadNames (){
 	var q = $('#people_input').val();
-
-	if (q == ''){
+	if (q === ''){
 		$('#search_names').html('');
 		return;
 	}
@@ -12,15 +11,51 @@ function peopleTypeEvent () {
 		if (data.success){
 			console.log(namesTemplate, data.message, namesTemplate(data))
 			$('#search_names').html(namesTemplate(data));
-		}
-	});
+
+			// Check if any user included in the search results has already been selected for this conversation. If so, do not display this user's name in the search results.
+			$('.selected-name').each(function(){
+				var selectedName = $(this).attr('data-id');
+				$('.modal-name').each(function(){
+					var newName	= $(this).attr('data-id');
+					if (selectedName === newName){
+						$('.modal-name[data-id="'+newName+'"]').remove();
+					}
+				});
+			}); 
+		} 
+	}); 
 }
-$('#people_input').keyup(_.debounce(peopleTypeEvent, 400));
+var searchAndLoadNamesDebounced = _.debounce(searchAndLoadNames, 400);
 
+var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-$('#convo-creation-form').submit(function(evt) {
+$('#people_input').keyup(function (e){
+	if (e.keyCode === 13){		// If the enter key was pressed
+		var q = $('#people_input').val();
+		$('#search_names').html('');
+		console.log(1)
+		if (emailRegex.test(q)){
+			console.log(2)
+			$('#people_input').val('');
+			$('.names-list').append('<li data-id="' + q + '" class="selected-name">' + q + '<div class="name_remove">X</div></li>')
+			$('#people_input').val('').attr('placeholder', 'Add More').focus().css({
+				display: 'inline'
+			});
+		}
+
+	} else {					// Otherwise, load results of a global name search
+		searchAndLoadNamesDebounced();
+	}
+});
+
+// Disable normal submission, because it can be triggered by the enter key. Instead, form submission
+// can be handled by clicking the button.
+$('#convo-creation-form').submit(function (evt){
 	evt.preventDefault();
+});
 
+// Handles submissions for the create conversation form when the button is clicked.
+$('#create-submit-button').click(function (){
 	var addedPeople = [];
 	$('.names-list li').each(function(){
 		addedPeople.push($(this).attr('data-id'));

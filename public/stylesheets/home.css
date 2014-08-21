@@ -210,7 +210,7 @@ html, body {
 }
 
 /* line 190, ../sass/home.scss */
-#new-input-modal, #user-modal {
+#new-input-modal {
   display: none;
   position: fixed;
   top: 8%;
@@ -224,7 +224,7 @@ html, body {
   font-weight: 300;
 }
 /* line 203, ../sass/home.scss */
-#new-input-modal .modal_close, #user-modal .modal_close {
+#new-input-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
   display: inline-block;
@@ -235,7 +235,7 @@ html, body {
   right: 3rem;
 }
 /* line 214, ../sass/home.scss */
-#new-input-modal input, #new-input-modal textarea, #user-modal input, #user-modal textarea {
+#new-input-modal input, #new-input-modal textarea {
   width: 100%;
   margin-bottom: 2rem;
   border: none;
@@ -243,18 +243,17 @@ html, body {
   font-size: 1.5rem;
 }
 /* line 221, ../sass/home.scss */
-#new-input-modal input, #user-modal input {
+#new-input-modal input {
   height: 2.5rem;
   padding: 0.5rem 0;
 }
 /* line 226, ../sass/home.scss */
-#new-input-modal textarea, #user-modal textarea {
+#new-input-modal textarea {
   margin-top: 0;
-  padding-top: 2rem;
   clear: both;
 }
-/* line 233, ../sass/home.scss */
-#new-input-modal #search_names, #user-modal #search_names {
+/* line 232, ../sass/home.scss */
+#new-input-modal #search_names {
   border-radius: 3px;
   position: absolute;
   list-style-type: none;
@@ -265,31 +264,31 @@ html, body {
   -moz-box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
 }
-/* line 242, ../sass/home.scss */
-#new-input-modal #search_names .modal-name, #user-modal #search_names .modal-name {
+/* line 241, ../sass/home.scss */
+#new-input-modal #search_names .modal-name {
   background-color: white;
   font-weight: 400;
   padding: 1.1rem;
   cursor: pointer;
   margin: 0;
 }
-/* line 248, ../sass/home.scss */
-#new-input-modal #search_names .modal-name:hover, #user-modal #search_names .modal-name:hover {
+/* line 247, ../sass/home.scss */
+#new-input-modal #search_names .modal-name:hover {
   background-color: #333333;
   color: white;
 }
-/* line 256, ../sass/home.scss */
-#new-input-modal .people-select, #user-modal .people-select {
+/* line 255, ../sass/home.scss */
+#new-input-modal .people-select {
   margin-bottom: 2rem;
   position: relative;
 }
-/* line 259, ../sass/home.scss */
-#new-input-modal .people-select input[name="People"], #user-modal .people-select input[name="People"] {
+/* line 258, ../sass/home.scss */
+#new-input-modal .people-select input[name="People"] {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 264, ../sass/home.scss */
-#new-input-modal .people-select span, #user-modal .people-select span {
+/* line 262, ../sass/home.scss */
+#new-input-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
   display: inline-block;
@@ -299,16 +298,15 @@ html, body {
   padding: 5px 8px;
   color: #555555;
 }
-/* line 275, ../sass/home.scss */
-#new-input-modal .people-select .names-list, #user-modal .people-select .names-list {
+/* line 273, ../sass/home.scss */
+#new-input-modal .people-select .names-list {
   margin: 0;
   top: -1.2rem;
   list-style-type: none;
   padding: 0;
-  float: left;
 }
-/* line 283, ../sass/home.scss */
-#new-input-modal .people-select .selected-name, #user-modal .people-select .selected-name {
+/* line 280, ../sass/home.scss */
+#new-input-modal .people-select .selected-name {
   background-color: #e0e0e0;
   padding: 5px;
   margin-right: 5px;
@@ -318,8 +316,8 @@ html, body {
   display: inline-block;
   border-radius: 3px;
 }
-/* line 292, ../sass/home.scss */
-#new-input-modal .people-select .selected-name .name_remove, #user-modal .people-select .selected-name .name_remove {
+/* line 289, ../sass/home.scss */
+#new-input-modal .people-select .selected-name .name_remove {
   position: absolute;
   top: 10px;
   right: 6px;
@@ -328,8 +326,8 @@ html, body {
   font-size: 0.5em;
   cursor: pointer;
 }
-/* line 303, ../sass/home.scss */
-#new-input-modal button, #user-modal button {
+/* line 300, ../sass/home.scss */
+#new-input-modal button {
   float: right;
   background-color: #b0b0b0;
   border: none;
@@ -343,15 +341,15 @@ html, body {
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 320, ../sass/home.scss */
-#new-input-modal button:hover, #user-modal button:hover {
+/* line 317, ../sass/home.scss */
+#new-input-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
 }
 
-/* line 332, ../sass/home.scss */
+/* line 329, ../sass/home.scss */
 #user-modal {
   display: none;
   position: fixed;
@@ -365,7 +363,7 @@ html, body {
   border-radius: 5px;
   font-weight: 300;
 }
-/* line 345, ../sass/home.scss */
+/* line 342, ../sass/home.scss */
 #user-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
@@ -376,7 +374,7 @@ html, body {
   top: 2rem;
   right: 3rem;
 }
-/* line 356, ../sass/home.scss */
+/* line 353, ../sass/home.scss */
 #user-modal .info {
   font-size: 1.3rem;
   margin-bottom: 1em;

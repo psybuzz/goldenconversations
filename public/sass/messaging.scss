@@ -168,7 +168,7 @@
 	}
 }
 
-#new-input-modal {
+#new-input-modal, .choice-modal {
 	display: none;
 	position: fixed;
 	top: 8%;
@@ -223,6 +223,11 @@
 		}
 	}
 
+	.question {
+		font-size: 1.5rem;
+		margin-bottom: 2em;
+	}
+
 	button {
 		float: right;
 		background-color: $light-main;
@@ -250,4 +255,23 @@
 		}
 	}
 
+	.no, .yes {
+		width: 25%;
+	}
+
+	.no {
+		margin-right: 2%;
+		background-color: $light-main;
+	}
+
+	.yes {
+		background-color: $main;
+
+		@include box-shadow(
+			$dark-bottom-main 0 4px 0 0,
+			$dark-left-main -2px 0px 0 0 inset,
+			$dark-right-main 2px 0px 0 0 inset,
+			$dark-top-main 0 2px 0 0 inset
+		);
+	}
 }

@@ -187,7 +187,7 @@ html,body {
 	}
 }
 
-#new-input-modal, #user-modal {
+#new-input-modal {
 	display: none;
 	position: fixed;
 	top: 8%;
@@ -225,7 +225,6 @@ html,body {
 
 	textarea {
 		margin-top: 0;
-		padding-top: 2rem;
 		clear: both;
 	}
 	
@@ -259,7 +258,6 @@ html,body {
 		input[name="People"] {
 			margin-top: 0;
 			margin-bottom: 0;
-			// float: left;
 		}
 		span {
 			font-size: 0.9rem;
@@ -278,7 +276,6 @@ html,body {
 			list-style-type: none;
 			padding: 0;
 			// position: absolute;
-			float: left;
 		}
 		.selected-name {
 			background-color: $light-gray;
