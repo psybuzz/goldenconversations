@@ -35,7 +35,6 @@
 				<li><a href="#new-input-modal" id="invite" rel="leanModal">Invite others</a></li>
 				<li><a href=".choice-modal" id="archive" rel="leanModal">Archive conversation</a></li>
 				<li><a href =".choice-modal" id="leave" rel="leanModal">Leave conversation</a></li>
-				<li><a href =".choice-modal" id="delete" rel="leanModal">Delete conversation</a></li>
 			</ul>
 		</span>
 		<div class="display">
@@ -87,7 +86,7 @@
 			$('.choice-modal').data('action', action);
 		}
 
-		$('#archive, #leave, #delete').click(function (){
+		$('#archive, #leave').click(function (){
 			setAction($(this).attr('id'));
 		});
 
