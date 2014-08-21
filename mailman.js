@@ -94,6 +94,7 @@ var Mailman = {
 	 *      returned. It resolves or rejects depending on whether the sending was successful.
 	 */
 	sendMail: function (options){
+		console.log('Using mail user/pass', process.env.MAILMAN_USER, process.env.MAILMAN_PASS)
 		var deferred = Q.defer();
 		var callback = options.callback;
 		var mailOptions = {};
