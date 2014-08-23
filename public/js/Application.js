@@ -31,6 +31,38 @@ $('#new-input-modal button[type=submit]').click(function(evt) {
     document.getElementById('lean_overlay').style.display = 'none';
 });
 
+function styleNewNames() {
+    $('.userShape').each(function(){
+        var $this = $(this);
+        var originalNameText = $this.text();
+        var colorValue;
+
+        $('.name').each(function(){
+            var $this = $(this);
+            var storedName = $this.text();
+            if (originalNameText === storedName) {
+                colorValue = $this.find('.name-colors').css('background-color');
+            }
+        });
+
+        var initials = $this.text()
+                            .split(' ')
+                            .map(function(s){ return s.charAt(0);})
+                            .join('');
+        $this.html(initials);
+        $this.prepend('<div class="color-ball"></div>');
+        $this.find('.color-ball').css({
+            width: '15px',
+            height: '15px',
+            display: 'inline-block',
+            backgroundColor: colorValue,
+            borderRadius: '100%',
+            margin: '0 7px'
+        });
+    });
+}
+
+
 $(document).ready(function() {
     var socket = io();
 
@@ -43,36 +75,8 @@ $(document).ready(function() {
     			text += '<p>' + data.message[i].content + '</p><br>';
     		};
     		$('.display-area').append(text);
-            $('.userShape').each(function(){
-                var $this = $(this);
-                var originalNameText = $this.text();
-                var colorValue;
-                // console.log(originalNameText);
-
-                $('.name').each(function(){
-                    var $this = $(this);
-                    var storedName = $this.text();
-                    if (originalNameText === storedName) {
-                        colorValue = $this.find('.name-colors').css('background-color');
-                    }
-                });
-
-                var initials = $this.text()
-                                    .split(' ')
-                                    .map(function(s){ return s.charAt(0);})
-                                    .join('');
-                $this.html(initials);
-                $this.prepend('<div class="color-ball"></div>');
-                $this.find('.color-ball').css({
-                    width: '15px',
-                    height: '15px',
-                    display: 'inline-block',
-                    backgroundColor: colorValue,
-                    borderRadius: '100%',
-                    margin: '0 7px'
-                });
-            });
             
+            styleNewNames();
             setScrollPos();
         } else if (data.redirect){
             window.location.href = data.redirect;
@@ -107,13 +111,45 @@ $('#mainform').on('submit', function (e){
     function onSubmitComment(data) {
     	if (data.success){
         	$('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
-                    user + ': </span><p>' + message + '</p><br>');
+                    user + '</span><p>' + message + '</p><br>');
             setScrollPos();
             $('textarea').val("");
+            
+            $('.userShape:last-of-type').each(function(){
+                var $this = $(this);
+                var originalNameText = $this.text();
+                var colorValue;
+
+                $('.name').each(function(){
+                    var $this = $(this);
+                    var storedName = $this.text();
+                    if (originalNameText === storedName) {
+                        colorValue = $this.find('.name-colors').css('background-color');
+                    }
+                });
+
+                var initials = $this.text()
+                                    .split(' ')
+                                    .map(function(s){ return s.charAt(0);})
+                                    .join('');
+                $this.html(initials);
+                $this.prepend('<div class="color-ball"></div>');
+                $this.find('.color-ball').css({
+                    width: '15px',
+                    height: '15px',
+                    display: 'inline-block',
+                    backgroundColor: colorValue,
+                    borderRadius: '100%',
+                    margin: '0 7px'
+                });
+            });
+            
     	} else {
-    		alert('Nein. Write more. Unless you have written more than 10000 characters. Write less in that case. Thank you. ');
+    		alert('Nein. Write more. Unless you have written more than 10000 characters. Write less in that case.');
     	}
     }    
+
+    
 });
 
 // Delete conversation button
