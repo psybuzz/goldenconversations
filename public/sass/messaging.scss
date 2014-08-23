@@ -9,9 +9,12 @@ body, html {
 .wrapper {
 	height: 100%;
 	position: relative;
-
+	min-height: 550px;
+	@media screen and (max-width: $mobile-arbitrary) {
+		min-height: 100%;
+	}
 	#participants {
-		margin: 2% (100%-$messaging-width)/2.25 !important;
+		margin: 1% (100%-$messaging-width)/2.25 2% !important;
 		padding-left: $messaging-padding;
 		@media screen and (max-width: $mobile-arbitrary) {
 			  	margin-left: 0.5rem !important;
@@ -24,9 +27,9 @@ body, html {
 		padding-left: $messaging-padding;
 		padding-top: 3rem;
 		@media screen and (max-width: $mobile-arbitrary) {
-			  	font-size: 1rem;
+			  	font-size: 1.5rem;
 			  	margin-left: 0.5rem;
-			  	padding-top: 2.1rem;
+			  	padding-top: 3.1rem;
 			  	width: 60%;
 		}
 	}
@@ -42,16 +45,24 @@ body, html {
 }
 
 .display {
-	height: 53%;
+	clear: both;
+	height: 51%;
 	overflow-y: scroll;
 
 	position: relative;
 	@extend #question;
 	padding-right: 1.5rem;
+	@media screen and (max-width: $mobile-arbitrary) {
+	  	font-size: 1rem !important;
+	}
 
-	@media screen and (max-height: $mobile-arbitrary) {
-		  	height: 63%;
-		  	max-height: 280px;
+
+	@media screen and (max-height: 700px) {
+		  	max-height: 250px;
+	}
+
+	@media screen and (max-height: 600px) {
+		  	max-height: 200px;
 	}
 	
 	.display-area {
@@ -59,6 +70,7 @@ body, html {
 		width: 100%;
 		p {
 			margin-top: -1.2rem;
+			word-wrap: break-word;
 		}
 	}
 }
@@ -77,11 +89,12 @@ body, html {
 }
 
 .display-fade-bottom {
+	display: none;
 	height: 10px;
 	margin-top: -15px;
 	@include background-image(linear-gradient(rgba(white, 0), white));
 	@media screen and (max-width: 1300px) {
-		  	margin-top: -25px;
+		  	display: none;
 	}
 	@media screen and (max-width: $mobile-arbitrary) {
 		  	margin-top: -8px;
@@ -91,6 +104,10 @@ body, html {
 .menu-bar, ul.options {
 	position: absolute;
 	left: 3rem;
+	opacity: 0.75;
+	&:hover {
+		opacity: 1;
+	}
 }
 
 .menu-bar {
@@ -99,8 +116,10 @@ body, html {
 		color: $dark-main;
 		text-decoration: none;
 		text-transform: capitalize;
+		opacity: 0.75;
 		&:hover {
 			color: $dark-black;
+			opacity: 1;
 		}
 	}
 	@media screen and (max-width: $mobile-arbitrary) {
@@ -139,11 +158,12 @@ h2.optionsTitle {
 }
 
 .userShape {
-	margin-left: -5rem;
-	width: 4.5rem;
+	margin-left: -4.9rem;
+	width: 4rem;
 	display: inline-block;
 	font-family: $sans-stack;
 	font-weight: 400;
+	text-align: right;
 }
 
 #mainform {

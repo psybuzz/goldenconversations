@@ -39,10 +39,40 @@ $(document).ready(function() {
         if (data.success){
     		var text = '';
     		for (var i = 0; i < data.message.length; i++) {
-                text += '<span class="userShape" data_id="' + data.message[i].userid + '">' + data.message[i].username + ': </span>';
+                text += '<span class="userShape" data_id="' + data.message[i].userid + '">' + data.message[i].username + '</span>';
     			text += '<p>' + data.message[i].content + '</p><br>';
     		};
     		$('.display-area').append(text);
+            $('.userShape').each(function(){
+                var $this = $(this);
+                var originalNameText = $this.text();
+                var colorValue;
+                // console.log(originalNameText);
+
+                $('.name').each(function(){
+                    var $this = $(this);
+                    var storedName = $this.text();
+                    if (originalNameText === storedName) {
+                        colorValue = $this.find('.name-colors').css('background-color');
+                    }
+                });
+
+                var initials = $this.text()
+                                    .split(' ')
+                                    .map(function(s){ return s.charAt(0);})
+                                    .join('');
+                $this.html(initials);
+                $this.prepend('<div class="color-ball"></div>');
+                $this.find('.color-ball').css({
+                    width: '15px',
+                    height: '15px',
+                    display: 'inline-block',
+                    backgroundColor: colorValue,
+                    borderRadius: '100%',
+                    margin: '0 7px'
+                });
+            });
+            
             setScrollPos();
         } else if (data.redirect){
             window.location.href = data.redirect;
