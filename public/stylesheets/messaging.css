@@ -1,207 +1,262 @@
 /* line 5, ../sass/messaging.scss */
+body, html {
+  font-family: "Lato", "Lucidia Grande", serif;
+}
+
+/* line 9, ../sass/messaging.scss */
 .wrapper {
-  height: 90%;
-  box-sizing: border-box;
-  padding: 6rem;
-  padding-top: 4.5rem;
+  height: 100%;
   position: relative;
+  min-height: 550px;
 }
-/* line 12, ../sass/messaging.scss */
-.wrapper #return-home {
-  position: absolute;
-  color: #777777;
-}
-/* line 17, ../sass/messaging.scss */
-.wrapper h1 {
-  margin: auto;
-  margin-bottom: 0.5rem;
-  max-width: 750px;
-  min-width: 280px;
-  position: relative;
-  padding-top: 1.5rem;
-  font-family: "Lato", "Lucidia Grande", serif;
-  font-weight: 700;
-  font-size: 2.2rem;
-}
-/* line 27, ../sass/messaging.scss */
-.wrapper h1:before {
-  content: "Topic of Today";
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-weight: 300;
-  font-size: 1.1rem;
-}
-@media screen and (max-width: 750px) {
-  /* line 17, ../sass/messaging.scss */
-  .wrapper h1 {
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-  }
-}
-@media screen and (max-height: 750px) {
-  /* line 5, ../sass/messaging.scss */
+@media screen and (max-width: 615px) {
+  /* line 9, ../sass/messaging.scss */
   .wrapper {
-    padding: 2rem;
+    min-height: 100%;
   }
 }
-@media screen and (max-width: 750px) {
-  /* line 5, ../sass/messaging.scss */
-  .wrapper {
-    padding: 1rem;
+/* line 16, ../sass/messaging.scss */
+.wrapper #participants {
+  margin: 1% 22.22222% 2% !important;
+  padding-left: 5rem;
+}
+@media screen and (max-width: 615px) {
+  /* line 16, ../sass/messaging.scss */
+  .wrapper #participants {
+    margin-left: 0.5rem !important;
+  }
+}
+/* line 24, ../sass/messaging.scss */
+.wrapper #question, .wrapper .display {
+  width: 50%;
+  margin: 0 22.22222%;
+  padding-left: 5rem;
+  padding-top: 3rem;
+}
+@media screen and (max-width: 615px) {
+  /* line 24, ../sass/messaging.scss */
+  .wrapper #question, .wrapper .display {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    padding-top: 3.1rem;
+    width: 60%;
+  }
+}
+/* line 37, ../sass/messaging.scss */
+.wrapper .name {
+  display: inline-block;
+}
+@media screen and (max-width: 615px) {
+  /* line 37, ../sass/messaging.scss */
+  .wrapper .name {
+    font-size: 0.5rem;
+    margin-right: 5px !important;
+    display: none;
   }
 }
 
-/* line 49, ../sass/messaging.scss */
-.optionsTitle {
-  margin: 0;
-  font-family: "Lato", "Lucidia Grande", serif;
-  font-weight: 700;
-}
-
-/* line 55, ../sass/messaging.scss */
-.options {
-  list-style-type: none;
-  margin-top: 0;
-  padding-left: 0;
-  position: absolute;
-}
-/* line 61, ../sass/messaging.scss */
-.options li a {
-  font-family: "Lato", "Lucidia Grande", serif;
-  color: #777777;
-}
-
-/* line 67, ../sass/messaging.scss */
+/* line 47, ../sass/messaging.scss */
 .display {
-  margin: 0 auto;
-  padding: 0.7rem 0;
-  max-width: 750px;
-  min-width: 280px;
-  height: 55%;
-  min-height: 180px;
+  clear: both;
+  height: 51%;
   overflow-y: scroll;
+  position: relative;
+  padding-right: 1.5rem;
 }
-@media screen and (max-width: 750px) {
-  /* line 67, ../sass/messaging.scss */
+@media screen and (max-width: 615px) {
+  /* line 47, ../sass/messaging.scss */
   .display {
-    padding-bottom: 10px;
+    font-size: 1rem !important;
   }
 }
-@media screen and (max-height: 750px) {
-  /* line 67, ../sass/messaging.scss */
+@media screen and (max-height: 700px) {
+  /* line 47, ../sass/messaging.scss */
   .display {
-    height: 180px;
+    max-height: 250px;
   }
 }
-
-/* line 83, ../sass/messaging.scss */
-.display-area {
-  color: #383838;
-  font-weight: 400;
-  font-size: 1rem;
-}
-/* line 87, ../sass/messaging.scss */
-.display-area p, .display-area br {
-  margin: 0;
-}
-/* line 90, ../sass/messaging.scss */
-.display-area p {
-  line-height: 1.45rem;
-}
-@media screen and (max-width: 750px) {
-  /* line 90, ../sass/messaging.scss */
-  .display-area p {
-    font-size: 1.2rem;
+@media screen and (max-height: 600px) {
+  /* line 47, ../sass/messaging.scss */
+  .display {
+    max-height: 200px;
   }
 }
-
-/* line 99, ../sass/messaging.scss */
-.display-fade, .display-fade-bottom {
-  position: absolute;
-  height: 1.8rem;
-  z-index: 10;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, rgba(255, 255, 255, 0)));
-  background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-  background-image: -moz-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-  background-image: -o-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
-  background-image: linear-gradient(#ffffff, rgba(255, 255, 255, 0));
+/* line 68, ../sass/messaging.scss */
+.display .display-area {
+  font-family: "Merriweather", Georgia, sans-serif;
+  width: 100%;
+}
+/* line 71, ../sass/messaging.scss */
+.display .display-area p {
+  margin-top: -1.2rem;
+  word-wrap: break-word;
 }
 
-/* line 106, ../sass/messaging.scss */
+/* line 79, ../sass/messaging.scss */
+.display-fade,
 .display-fade-bottom {
+  height: 5px;
+  position: absolute;
+  width: 50%;
+  margin: 0;
+  z-index: 10;
+}
+
+/* line 87, ../sass/messaging.scss */
+.display-fade {
+  background-image: linear-gradient(to bottom, #ffffff 1%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* line 91, ../sass/messaging.scss */
+.display-fade-bottom {
+  display: none;
+  height: 10px;
+  margin-top: -15px;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
   background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
   background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
   background-image: -o-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
   background-image: linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  margin-top: -50px;
+}
+@media screen and (max-width: 1300px) {
+  /* line 91, ../sass/messaging.scss */
+  .display-fade-bottom {
+    display: none;
+  }
+}
+@media screen and (max-width: 615px) {
+  /* line 91, ../sass/messaging.scss */
+  .display-fade-bottom {
+    margin-top: -8px;
+  }
 }
 
-/* line 112, ../sass/messaging.scss */
-.input-area {
-  margin: 0 auto;
-  margin-top: 2rem;
-  max-width: 750px;
-  min-width: 280px;
-  max-height: 400px;
-  color: #383838;
-  font-size: 1.1rem;
+/* line 104, ../sass/messaging.scss */
+.menu-bar, ul.options {
+  position: absolute;
+  left: 3rem;
+  opacity: 0.75;
+}
+/* line 108, ../sass/messaging.scss */
+.menu-bar:hover, ul.options:hover {
+  opacity: 1;
+}
+
+/* line 113, ../sass/messaging.scss */
+.menu-bar {
+  top: 3rem;
+}
+/* line 115, ../sass/messaging.scss */
+.menu-bar #return-home {
+  color: #555555;
+  text-decoration: none;
+  text-transform: capitalize;
+  opacity: 0.75;
 }
 /* line 120, ../sass/messaging.scss */
-.input-area form {
-  width: 100%;
+.menu-bar #return-home:hover {
+  color: #181818;
+  opacity: 1;
 }
-/* line 122, ../sass/messaging.scss */
-.input-area form textarea {
-  width: 100%;
-  border: none;
-  border-radius: 2px;
-  padding: 1rem 0;
-  box-sizing: border-box;
-}
-@media screen and (max-width: 750px) {
-  /* line 122, ../sass/messaging.scss */
-  .input-area form textarea {
-    height: 90px;
-    padding: 0;
-  }
-}
-/* line 133, ../sass/messaging.scss */
-.input-area form input {
-  display: block;
-  margin-top: 1rem;
-  float: right;
-}
-/* line 138, ../sass/messaging.scss */
-.input-area form input[type="submit"] {
-  background-color: #b0b0b0;
-  border: none;
-  color: white;
-  font-family: "Lato", "Lucidia Grande", serif;
-  font-weight: 400;
-  border-radius: 4px;
-  padding: 7px 20px;
-  -webkit-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
-  -moz-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
-  box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.1) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
-  transition: all 0.3s ease;
-}
-/* line 154, ../sass/messaging.scss */
-.input-area form input[type="submit"]:hover {
-  background-color: #555555;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.6) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.45) 0 2px 0 0 inset;
-  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.6) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.45) 0 2px 0 0 inset;
-  box-shadow: rgba(0, 0, 0, 0.6) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px -1px 0 0 inset, rgba(128, 128, 128, 0.6) 2px -1px 0 0 inset, rgba(255, 255, 255, 0.45) 0 2px 0 0 inset;
-}
-@media screen and (max-width: 750px) {
-  /* line 112, ../sass/messaging.scss */
-  .input-area {
-    margin-top: 0;
+@media screen and (max-width: 615px) {
+  /* line 113, ../sass/messaging.scss */
+  .menu-bar {
+    top: 0.5rem;
+    left: 5.5rem;
   }
 }
 
-/* line 171, ../sass/messaging.scss */
+/* line 131, ../sass/messaging.scss */
+ul.options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  top: 7rem;
+}
+/* line 137, ../sass/messaging.scss */
+ul.options li {
+  margin-bottom: 0.4rem;
+}
+/* line 139, ../sass/messaging.scss */
+ul.options li a {
+  color: #555555;
+  font-weight: 300;
+  text-decoration: none;
+}
+/* line 144, ../sass/messaging.scss */
+ul.options li a:hover {
+  color: #181818;
+  text-decoration: underline;
+}
+@media screen and (max-width: 615px) {
+  /* line 131, ../sass/messaging.scss */
+  ul.options {
+    display: none;
+  }
+}
+
+/* line 156, ../sass/messaging.scss */
+h2.optionsTitle {
+  display: none;
+}
+
+/* line 160, ../sass/messaging.scss */
+.userShape {
+  margin-left: -4.9rem;
+  width: 4rem;
+  display: inline-block;
+  font-family: "Lato", "Lucidia Grande", serif;
+  font-weight: 400;
+  text-align: right;
+}
+
+/* line 169, ../sass/messaging.scss */
+#mainform {
+  position: absolute;
+  bottom: 3rem;
+  width: 50%;
+  margin-left: 22.22222%;
+  padding-left: 5rem;
+}
+@media screen and (max-width: 615px) {
+  /* line 169, ../sass/messaging.scss */
+  #mainform {
+    width: 60%;
+    margin-left: 0.5rem;
+    bottom: 1rem;
+  }
+}
+/* line 181, ../sass/messaging.scss */
+#mainform textarea {
+  width: 100%;
+  border: none;
+  font-family: "Merriweather", Georgia, sans-serif;
+  font-size: 1rem;
+  padding-top: 1rem;
+  height: 5rem;
+}
+/* line 189, ../sass/messaging.scss */
+#mainform input {
+  color: white;
+  border-radius: 2px;
+  padding: 5px 10px;
+  border: none;
+  float: right;
+  margin-right: -3px;
+  -webkit-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
+  -moz-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
+  box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
+  transition: all 0.3s ease;
+}
+/* line 204, ../sass/messaging.scss */
+#mainform input:hover {
+  background-color: #555555;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
+}
+
+/* line 222, ../sass/messaging.scss */
 #new-input-modal, .choice-modal {
   display: none;
   position: fixed;
@@ -215,7 +270,7 @@
   border-radius: 5px;
   font-weight: 300;
 }
-/* line 184, ../sass/messaging.scss */
+/* line 235, ../sass/messaging.scss */
 #new-input-modal .modal_close, .choice-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
@@ -226,7 +281,7 @@
   top: 2rem;
   right: 3rem;
 }
-/* line 197, ../sass/messaging.scss */
+/* line 248, ../sass/messaging.scss */
 #new-input-modal input, .choice-modal input {
   width: 100%;
   margin-bottom: 2rem;
@@ -236,15 +291,15 @@
   height: 2.5rem;
   padding: 0.5rem 0;
 }
-/* line 207, ../sass/messaging.scss */
+/* line 258, ../sass/messaging.scss */
 #new-input-modal .people-select, .choice-modal .people-select {
   margin-bottom: 2rem;
 }
-/* line 210, ../sass/messaging.scss */
+/* line 261, ../sass/messaging.scss */
 #new-input-modal .people-select input[name="People"], .choice-modal .people-select input[name="People"] {
   margin-bottom: 0;
 }
-/* line 214, ../sass/messaging.scss */
+/* line 265, ../sass/messaging.scss */
 #new-input-modal .people-select span, .choice-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
@@ -255,12 +310,12 @@
   padding: 5px 8px;
   color: #555555;
 }
-/* line 226, ../sass/messaging.scss */
+/* line 277, ../sass/messaging.scss */
 #new-input-modal .question, .choice-modal .question {
   font-size: 1.5rem;
   margin-bottom: 2em;
 }
-/* line 231, ../sass/messaging.scss */
+/* line 282, ../sass/messaging.scss */
 #new-input-modal button, .choice-modal button {
   float: right;
   background-color: #b0b0b0;
@@ -275,23 +330,23 @@
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 247, ../sass/messaging.scss */
+/* line 298, ../sass/messaging.scss */
 #new-input-modal button:hover, .choice-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
 }
-/* line 258, ../sass/messaging.scss */
+/* line 309, ../sass/messaging.scss */
 #new-input-modal .no, #new-input-modal .yes, .choice-modal .no, .choice-modal .yes {
   width: 25%;
 }
-/* line 262, ../sass/messaging.scss */
+/* line 313, ../sass/messaging.scss */
 #new-input-modal .no, .choice-modal .no {
   margin-right: 2%;
   background-color: #b0b0b0;
 }
-/* line 267, ../sass/messaging.scss */
+/* line 318, ../sass/messaging.scss */
 #new-input-modal .yes, .choice-modal .yes {
   background-color: #777777;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.69) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.49) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.6) 0 2px 0 0 inset;
