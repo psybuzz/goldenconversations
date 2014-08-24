@@ -4,19 +4,16 @@ var Q = require('q');
 var Utils = require('./../utils');
 
 exports.create = function(req, res){
-	// Escape the request body for security.
-	Utils.escape(req.body);
-
 	// TODO(erik): Check that names are at least 2 letters long.  Return an error message if they
 	// are not.
 	var user = new db.models.User({
-		username 			: req.body.email,
-	    firstName  			: req.body.first_name,
-	    lastName			: req.body.last_name,
-	    password			: req.body.password,
-	    joined  			: Date.now(),
-	    description			: req.body.description,
-	    photo				: req.body.photo,
+		username 			: validator.escape(req.body.email),
+		firstName  			: validator.escape(req.body.first_name),
+		lastName			: validator.escape(req.body.last_name),
+		password			: req.body.password,
+		joined  			: Date.now(),
+		description			: validator.escape(req.body.description),
+		photo				: req.body.photo,
 	});
 
 	user.save(function(err){
@@ -35,9 +32,6 @@ exports.delete = function(req, res){
 };
 
 exports.update = function(req, res){
-	// Escape the request body for security.
-	Utils.escape(req.body);
-
 	User.findByIdAndUpdate(req.body.objectId, req.body.updata, function(err){
 		if (err) return console.log(err);
 	});

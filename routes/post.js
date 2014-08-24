@@ -2,6 +2,7 @@ var db = require('./../db.js');
 var validator = require('validator');
 var resError = require('./messaging').resError;
 var Utils = require('./../utils');
+var validator = require('validator');
 
 // sends response with an error message, and logs it in the console
 function resError(res, message){
@@ -10,24 +11,16 @@ function resError(res, message){
 }
 
 exports.create = function(req, res){
-	// Escape the request body for security.
-	Utils.escape(req.body);
-
 	// validate comment info
-	var name = req.body.username;
-	var content = req.body.content;
+	var name = req.user.username;
+	var content = validator.escape(req.body.content);
 
 	if (typeof name === 'undefined' || typeof content === 'undefined'){
 		resError(res, "Missing data parameters (name, content)");
 	}
 
-	var cname = validator.toString(name);
-	content = validator.toString(content);
-	var validName = validator.isLength(cname, 1, 140) && (validator.isNull(cname) == false);
 	var validContent = validator.isLength(content, 140, 10000) && (validator.isNull(content) == false);
-	if (validName == false){
-		resError(res, "Invalid name");
-	} else if (validContent == false){
+	if (validContent == false){
 		resError(res, "Invalid content");
 	} else {
 		// Replace the newlines in the user's post with break tags in order to save the message properly.
@@ -77,9 +70,6 @@ exports.delete = function(req, res){
 };
 
 exports.update = function(req, res){
-	// Escape the request body for security.
-	Utils.escape(req.body);
-	
 	Post.findByIdAndUpdate(req.body.objectId, req.body.updata, function(err){
 		if (err) return console.log(err);
 	});

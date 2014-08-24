@@ -3,6 +3,7 @@ var Q = require('q');
 var resError = require('./messaging').resError;
 var findUserById = require('./user').findById;
 var Utils = require('./../utils.js');
+var validator = require('validator');
 
 Conversation = db.models.Conversation;
 User = db.models.User;
@@ -16,9 +17,6 @@ Post = db.models.Post;
  *      participant.
  */
 exports.create = function (req, res){
-	// Escape the request body for security.
-	Utils.escape(req.body);
-
 	var iceBreakerId = req.body.iceBreaker;
 
 	User.findById(iceBreakerId, function (err, user){
@@ -65,8 +63,8 @@ exports.create = function (req, res){
 
 				var conversation = new Conversation({
 				    participants        : people,
-				    category            : req.body.category,
-				    question            : req.body.question,
+				    category            : validator.escape(req.body.category),
+				    question            : validator.escape(req.body.question),
 				    isGroup             : req.body.isGroup,
 				    lastEdited          : Date.now()
 				});
@@ -212,9 +210,6 @@ exports.delete = function (req, res){
 };
 
 exports.update = function (req, res){
-	// Escape the request body for security.
-	Utils.escape(req.body);
-
 	Conversation.findByIdAndUpdate(req.body.objectId, req.body.updata, function (err){
 		if (err) return console.log(err);
 	});
@@ -296,12 +291,9 @@ exports.allPosts = function (req, res){
 
 // Sends back a list of a given user's conversations.
 exports.search = function (req, res){
-	// Escape the request query for security.
-	Utils.escape(req.query);
-
 	var userId = req.query.userId;
-	var recent = req.query.recent || false;
-	var limit = req.query.limit || undefined;
+	var recent = req.query.recent ? validator.toBoolean(req.query.recent) : false;
+	var limit = req.query.limit ? validator.toInt(req.query.limit) : undefined;
 
 	console.log('Fetching conversations for user:', userId);
 

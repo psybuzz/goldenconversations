@@ -63,19 +63,3 @@ exports.denullify = function (list){
 
 	return cleanList;
 }
-
-/**
- * Sanitizes all fields within the property of an object using the validator node module.
- *
- * e.g. Utils.escape(req.body)		// req.body.id, req.body.username, ... are all escaped.
- *
- * BEFORE - req.body.username === "Mr. Dangerous <script>!";
- * AFTER - req.body.username === "Mr.%20Dangerous%20%3Cscript%3E!";
- */
-exports.escape = function (dirtyObj){
-	for (prop in dirtyObj){
-		if (dirtyObj.hasOwnProperty(prop)){
-			dirtyObj[prop] = validator.escape(dirtyObj[prop]);
-		}
-	}
-}
