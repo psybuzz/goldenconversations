@@ -91,7 +91,9 @@ $('#mainform').on('submit', function (e){
     }    
 });
 
-// Delete conversation button
+// TODO: Have this logic execute only when a conversation has no users attached to it anymore since we don't 
+// have an explicit 'Delete' button and since a conversation with no more users (once all of them have left)
+// is the the only use case in which we want to delete a conversation.
 $('#deleteConvo').click(function (){
     if (confirm('Are you sure you want to be rid of this nasty conversation forever?')){
         $.ajax({

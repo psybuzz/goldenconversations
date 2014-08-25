@@ -1,5 +1,5 @@
 // Nice little utility functions.
-var validator = require('validator');
+// TODO(erik): Consider requiring Underscore to cover these utility functions.
 
 /**
  * Returns the union of two arrays by merging them and de-duplicating the contents.

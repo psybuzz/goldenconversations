@@ -4,6 +4,7 @@ var resError = require('./messaging').resError;
 var findUserById = require('./user').findById;
 var Utils = require('./../utils.js');
 var validator = require('validator');
+var Mailman = require('./../mailman.js').Mailman;
 
 Conversation = db.models.Conversation;
 User = db.models.User;
@@ -23,18 +24,21 @@ exports.create = function (req, res){
     	if (err) resError(res, "Could not find user.");
 
     	/*
-    	* We fill in the firstName, lastName here on the server, so the client request only needs
-    	* to pass in an array of ids:
-		* [id1, id2, ...]
-		*/
-		var people = req.body.people || [];
-		people = people.map(function (id){return {'_id': id}});
+    	 * We fill in the firstName, lastName here on the server, so the client request only needs
+    	 * to pass in an array of id/emails:
+		 * [id1, id2, ..., email1, id7, email2, id8]
+		 */
+		var idOrEmails = req.body.people || [];
+		var people = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') === -1});
+		var emails = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') !== -1});
+
+		// TODO(erik): The emails that don't match up with users should really go into a list of
+		// invited-but-have-not-yet-signed-up global list somewhere. This may require some schema
+		// changes.
 
 		// Add the ice breaker to the list of participants and de-duplicate.
-		people.push({'_id': iceBreakerId});
-		people = Utils.union(people, function (person){
-			return person._id;		// use id's for deduping comparison
-		})
+		people.push(iceBreakerId);
+		people = Utils.union(people);
 
 		// People data should fill in the first and last names of all the users.
 		var peopleData = [];
@@ -42,7 +46,7 @@ exports.create = function (req, res){
 			return Q.promise(function (resolve, reject){
 				var fields = 'username firstName lastName';
 
-				User.findById(entry._id, fields, function (err, otherUser){
+				User.findById(entry, fields, function (err, otherUser){
 					if (err){
 						reject('Could not find other user by id');
 					} else {
@@ -53,6 +57,7 @@ exports.create = function (req, res){
 			});
 		});
 
+		// Wait for information to populate on all users before saving.
 		Q.allSettled(jobs)
 			.then(function (){
 				people = peopleData;
@@ -69,6 +74,7 @@ exports.create = function (req, res){
 				    lastEdited          : Date.now()
 				});
 
+				// Save the newly created conversation.
 				conversation.save(function (err){
 					if (err){
 						resError(res, err);
@@ -107,10 +113,35 @@ exports.create = function (req, res){
 						return d.promise;
 					});
 					Q.allSettled(jobs).then(function (){
-			    		res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});	
+						// Redirect regardless of email success.
+				    	res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
+
+			    		// Send emails to notify participants of the new conversaion.
+						// This assumes that the 'username' field of a User is his/her email.
+						var peopleEmails = peopleData.map(function (person){
+							if (person) return person.username;
+						});
+
+						recipients = Utils.denullify(Utils.union(peopleEmails, emails));
+						var question = req.body.question;
+						var cleanQuestion = question;
+						if (question.length > 40){			// 40 char subject limit
+							cleanQuestion = question.slice(0, 40) + '...';
+						}
+
+						Mailman.sendMail({
+							recipients: recipients,
+							subject: 'GC: ' + cleanQuestion,
+							html: 'Hello,<br><br>Someone recently sought your opinion for this question:' +
+								'<h2>'+question+'</h2><br>What are your thoughts?<br>' +
+								'Continue the conversation on <a href="http://goldenconversations.heroku.com/">Golden Conversations</a>.',
+							callback: function(){
+								console.log('New conversation notification emails have been sent.');
+							}
+						});
 					});
 				});
-			})
+			});
 	});
 };
 
