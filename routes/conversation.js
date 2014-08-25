@@ -292,8 +292,8 @@ exports.allPosts = function (req, res){
 // Sends back a list of a given user's conversations.
 exports.search = function (req, res){
 	var userId = req.query.userId;
-	var recent = req.query.recent ? validator.toBoolean(req.query.recent) : false;
 	var limit = req.query.limit ? validator.toInt(req.query.limit) : undefined;
+	var offset = req.query.offset ? validator.toInt(req.query.offset) : 0;
 
 	console.log('Fetching conversations for user:', userId);
 
@@ -305,7 +305,7 @@ exports.search = function (req, res){
 
 		var discussion = user.userConversations;
 		if (limit){
-			discussion = discussion.slice(0, limit);
+			discussion = discussion.slice(offset, limit);
 		}
 		var results = [];
 		var jobs = discussion.map(function (convoObj, index){
