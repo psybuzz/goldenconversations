@@ -140,8 +140,7 @@
 		// for fun!
 		// random colors to all, and to all, a good night.
 		$('#participants').css({
-			'margin': 'auto',
-			'max-width': '750px'
+			'margin': 'auto'
 		});
 		$('#participants .name').each(function(i, span){
 			$(span).css({
@@ -168,36 +167,17 @@
 			var newSvg = '<svg id="participantImage" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"> <line id="line1" fill="none" stroke="#555555" stroke-width="1.1259" stroke-miterlimit="10" x1="50" y1="21.13" x2="77.857" y2="42.708"/> <line id="line2" fill="none" stroke="#555555" stroke-width="1.1259" stroke-miterlimit="10" x1="77.857" y1="42.708" x2="67.071" y2="76.887"/> <line id="line3" fill="none" stroke="#555555" stroke-width="1.1259" stroke-miterlimit="10" x1="67.071" y1="76.887" x2="32.685" y2="76.887"/> <line id="line4" fill="none" stroke="#555555" stroke-width="1.1259" stroke-miterlimit="10" x1="32.685" y1="76.887" x2="22.143" y2="42.708"/> <line id="line5" fill="none" stroke="#555555" stroke-width="1.1259" stroke-miterlimit="10" x1="22.143" y1="42.708" x2="50" y2="21.13"/> <circle id="circle1" cx="50" cy="21.13" r="5.394"/> <circle id="circle2" cx="77.856" cy="42.708" r="8.394"/> <circle id="circle3" cx="67.07" cy="76.887" r="8.394"/> <circle id="circle4" cx="32.684" cy="76.886" r="8.394"/> <circle id="circle5" cx="22.142" cy="42.708" r="8.394"/> </svg>';
 		} 
 
-		if (numParticipants === 6) {
+		if (numParticipants === 6){
 			var newSvg = '<svg id="participantImage" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"> <line id="line1" fill="none" stroke="#555555" stroke-width="2" stroke-miterlimit="10" x1="33.666" y1="21.729" x2="66.297" y2="21.729"/> <line id="line2" fill="none" stroke="#555555" stroke-width="2" stroke-miterlimit="10" x1="66.297" y1="21.729" x2="82.646" y2="50"/> <line id="line3" fill="none" stroke="#555555" stroke-width="2" stroke-miterlimit="10" x1="82.646" y1="50" x2="66.297" y2="78.272"/> <line id="line4" fill="none" stroke="#555555" stroke-width="2" stroke-miterlimit="10" x1="66.297" y1="78.272" x2="33.666" y2="78.272"/> <line id="line5" fill="none" stroke="#555555" stroke-width="2" stroke-miterlimit="10" x1="33.666" y1="78.272" x2="17.355" y2="50"/> <line id="line6" fill="none" stroke="#555555" stroke-width="2" stroke-miterlimit="10" x1="17.355" y1="50" x2="33.666" y2="21.729"/> <circle id="circle1" cx="33.665" cy="21.729" r="8.394"/> <circle id="circle2" cx="66.297" cy="21.729" r="8.394"/> <circle id="circle3" cx="82.646" cy="50" r="8.394"/> <circle id="circle4" cx="66.297" cy="78.272" r="8.394"/> <circle id="circle5" cx="33.666" cy="78.272" r="8.394"/> <circle id="circle6" cx="17.355" cy="50" r="8.394"/> </svg>';
 		}
 
 		$('#question').prepend(newSvg);
-		$('#participantImage').css({
-				'float': 'left',
-				width: '1.5rem',
-				marginLeft: '-2.5rem',
-				marginTop: '-1.8rem',
-				opacity: 0.9
-		});
 
-		for (i=1; i<=numParticipants; i++) {
-			var colorNodes = 'circle' + i;	
+		for (i=1; i<=numParticipants; i++){
+			var colorNodes = '#circle' + i;	
 			var currentColor = ($('.name:nth-child('+ i +')').find('.name-colors').css('background-color'));
-			document.getElementById(colorNodes).style.fill=currentColor;
+			$(colorNodes).css('fill', currentColor);
 		}
-		
-		$('#participantImage').mouseenter(function(){
-			$(this).css({
-				transform: 'rotate(720deg)',
-				transition: 'transform 1.2s'
-			});
-		}).mouseleave(function(){
-			$(this).css({
-				transform: 'rotate(-720deg)',
-				transition: 'transform 0s'
-			});
-		});
 	</script>
 </body>
 </html>
