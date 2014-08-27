@@ -1,11 +1,11 @@
-function peopleTypeEvent(){
+function peopleTypeEvent (){
     var q = $('#people_input').val();
     if (q == ''){
         $('#search_names').html('');
         return;
     }
 
-    $.get('/user/search?query='+q, function(data){
+    $.get('/user/search?query='+q, function (data){
         var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="name">{{firstName}} {{lastName}}</span>{{/each}}';
         var namesTemplate = Handlebars.compile(namesHTML);
         if (data.success){
@@ -17,13 +17,13 @@ function peopleTypeEvent(){
 $('#people_input').keyup(_.debounce(peopleTypeEvent, 150));
 
 var addedPeople = [];
-$('#search_names').on('click', '.name', function(e){
+$('#search_names').on('click', '.name', function (e){
     var id = $(this).attr('id').slice(5);
 
     addedPeople.push({'_id': id});
 })
 
-$('#new-input-modal button[type=submit]').click(function(evt){
+$('#new-input-modal button[type=submit]').click(function (evt){
     evt.preventDefault();
 
     // Remove the modal for now.
@@ -31,13 +31,13 @@ $('#new-input-modal button[type=submit]').click(function(evt){
     document.getElementById('lean_overlay').style.display = 'none';
 });
 
-function styleNewNames(styleSelection){
+function styleNewNames (styleSelection){
     styleSelection.each(function (){
         var $currentShape = $(this);
         var originalNameText = $currentShape.text();
         var colorValue;
 
-        $('.name').each(function(){
+        $('.name').each(function (){
             var $currentName = $(this);
             var storedName = $currentName.text();
             if (originalNameText === storedName) {
@@ -57,7 +57,7 @@ function styleNewNames(styleSelection){
     });
 }
 
-$(document).ready(function(){
+$(document).ready(function (){
     var socket = io();
 
 	// Load comments
@@ -90,7 +90,7 @@ $(document).ready(function(){
 	});
 });
 
-$('#mainform').on('submit', function(e){
+$('#mainform').on('submit', function (e){
 	e.preventDefault();
 
 	$.ajax({
@@ -110,11 +110,11 @@ $('#mainform').on('submit', function(e){
     var message = $('textarea').val();
     message = message.replace(/(?:\r\n|\r|\n)/g, '<br />');
     
-	function onSubmitError(err){
+	function onSubmitError (err){
 		alert('Send failed.');
 	}
 
-    function onSubmitComment(data){
+    function onSubmitComment (data){
     	if (data.success){
         	$('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
                     user + '</span><p>' + message + '</p><br>');
@@ -130,7 +130,7 @@ $('#mainform').on('submit', function(e){
 });
 
 // Delete conversation button
-$('#deleteConvo').click(function(){
+$('#deleteConvo').click(function (){
     if (confirm('Are you sure you want to be rid of this nasty conversation forever?')){
         $.ajax({
             type: "POST",
@@ -140,7 +140,7 @@ $('#deleteConvo').click(function(){
                 conversationId: conversationId,
                 _csrf: token
             },
-            success: function(data){
+            success: function (data){
                 if (data.success){
                     alert('Successfully deleted your conversation!');
                     window.location.href = data.redirect;

@@ -215,7 +215,7 @@ h2.optionsTitle {
 			rgba(white, 0.5) 0 2px 0 0 inset
 			
 		);
-		transition: all 0.3s ease;
+		transition:  box-shadow 0.3s ease, background-color 0.3s ease;
 		&:hover {
 			background-color: $dark-main;
 			@include box-shadow(
