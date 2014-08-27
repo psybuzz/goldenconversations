@@ -50,8 +50,7 @@ function styleNewNames (styleSelection){
                             .map(function(s){ return s.charAt(0);})
                             .join('');
         $currentShape.html(initials);
-        $currentShape.prepend('<div class="color-ball"></div>');
-        $currentShape.find('.color-ball').css({
+        $('<div class="color-ball"></div>').prependTo($currentShape).css({
             backgroundColor: colorValue,
         });
     });
