@@ -203,8 +203,6 @@ html,body {
 	.modal_close {
 		cursor: pointer;
 		color: $light-main;
-		// padding: 4px 13px 7px;
-		// border: 1px solid $light-main;
 		display: inline-block;
 		font-size: 1.3rem;
 		border-radius: 50%;
@@ -326,7 +324,36 @@ html,body {
 			);
 		}
 	}
+}
 
+#user-modal {
+	display: none;
+	position: fixed;
+	top: 8%;
+	left: 20%;
+	right: 20%;
+	width: 48%;
+	padding: 6%;
+	background-color: white;
+	font-family: $sans-stack;
+	border-radius: 5px;
+	font-weight: 300;
+
+	.modal_close {
+		cursor: pointer;
+		color: $light-main;
+		display: inline-block;
+		font-size: 1.3rem;
+		border-radius: 50%;
+		position: absolute;
+		top: 2rem;
+		right: 3rem;
+	}
+
+	.info {
+		font-size: 1.3rem;
+		margin-bottom: 1em;
+	}
 }
 
 

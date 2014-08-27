@@ -2,171 +2,239 @@
 @import "compass";
 
 
-.wrapper {
-	height: 90%;
-	box-sizing: border-box;
-	padding: 6rem;
-	padding-top: 4.5rem;
-	position: relative;
-
-	#return-home {
-		position: absolute;
-		color: $main;
-	}
-
-	h1 {
-		margin: auto;
-		margin-bottom: 0.5rem;
-		max-width: $max-display;
-		min-width: $min-display;
-		position: relative;
-		padding-top: 1.5rem;
-		font-family: $sans-stack;
-		font-weight: 700;
-		font-size: 2.2rem;
-		&:before {
-			content:"Topic of Today";
-			position: absolute;
-			top: 0;
-			left: 0;
-			font-weight: 300;
-			font-size: 1.1rem;
-		}
-		@media screen and (max-width: $max-display) {
-		  	margin-bottom: 1rem;
-		  	font-size: 1.4rem;
-		}
-	}
-	@media screen and (max-height: $max-display) {
-	  	padding: 2rem;
-	}
-
-	@media screen and (max-width: $max-display) {
-	  	padding: 1rem;
-	}
-}
-
-.optionsTitle {
-	margin: 0;
+body, html {
 	font-family: $sans-stack;
-	font-weight: 700;
 }
 
-.options {
-	list-style-type: none;
-	margin-top: 0;
-	padding-left: 0;
-	position: absolute;
+.wrapper {
+	height: 100%;
+	position: relative;
+	min-height: 550px;
 
-	li a {
-		font-family: $sans-stack;
-		color: $main;
+	@media screen and (max-width: $mobile-arbitrary) {
+		min-height: 100%;
+	}
+
+	#participants {
+		margin: 1% (100%-$messaging-width)/2.25 2% !important;
+		padding-left: $messaging-padding;
+
+		@media screen and (max-width: $mobile-arbitrary) {
+			margin-left: 0.5rem;
+		}
+	}
+
+	#question {
+		width: $messaging-width;
+		margin: 0 (100%-$messaging-width)/2.25;
+		padding-left: $messaging-padding;
+		padding-top: 3rem;
+		@media screen and (max-width: $mobile-arbitrary) {
+			  	font-size: 1.5rem;
+			  	margin-left: 0.5rem;
+			  	padding-top: 3.1rem;
+			  	width: 60%;
+		}
+	}
+
+	#participantImage {
+		float: left;
+		width: 1.5rem;
+		margin-left: -2.5rem;
+		margin-top: -1.8rem;
+		opacity: 0.9;
+		&:hover {
+			transform:  rotate(720deg);
+			transition: transform 0.9s ease; 
+		}
+	}
+
+	.name {
+		display: inline-block;
+		@media screen and (max-width: $mobile-arbitrary) {
+		  	font-size: 0.5rem;
+		  	margin-right: 5px !important;
+		  	display: none;
+		}
 	}
 }
 
 .display {
-	margin: 0 auto;
-	padding: 0.7rem 0;
-	max-width: $max-display;
-	min-width: $min-display;
-	height: 55%;
-	min-height: $min-height;
+	clear: both;
+	height: 51%;
 	overflow-y: scroll;
-	@media screen and (max-width: $max-display) {
-		 padding-bottom: 10px;
+
+	position: relative;
+	@extend #question;
+	padding-right: 1.5rem;
+	@media screen and (max-width: $mobile-arbitrary) {
+	  	font-size: 1rem !important;
 	}
-	@media screen and (max-height: $max-display) {
-		 height: $min-height;
+
+
+	@media screen and (max-height: 700px) {
+		  	max-height: 250px;
+	}
+
+	@media screen and (max-height: 600px) {
+		  	max-height: 200px;
+	}
+	
+	.display-area {
+		font-family: $serif-stack;
+		width: 100%;
+		p {
+			margin-top: -1.2rem;
+			word-wrap: break-word;
+		}
 	}
 }
 
-.display-area{
-	color: $light-black;
-	font-weight: 400;
-	font-size: 1rem;
-	p, br{
-		margin: 0;
-	}
-	p {
-		line-height: 1.45rem;
-		@media screen and (max-width: $max-display) {
-			 font-size: 1.2rem;
-		}
-	}
-
+.display-fade, .display-fade-bottom {
+	height: 5px;
+	position: absolute;
+	width: $messaging-width;
+	margin: 0;
+	z-index: 10;
 }
 
 .display-fade {
-	position: absolute;
-	height: 1.8rem;
-	z-index: 10;
-	@include background-image(linear-gradient(white, rgba(white, 0)));
+	background-image: linear-gradient(to bottom, rgba(255,255,255,1) 1%,rgba(255,255,255,0) 100%);
 }
 
 .display-fade-bottom {
-	@extend .display-fade;
-	@include background-image(linear-gradient(rgba(white, 0), white));
-	margin-top: -50px;
+	display: none;
 }
 
-.input-area {
-	margin: 0 auto;
-	margin-top: 2rem;
-	max-width: $max-display;
-	min-width: $min-display;
-	max-height: 400px;
-	color: $light-black;
-	font-size: 1.1rem;
-	form {
-		width: 100%;
-		textarea {
-			width: 100%;
-			border: none;
-			border-radius: 2px;
-			padding: 1rem 0;
-			box-sizing: border-box;
-			@media screen and (max-width: $max-display) {
-			  	height: 90px;
-			  	padding: 0;
-			}
-		}
-		input {
-			display: block;
-			margin-top: 1rem;
-			float: right;
-		}
-		input[type="submit"]{
-			background-color: $light-main;
-			border:none;
-			color: white;
-			font-family: $sans-stack;
-			font-weight: 400;
-			border-radius: 4px;
-			padding: 7px 20px;
-			@include box-shadow(
-				rgba(gray, 0.7) 0 4px 0 0,
-				rgba(gray, 0.2) -2px -1px 0 0 inset, 
-				rgba(gray, 0.1) 2px -1px 0 0 inset,
-				rgba(white, 0.5) 0 2px 0 0 inset
-				
-			);
-			transition: all 0.3s ease;
-			&:hover {
-				background-color: $dark-main;
-				@include box-shadow(
-					rgba(black, 0.6) 0 4px 0 0,
-					rgba(gray, 0.9) -2px -1px 0 0 inset, 
-					rgba(gray, 0.6) 2px -1px 0 0 inset,
-					rgba(white, 0.45) 0 2px 0 0 inset
-					
-				);
-			}
-		}
-	}
-	@media screen and (max-width: $max-display) {
-	  	margin-top: 0;
+.menu-bar, ul.options {
+	position: absolute;
+	left: 3rem;
+	opacity: 0.75;
+	&:hover {
+		opacity: 1;
 	}
 }
+
+.menu-bar {
+	top: 3rem;
+	#return-home {
+		color: $dark-main;
+		text-decoration: none;
+		text-transform: capitalize;
+		opacity: 0.75;
+		&:hover {
+			color: $dark-black;
+			opacity: 1;
+		}
+	}
+	@media screen and (max-width: $mobile-arbitrary) {
+		  	top: 0.5rem;
+		  	left: 5.5rem;
+	}
+}
+
+ul.options {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	top: 7rem;
+
+	li {
+		margin-bottom: 0.4rem;
+		a {
+			color: $dark-main;
+			font-weight: 300;
+			text-decoration: none;
+
+			&:hover {
+				color: $dark-black;
+				text-decoration: underline;
+			}
+		}
+	}
+	@media screen and (max-width: $mobile-arbitrary) {
+		  	display: none;
+	}
+	
+}
+
+h2.optionsTitle {
+	display: none;
+}
+
+.userShape {
+	margin-left: -4.9rem;
+	width: 4rem;
+	display: inline-block;
+	font-family: $sans-stack;
+	font-weight: 400;
+	text-align: right;
+
+	.color-ball {
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		border-radius: 100%;
+		margin: 0 7px;
+	}
+}
+
+#mainform {
+	position: absolute;
+	bottom: 3rem;
+	width: $messaging-width;
+	margin-left: (100%-$messaging-width)/2.25;
+	padding-left: $messaging-padding;
+
+	@media screen and (max-width: $mobile-arbitrary) {
+		  	width: 60%;
+		  	margin-left: 0.5rem;
+		  	bottom: 1rem;
+	}
+
+	textarea {
+		width: 100%;
+		border: none;
+		font-family: $serif-stack;
+		font-size: 1rem;
+		padding-top: 1rem;
+		height: 5rem;
+	}
+
+	input {
+		color: white;
+		border-radius: 2px;
+		padding: 5px 10px;
+		border: none;
+		float: right;
+		margin-right: -3px;
+		@include box-shadow(
+			rgba(gray, 0.7) 0 4px 0 0,
+			rgba(gray, 0.2) -2px 0px 0 0 inset, 
+			rgba(gray, 0.1) 2px 0px 0 0 inset,
+			rgba(white, 0.5) 0 2px 0 0 inset
+			
+		);
+		transition:  box-shadow 0.3s ease, background-color 0.3s ease;
+		&:hover {
+			background-color: $dark-main;
+			@include box-shadow(
+				rgba(black, 0.7) 0 4px 0 0,
+				rgba(gray, 0.9) -2px 0px 0 0 inset, 
+				rgba(gray, 0.6) 2px 0px 0 0 inset,
+				rgba(white, 0.35) 0 2px 0 0 inset
+			);
+		}
+	}
+}
+
+/*****************************************
+
+
+// Input Modal Styling Below
+
+
+*****************************************/
 
 #new-input-modal, .choice-modal {
 	display: none;
