@@ -40,7 +40,7 @@ function styleNewNames (styleSelection){
         $('.name').each(function (){
             var $currentName = $(this);
             var storedName = $currentName.text();
-            if (originalNameText === storedName) {
+            if (originalNameText === storedName){
                 colorValue = $currentName.find('.name-colors').css('background-color');
             }
         });
@@ -68,7 +68,7 @@ $(document).ready(function (){
                 $('.name').each(function(){
                     var $currentName = $(this);
                     var storedName = $currentName.text();
-                    if (data.message[i].username === storedName) {
+                    if (data.message[i].username === storedName){
                         colorValue = $currentName.find('.name-colors').css('background-color');
                     }
                 });
