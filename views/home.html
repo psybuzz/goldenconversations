@@ -50,12 +50,11 @@
 		<section class="home-contacts right-side">
 			<h2>Contacts</h2>
 			<div class="contacts-content">
-				<span class="name1 name"><a href="#user-modal" rel="leanModal">Nikil Selvam</a></span>
-				<span class="name2 name"><a href="#user-modal" rel="leanModal">Erik Luo</a></span>
-				<span class="name3 name"><a href="#user-modal" rel="leanModal">Tony Jing</a></span>
-				<span class="name4 name"><a href="#user-modal" rel="leanModal">Fifi Yeung</a></span>
-				<span class="name5 name"><a href="#user-modal" rel="leanModal">Sarah J.</a></span>
-
+				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Nikil Selvam</a></span>
+				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Erik Luo</a></span>
+				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Tony Jing</a></span>
+				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Fifi Yeung</a></span>
+				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Sarah J.</a></span>
 			</div>
 		</section >
 	
@@ -89,11 +88,32 @@
 	</div>
 	<div id="user-modal">
 		<div class="modal_close">x</div>
-		<div id="name" class="info">User: {{user.firstName}} {{user.lastName}}</div>
-		<div id="email" class="info">Email: {{user.username}}</div>
-		<div id="joined" class="info">Joined: {{user.joined}}</div>
-		<div id="conversations" class="info">Number of conversations participated in: {{user.userConversations.length}}</div>
-		<div id="bio" class="info">Bio: {{user.description}}</div>
+		<div id="name" class="info">
+			<span class="label">User:</span>
+			<span class="content">{{user.firstName}} {{user.lastName}}</span>
+		</div>
+		<div id="email" class="info">
+			<span class="label">Email:</span>
+			<span class="content">{{user.username}}</span>
+		</div>
+		<div id="joined" class="info">
+			<span class="label">Joined:</span>
+			<span class="content">{{user.joined}}</span>
+		</div>
+		<div id="conversations" class="info">
+			<span class="label">Number of conversations:</span>
+			<span class="content">{{user.userConversations.length}}</span>
+		</div>
+		<div id="bio" class="info">
+			<span class="label">Bio:</span>
+			<span class="content">{{user.description}}</span>
+		</div>
+		<div class="btn-fld">
+			<button id="edit-my-info" type="button">Edit</button>
+		</div>
+		<div class="btn-fld">
+			<button id="invite-user" type="button">Invite to Conversation</button>
+		</div>
 	</div>
 	<script type='text/javascript'>
 		var username = '{{user.username}}';
@@ -145,6 +165,16 @@
 				if (numOfNames >= 4){
 					$('#people_input').show().focus();
 				}
+ 			});
+
+ 			$('.recent-contact').click(function(){
+ 				$('#edit-my-info').hide();
+ 				$('#invite-user').show();
+ 			});
+
+ 			$('#user-profile').click(function(){
+ 				$('#invite-user').hide();
+ 				$('#edit-my-info').show();
  			});
 		}); // ready
 	</script>
