@@ -1,11 +1,11 @@
-function peopleTypeEvent () {
+function peopleTypeEvent (){
     var q = $('#people_input').val();
     if (q == ''){
         $('#search_names').html('');
         return;
     }
 
-    $.get('/user/search?query='+q, function(data){
+    $.get('/user/search?query='+q, function (data){
         var namesHTML = '{{#each message}}<span id="name-{{_id}}" firstName="{{firstName}}" lastName="{{lastName}}" class="name">{{firstName}} {{lastName}}</span>{{/each}}';
         var namesTemplate = Handlebars.compile(namesHTML);
         if (data.success){
@@ -17,13 +17,13 @@ function peopleTypeEvent () {
 $('#people_input').keyup(_.debounce(peopleTypeEvent, 150));
 
 var addedPeople = [];
-$('#search_names').on('click', '.name', function (e) {
+$('#search_names').on('click', '.name', function (e){
     var id = $(this).attr('id').slice(5);
 
     addedPeople.push({'_id': id});
 })
 
-$('#new-input-modal button[type=submit]').click(function(evt) {
+$('#new-input-modal button[type=submit]').click(function (evt){
     evt.preventDefault();
 
     // Remove the modal for now.
@@ -31,16 +31,55 @@ $('#new-input-modal button[type=submit]').click(function(evt) {
     document.getElementById('lean_overlay').style.display = 'none';
 });
 
-$(document).ready(function() {
+function styleNewNames (styleSelection){
+    styleSelection.each(function (){
+        var $currentShape = $(this);
+        var originalNameText = $currentShape.text();
+        var colorValue;
+
+        $('.name').each(function (){
+            var $currentName = $(this);
+            var storedName = $currentName.text();
+            if (originalNameText === storedName){
+                colorValue = $currentName.find('.name-colors').css('background-color');
+            }
+        });
+
+        var initials = $currentShape.text()
+                            .split(' ')
+                            .map(function(s){ return s.charAt(0);})
+                            .join('');
+        $currentShape.html(initials);
+        $('<div class="color-ball"></div>').prependTo($currentShape).css({
+            backgroundColor: colorValue,
+        });
+    });
+}
+
+$(document).ready(function (){
     var socket = io();
 
 	// Load comments
-	$.get('/conversation/posts', {conversationId: conversationId}, function (data) {
+	$.get('/conversation/posts', {conversationId: conversationId}, function(data) {
         if (data.success){
     		var text = '';
     		for (var i = 0; i < data.message.length; i++) {
-                text += '<span class="userShape" data_id="' + data.message[i].userid + '">' + data.message[i].username + ': </span>';
-    			text += '<p>' + data.message[i].content + '</p><br>';
+                var colorValue;
+                $('.name').each(function(){
+                    var $currentName = $(this);
+                    var storedName = $currentName.text();
+                    if (data.message[i].username === storedName){
+                        colorValue = $currentName.find('.name-colors').css('background-color');
+                    }
+                });
+
+                var initials = data.message[i].username
+                            .split(' ')
+                            .map(function(s){ return s.charAt(0);})
+                            .join('');
+
+                text += '<span class="userShape" data_id="' + data.message[i].userid + '"><div class="color-ball" style="background-color:'+ colorValue +';"></div>' + initials + '</span>';
+    			text += '<p>' + data.message[i].content + '</p><br>';    
     		};
     		$('.display-area').append(text);
             setScrollPos();
@@ -70,23 +109,26 @@ $('#mainform').on('submit', function (e){
     var message = $('textarea').val();
     message = message.replace(/(?:\r\n|\r|\n)/g, '<br />');
     
-	function onSubmitError(err){
+	function onSubmitError (err){
 		alert('Send failed.');
 	}
 
-    function onSubmitComment(data) {
+    function onSubmitComment (data){
     	if (data.success){
             var messageWrapper = document.createElement('p');
             messageWrapper.innerText = message;
 
             $('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
-                    user + ': </span>')
+                    user + ' </span>')
                 .append(messageWrapper)
                 .append('<br>');
             setScrollPos();
             $('textarea').val("");
+            
+            styleNewNames($('.userShape:last-of-type'));
+            
     	} else {
-    		alert('Nein. Write more. Unless you have written more than 10000 characters. Write less in that case. Thank you. ');
+    		alert('Nein. Write more. Unless you have written more than 10000 characters. Write less in that case.');
     	}
     }    
 });
