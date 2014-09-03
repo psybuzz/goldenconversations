@@ -115,8 +115,13 @@ $('#mainform').on('submit', function (e){
 
     function onSubmitComment (data){
     	if (data.success){
-        	$('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
-                    user + '</span><p>' + message + '</p><br>');
+            var messageWrapper = document.createElement('p');
+            messageWrapper.innerText = message;
+
+            $('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
+                    user + ' </span>')
+                .append(messageWrapper)
+                .append('<br>');
             setScrollPos();
             $('textarea').val("");
             
