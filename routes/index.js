@@ -30,6 +30,9 @@ exports.group = function(req, res){
 	res.render('group', { title: 'Express' });
 };
 
+exports.halloffame = function(req, res){
+	res.render('halloffame', { title: 'Express' });
+};
 
 exports.conversation = function (req, res) {
 	if (!req.user || !req.user._id) {
