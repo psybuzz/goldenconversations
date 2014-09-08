@@ -3,6 +3,7 @@ var Q = require('q');
 var resError = require('./messaging').resError;
 var findUserById = require('./user').findById;
 var Utils = require('./../utils.js');
+var validator = require('validator');
 var Mailman = require('./../mailman.js').Mailman;
 
 Conversation = db.models.Conversation;
@@ -67,8 +68,8 @@ exports.create = function (req, res){
 
 				var conversation = new Conversation({
 				    participants        : people,
-				    category            : req.body.category,
-				    question            : req.body.question,
+				    category            : validator.escape(req.body.category),
+				    question            : validator.escape(req.body.question),
 				    isGroup             : req.body.isGroup,
 				    lastEdited          : Date.now()
 				});
@@ -128,7 +129,6 @@ exports.create = function (req, res){
 							cleanQuestion = question.slice(0, 40) + '...';
 						}
 
-						// TODO(erik): Sanitize the question by escaping HTML entities.
 						Mailman.sendMail({
 							recipients: recipients,
 							subject: 'GC: ' + cleanQuestion,
@@ -323,8 +323,8 @@ exports.allPosts = function (req, res){
 // Sends back a list of a given user's conversations.
 exports.search = function (req, res){
 	var userId = req.query.userId;
-	var recent = req.query.recent || false;
-	var limit = req.query.limit || undefined;
+	var limit = req.query.limit ? validator.toInt(req.query.limit) : undefined;
+	var offset = req.query.offset ? validator.toInt(req.query.offset) : 0;
 
 	console.log('Fetching conversations for user:', userId);
 
@@ -336,7 +336,7 @@ exports.search = function (req, res){
 
 		var discussion = user.userConversations;
 		if (limit){
-			discussion = discussion.slice(0, limit);
+			discussion = discussion.slice(offset, limit);
 		}
 		var results = [];
 		var jobs = discussion.map(function (convoObj, index){

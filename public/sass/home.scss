@@ -170,8 +170,8 @@ html,body {
 			text-transform: uppercase;
 			font-style: italic;
 			text-decoration: none;
-			border:2px solid $yellow;
-			opacity: 0.85;
+			border: 2px solid $yellow;
+			opacity: 1;
 			transition: $default-trans;
 			padding: 0.9rem;
 			display: inline-block;
@@ -181,9 +181,37 @@ html,body {
 			}
 			&:hover {
 				opacity: 1;
-				@include background-image(linear-gradient(left, $yellow, $yellow 20%, white 25%, $yellow 30%, $yellow));
+				@include background-image(linear-gradient(100deg, $yellow, $yellow 38%, white 38.5%, white 41.5%,$yellow 42%, $yellow 46%, white 46%, white 47.5%, $yellow 47.5%, $yellow));
 			}
 		}
+	}
+}
+
+button {
+	float: right;
+	background-color: $light-main;
+	border:none;
+	color: white;
+	font-family: $sans-stack;
+	font-weight: 400;
+	border-radius: 4px;
+	padding: 7px 20px;
+	@include box-shadow(
+		rgba(gray, 0.7) 0 4px 0 0,
+		rgba(gray, 0.2) -2px 0px 0 0 inset, 
+		rgba(gray, 0.1) 2px 0px 0 0 inset,
+		rgba(white, 0.5) 0 2px 0 0 inset
+		
+	);
+	transition: all 0.3s ease;
+	&:hover {
+		background-color: $dark-main;
+		@include box-shadow(
+			rgba(black, 0.7) 0 4px 0 0,
+			rgba(gray, 0.9) -2px 0px 0 0 inset, 
+			rgba(gray, 0.6) 2px 0px 0 0 inset,
+			rgba(white, 0.35) 0 2px 0 0 inset
+		);
 	}
 }
 
@@ -199,6 +227,14 @@ html,body {
 	font-family: $sans-stack;
 	border-radius: 5px;
 	font-weight: 300;
+
+	@media screen and (max-width: $mid-display) {
+		top: 0% !important;
+		right: 3%;
+		left: 3%;
+		bottom: 1%;
+		width: 94%;
+	}
 
 	.modal_close {
 		cursor: pointer;
@@ -297,33 +333,6 @@ html,body {
 			}
 		}
 	}
-	button {
-		float: right;
-		background-color: $light-main;
-		border:none;
-		color: white;
-		font-family: $sans-stack;
-		font-weight: 400;
-		border-radius: 4px;
-		padding: 7px 20px;
-		@include box-shadow(
-			rgba(gray, 0.7) 0 4px 0 0,
-			rgba(gray, 0.2) -2px 0px 0 0 inset, 
-			rgba(gray, 0.1) 2px 0px 0 0 inset,
-			rgba(white, 0.5) 0 2px 0 0 inset
-			
-		);
-		transition: all 0.3s ease;
-		&:hover {
-			background-color: $dark-main;
-			@include box-shadow(
-				rgba(black, 0.7) 0 4px 0 0,
-				rgba(gray, 0.9) -2px 0px 0 0 inset, 
-				rgba(gray, 0.6) 2px 0px 0 0 inset,
-				rgba(white, 0.35) 0 2px 0 0 inset
-			);
-		}
-	}
 }
 
 #user-modal {
@@ -339,6 +348,14 @@ html,body {
 	border-radius: 5px;
 	font-weight: 300;
 
+	@media screen and (max-width: $max-display) {
+		top: 0% !important;
+		right: 3%;
+		left: 3%;
+		bottom: 1%;
+		width: 94%;
+	}
+
 	.modal_close {
 		cursor: pointer;
 		color: $light-main;
@@ -346,13 +363,51 @@ html,body {
 		font-size: 1.3rem;
 		border-radius: 50%;
 		position: absolute;
-		top: 2rem;
-		right: 3rem;
+		top: 1.2rem;
+		right: 2.2rem;
 	}
 
 	.info {
 		font-size: 1.3rem;
 		margin-bottom: 1em;
+
+		span {
+			display: inline-block;
+		}
+	}
+
+	.label {
+		width: 25%;
+		text-align: right;
+		margin-right: 1%;
+		vertical-align: top;
+
+		@media screen and (max-width: $max-display) {
+			display: block;
+			width: 50%;
+			text-align: left;
+		}
+	}
+
+	.content {
+		width:  70%;
+		font-weight: 400;
+		vertical-align: bottom;
+
+		@media screen and (max-width: $max-display) {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	#bio {
+		margin-bottom: 3rem;
+	}
+
+	button {
+		position: absolute;
+		bottom: 3rem;
+		right: 2.2rem;
 	}
 }
 

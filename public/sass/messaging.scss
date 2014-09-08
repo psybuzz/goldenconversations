@@ -10,14 +10,17 @@ body, html {
 	height: 100%;
 	position: relative;
 	min-height: 550px;
+
 	@media screen and (max-width: $mobile-arbitrary) {
 		min-height: 100%;
 	}
+
 	#participants {
 		margin: 1% (100%-$messaging-width)/2.25 2% !important;
 		padding-left: $messaging-padding;
+
 		@media screen and (max-width: $mobile-arbitrary) {
-			  	margin-left: 0.5rem !important;
+			margin-left: 0.5rem;
 		}
 	}
 
@@ -34,12 +37,24 @@ body, html {
 		}
 	}
 
+	#participantImage {
+		float: left;
+		width: 1.5rem;
+		margin-left: -2.5rem;
+		margin-top: -1.8rem;
+		opacity: 0.9;
+		&:hover {
+			transform:  rotate(720deg);
+			transition: transform 0.9s ease; 
+		}
+	}
+
 	.name {
 		display: inline-block;
 		@media screen and (max-width: $mobile-arbitrary) {
-			  	font-size: 0.5rem;
-			  	margin-right: 5px !important;
-			  	display: none;
+		  	font-size: 0.5rem;
+		  	margin-right: 5px !important;
+		  	display: none;
 		}
 	}
 }
@@ -75,8 +90,7 @@ body, html {
 	}
 }
 
-.display-fade,
-.display-fade-bottom {
+.display-fade, .display-fade-bottom {
 	height: 5px;
 	position: absolute;
 	width: $messaging-width;
@@ -90,15 +104,6 @@ body, html {
 
 .display-fade-bottom {
 	display: none;
-	height: 10px;
-	margin-top: -15px;
-	@include background-image(linear-gradient(rgba(white, 0), white));
-	@media screen and (max-width: 1300px) {
-		  	display: none;
-	}
-	@media screen and (max-width: $mobile-arbitrary) {
-		  	margin-top: -8px;
-	}
 }
 
 .menu-bar, ul.options {
@@ -164,6 +169,14 @@ h2.optionsTitle {
 	font-family: $sans-stack;
 	font-weight: 400;
 	text-align: right;
+
+	.color-ball {
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		border-radius: 100%;
+		margin: 0 7px;
+	}
 }
 
 #mainform {
@@ -178,6 +191,7 @@ h2.optionsTitle {
 		  	margin-left: 0.5rem;
 		  	bottom: 1rem;
 	}
+
 	textarea {
 		width: 100%;
 		border: none;
@@ -186,6 +200,7 @@ h2.optionsTitle {
 		padding-top: 1rem;
 		height: 5rem;
 	}
+
 	input {
 		color: white;
 		border-radius: 2px;
@@ -200,7 +215,7 @@ h2.optionsTitle {
 			rgba(white, 0.5) 0 2px 0 0 inset
 			
 		);
-		transition: all 0.3s ease;
+		transition:  box-shadow 0.3s ease, background-color 0.3s ease;
 		&:hover {
 			background-color: $dark-main;
 			@include box-shadow(
@@ -213,11 +228,13 @@ h2.optionsTitle {
 	}
 }
 
+/*****************************************
 
 
+// Input Modal Styling Below
 
 
-
+*****************************************/
 
 #new-input-modal, .choice-modal {
 	display: none;

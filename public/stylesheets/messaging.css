@@ -15,18 +15,18 @@ body, html {
     min-height: 100%;
   }
 }
-/* line 16, ../sass/messaging.scss */
+/* line 18, ../sass/messaging.scss */
 .wrapper #participants {
   margin: 1% 22.22222% 2% !important;
   padding-left: 5rem;
 }
 @media screen and (max-width: 615px) {
-  /* line 16, ../sass/messaging.scss */
+  /* line 18, ../sass/messaging.scss */
   .wrapper #participants {
-    margin-left: 0.5rem !important;
+    margin-left: 0.5rem;
   }
 }
-/* line 24, ../sass/messaging.scss */
+/* line 27, ../sass/messaging.scss */
 .wrapper #question, .wrapper .display {
   width: 50%;
   margin: 0 22.22222%;
@@ -34,7 +34,7 @@ body, html {
   padding-top: 3rem;
 }
 @media screen and (max-width: 615px) {
-  /* line 24, ../sass/messaging.scss */
+  /* line 27, ../sass/messaging.scss */
   .wrapper #question, .wrapper .display {
     font-size: 1.5rem;
     margin-left: 0.5rem;
@@ -42,12 +42,25 @@ body, html {
     width: 60%;
   }
 }
-/* line 37, ../sass/messaging.scss */
+/* line 40, ../sass/messaging.scss */
+.wrapper #participantImage {
+  float: left;
+  width: 1.5rem;
+  margin-left: -2.5rem;
+  margin-top: -1.8rem;
+  opacity: 0.9;
+}
+/* line 46, ../sass/messaging.scss */
+.wrapper #participantImage:hover {
+  transform: rotate(720deg);
+  transition: transform 0.9s ease;
+}
+/* line 52, ../sass/messaging.scss */
 .wrapper .name {
   display: inline-block;
 }
 @media screen and (max-width: 615px) {
-  /* line 37, ../sass/messaging.scss */
+  /* line 52, ../sass/messaging.scss */
   .wrapper .name {
     font-size: 0.5rem;
     margin-right: 5px !important;
@@ -55,7 +68,7 @@ body, html {
   }
 }
 
-/* line 47, ../sass/messaging.scss */
+/* line 62, ../sass/messaging.scss */
 .display {
   clear: both;
   height: 51%;
@@ -64,37 +77,36 @@ body, html {
   padding-right: 1.5rem;
 }
 @media screen and (max-width: 615px) {
-  /* line 47, ../sass/messaging.scss */
+  /* line 62, ../sass/messaging.scss */
   .display {
     font-size: 1rem !important;
   }
 }
 @media screen and (max-height: 700px) {
-  /* line 47, ../sass/messaging.scss */
+  /* line 62, ../sass/messaging.scss */
   .display {
     max-height: 250px;
   }
 }
 @media screen and (max-height: 600px) {
-  /* line 47, ../sass/messaging.scss */
+  /* line 62, ../sass/messaging.scss */
   .display {
     max-height: 200px;
   }
 }
-/* line 68, ../sass/messaging.scss */
+/* line 83, ../sass/messaging.scss */
 .display .display-area {
   font-family: "Merriweather", Georgia, sans-serif;
   width: 100%;
 }
-/* line 71, ../sass/messaging.scss */
+/* line 86, ../sass/messaging.scss */
 .display .display-area p {
   margin-top: -1.2rem;
   word-wrap: break-word;
 }
 
-/* line 79, ../sass/messaging.scss */
-.display-fade,
-.display-fade-bottom {
+/* line 93, ../sass/messaging.scss */
+.display-fade, .display-fade-bottom {
   height: 5px;
   position: absolute;
   width: 50%;
@@ -102,105 +114,86 @@ body, html {
   z-index: 10;
 }
 
-/* line 87, ../sass/messaging.scss */
+/* line 101, ../sass/messaging.scss */
 .display-fade {
   background-image: linear-gradient(to bottom, #ffffff 1%, rgba(255, 255, 255, 0) 100%);
 }
 
-/* line 91, ../sass/messaging.scss */
+/* line 105, ../sass/messaging.scss */
 .display-fade-bottom {
   display: none;
-  height: 10px;
-  margin-top: -15px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
-  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  background-image: -o-linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-  background-image: linear-gradient(rgba(255, 255, 255, 0), #ffffff);
-}
-@media screen and (max-width: 1300px) {
-  /* line 91, ../sass/messaging.scss */
-  .display-fade-bottom {
-    display: none;
-  }
-}
-@media screen and (max-width: 615px) {
-  /* line 91, ../sass/messaging.scss */
-  .display-fade-bottom {
-    margin-top: -8px;
-  }
 }
 
-/* line 104, ../sass/messaging.scss */
+/* line 109, ../sass/messaging.scss */
 .menu-bar, ul.options {
   position: absolute;
   left: 3rem;
   opacity: 0.75;
 }
-/* line 108, ../sass/messaging.scss */
+/* line 113, ../sass/messaging.scss */
 .menu-bar:hover, ul.options:hover {
   opacity: 1;
 }
 
-/* line 113, ../sass/messaging.scss */
+/* line 118, ../sass/messaging.scss */
 .menu-bar {
   top: 3rem;
 }
-/* line 115, ../sass/messaging.scss */
+/* line 120, ../sass/messaging.scss */
 .menu-bar #return-home {
   color: #555555;
   text-decoration: none;
   text-transform: capitalize;
   opacity: 0.75;
 }
-/* line 120, ../sass/messaging.scss */
+/* line 125, ../sass/messaging.scss */
 .menu-bar #return-home:hover {
   color: #181818;
   opacity: 1;
 }
 @media screen and (max-width: 615px) {
-  /* line 113, ../sass/messaging.scss */
+  /* line 118, ../sass/messaging.scss */
   .menu-bar {
     top: 0.5rem;
     left: 5.5rem;
   }
 }
 
-/* line 131, ../sass/messaging.scss */
+/* line 136, ../sass/messaging.scss */
 ul.options {
   list-style-type: none;
   padding: 0;
   margin: 0;
   top: 7rem;
 }
-/* line 137, ../sass/messaging.scss */
+/* line 142, ../sass/messaging.scss */
 ul.options li {
   margin-bottom: 0.4rem;
 }
-/* line 139, ../sass/messaging.scss */
+/* line 144, ../sass/messaging.scss */
 ul.options li a {
   color: #555555;
   font-weight: 300;
   text-decoration: none;
 }
-/* line 144, ../sass/messaging.scss */
+/* line 149, ../sass/messaging.scss */
 ul.options li a:hover {
   color: #181818;
   text-decoration: underline;
 }
 @media screen and (max-width: 615px) {
-  /* line 131, ../sass/messaging.scss */
+  /* line 136, ../sass/messaging.scss */
   ul.options {
     display: none;
   }
 }
 
-/* line 156, ../sass/messaging.scss */
+/* line 161, ../sass/messaging.scss */
 h2.optionsTitle {
   display: none;
 }
 
-/* line 160, ../sass/messaging.scss */
+/* line 165, ../sass/messaging.scss */
 .userShape {
   margin-left: -4.9rem;
   width: 4rem;
@@ -209,8 +202,16 @@ h2.optionsTitle {
   font-weight: 400;
   text-align: right;
 }
+/* line 173, ../sass/messaging.scss */
+.userShape .color-ball {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 100%;
+  margin: 0 7px;
+}
 
-/* line 169, ../sass/messaging.scss */
+/* line 182, ../sass/messaging.scss */
 #mainform {
   position: absolute;
   bottom: 3rem;
@@ -219,14 +220,14 @@ h2.optionsTitle {
   padding-left: 5rem;
 }
 @media screen and (max-width: 615px) {
-  /* line 169, ../sass/messaging.scss */
+  /* line 182, ../sass/messaging.scss */
   #mainform {
     width: 60%;
     margin-left: 0.5rem;
     bottom: 1rem;
   }
 }
-/* line 181, ../sass/messaging.scss */
+/* line 195, ../sass/messaging.scss */
 #mainform textarea {
   width: 100%;
   border: none;
@@ -235,7 +236,7 @@ h2.optionsTitle {
   padding-top: 1rem;
   height: 5rem;
 }
-/* line 189, ../sass/messaging.scss */
+/* line 204, ../sass/messaging.scss */
 #mainform input {
   color: white;
   border-radius: 2px;
@@ -246,9 +247,9 @@ h2.optionsTitle {
   -webkit-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
-/* line 204, ../sass/messaging.scss */
+/* line 219, ../sass/messaging.scss */
 #mainform input:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
@@ -256,7 +257,7 @@ h2.optionsTitle {
   box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
 }
 
-/* line 222, ../sass/messaging.scss */
+/* line 239, ../sass/messaging.scss */
 #new-input-modal, .choice-modal {
   display: none;
   position: fixed;
@@ -270,7 +271,7 @@ h2.optionsTitle {
   border-radius: 5px;
   font-weight: 300;
 }
-/* line 235, ../sass/messaging.scss */
+/* line 252, ../sass/messaging.scss */
 #new-input-modal .modal_close, .choice-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
@@ -281,7 +282,7 @@ h2.optionsTitle {
   top: 2rem;
   right: 3rem;
 }
-/* line 248, ../sass/messaging.scss */
+/* line 265, ../sass/messaging.scss */
 #new-input-modal input, .choice-modal input {
   width: 100%;
   margin-bottom: 2rem;
@@ -291,15 +292,15 @@ h2.optionsTitle {
   height: 2.5rem;
   padding: 0.5rem 0;
 }
-/* line 258, ../sass/messaging.scss */
+/* line 275, ../sass/messaging.scss */
 #new-input-modal .people-select, .choice-modal .people-select {
   margin-bottom: 2rem;
 }
-/* line 261, ../sass/messaging.scss */
+/* line 278, ../sass/messaging.scss */
 #new-input-modal .people-select input[name="People"], .choice-modal .people-select input[name="People"] {
   margin-bottom: 0;
 }
-/* line 265, ../sass/messaging.scss */
+/* line 282, ../sass/messaging.scss */
 #new-input-modal .people-select span, .choice-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
@@ -310,12 +311,12 @@ h2.optionsTitle {
   padding: 5px 8px;
   color: #555555;
 }
-/* line 277, ../sass/messaging.scss */
+/* line 294, ../sass/messaging.scss */
 #new-input-modal .question, .choice-modal .question {
   font-size: 1.5rem;
   margin-bottom: 2em;
 }
-/* line 282, ../sass/messaging.scss */
+/* line 299, ../sass/messaging.scss */
 #new-input-modal button, .choice-modal button {
   float: right;
   background-color: #b0b0b0;
@@ -330,23 +331,23 @@ h2.optionsTitle {
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 298, ../sass/messaging.scss */
+/* line 315, ../sass/messaging.scss */
 #new-input-modal button:hover, .choice-modal button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
   box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
 }
-/* line 309, ../sass/messaging.scss */
+/* line 326, ../sass/messaging.scss */
 #new-input-modal .no, #new-input-modal .yes, .choice-modal .no, .choice-modal .yes {
   width: 25%;
 }
-/* line 313, ../sass/messaging.scss */
+/* line 330, ../sass/messaging.scss */
 #new-input-modal .no, .choice-modal .no {
   margin-right: 2%;
   background-color: #b0b0b0;
 }
-/* line 318, ../sass/messaging.scss */
+/* line 335, ../sass/messaging.scss */
 #new-input-modal .yes, .choice-modal .yes {
   background-color: #777777;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.69) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.49) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.6) 0 2px 0 0 inset;
