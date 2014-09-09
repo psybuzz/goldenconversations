@@ -35,7 +35,7 @@ exports.conversation = function (req, res) {
 	if (!req.user || !req.user._id) {
 		res.render('error', {
 			title: "Looks like you're not a part of that conversation.",
-			message: "Ask the owners politely to invite you?"
+			message: "Ask the owners politely to invite you."
 		});
 		return;
 	}
@@ -45,7 +45,7 @@ exports.conversation = function (req, res) {
 	console.log('fetching convo with id', id)
 	Conversation.findOne( { _id: id }, function (err, convo){
 		if (err || !convo){
-			res.render('error', {title: 'Conversation not found', message: 'Forgeeeet about it!' });
+			res.render('error', {title: 'Conversation not found', message: 'Eh, forget about it!' });
 			return;
 		}
 
@@ -64,7 +64,7 @@ exports.conversation = function (req, res) {
 		if (!found){
 			res.redirect('error', {
 				title: "Looks like you're not a part of that conversation.",
-				message: "Ask the owners politely to invite you?"
+				message: "Ask the owners politely to invite you."
 			});
 			return;
 		}
@@ -85,7 +85,7 @@ exports.conversation = function (req, res) {
 exports.error404 = function(req, res) {
 	res.render('error', {
 		title: 'Sorry, we could not find what you were looking for.',
-		message: 'Forgeeeet about it!'
+		message: 'Eh, forget about it!'
 	})
 }
 
