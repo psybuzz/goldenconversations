@@ -106,6 +106,7 @@ app.get('/conversation/posts', conversation.allPosts);
 
 app.get('/home', routes.home);
 app.get('/conversation/:id', routes.conversation);
+app.get('/halloffame', routes.halloffame);
 app.get('/group/:id', routes.group);
 
 app.get('/all', conversation.getTestMessages);

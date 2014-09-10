@@ -30,6 +30,16 @@ exports.group = function(req, res){
 	res.render('group', { title: 'Express' });
 };
 
+exports.halloffame = function(req, res){
+	if (!req.user){
+		res.redirect('/login');
+	} else {
+		res.render('halloffame', { 
+			title: 'Express',
+			user: req.user 
+		});
+	}
+};
 
 exports.conversation = function (req, res) {
 	if (!req.user || !req.user._id) {
