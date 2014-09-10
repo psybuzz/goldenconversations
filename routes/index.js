@@ -31,7 +31,14 @@ exports.group = function(req, res){
 };
 
 exports.halloffame = function(req, res){
-	res.render('halloffame', { title: 'Express' });
+	if (!req.user){
+		res.redirect('/login');
+	} else {
+		res.render('halloffame', { 
+			title: 'Express',
+			user: req.user 
+		});
+	}
 };
 
 exports.conversation = function (req, res) {
