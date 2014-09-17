@@ -83,7 +83,7 @@ $('#create-submit-button').click(function (){
 // Compile Handlebars template for conversation entries.
 var convoHtml = "<div class='convo'>\
 	<h3><a href='/conversation/{{id}}'>{{question}}</a></h3>\
-	{{#each participants}} <span class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
+	{{#each participants}} <span data-id='{{_id}}'' class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
 </div>";
 var convoTemplate = Handlebars.compile(convoHtml);
 
@@ -106,5 +106,61 @@ $.get('/conversation/search', {
 			});
 			container.append(html);
 		};
+
+		// Populate the recent contacts list
+		var $name = $('.name');
+		var names = [];
+		var uniqueArray = [];
+		var arrResultObj = {};
+
+		for (var i=0; i<$name.length; i++) {
+			names[i] = {
+				userId: $name.eq(i).data("id"), 
+				userName: $name.eq(i).text(),
+				userCount: 0
+			};
+		};
+
+		// Convert the names array into an object, removing duplicates
+		for (var i = 0; i < names.length; i++) {
+		    var item = names[i];
+		    arrResultObj[item.userId] = item;
+		}
+
+		// Convert the object into an array
+		j = 0;    
+		for (var item in arrResultObj){
+		    uniqueArray[j++] = arrResultObj[item];
+		}
+
+		// Counting how many users there are on screen
+		$name.each(function(){
+			var $id = $(this).data('id');
+			for(var i=0; i<uniqueArray.length; i++) {
+				if ( $id === uniqueArray[i].userId) {
+					uniqueArray[i].userCount++; 
+				} 
+			};	
+		});
+
+		// Removing the userCount of self
+		for (var i=0; i<uniqueArray.length; i++) {
+			if (uniqueArray[i].userName === $("#user-profile").text()){
+				uniqueArray[i].userName = "null";
+				uniqueArray[i].userId = "null";
+				uniqueArray[i].userCount = 0;
+			};
+		};
+
+		// Sort the array in descending order
+		uniqueArray.sort(function(a,b){ 
+			return parseFloat(b.userCount) - parseFloat(a.userCount);
+		});
+		
+		for (var i=0; i<uniqueArray.length; i++) {
+			if (i<5 && uniqueArray[i].userCount !== 0){
+				$('.contacts-content').append('<span class="recent-name"><a href="#user-modal" class="recent-contact" data-id="'+ uniqueArray[i].userId +'" rel="leanModal">'+ uniqueArray[i].userName +'</a></span>')
+			}
+		}
 	}
 });
