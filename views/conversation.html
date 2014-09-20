@@ -71,11 +71,12 @@
 	<div class="choice-modal">
 		<div class="modal_close">x</div>
 		<form>
-			 <div class="question"></div>
+			<div class="question"></div>
 			<div class="btn-fld">
-				<button class="yes">Yes</button>
+				<button type="submit" class="yes">Yes</button>
 				<button class="no">No</button>
-		  </div>
+			</div>
+			<input type="hidden" value="{{csrfToken}}" name="_csrf">
 		</form>
 	</div>
 	<script type='text/javascript'>

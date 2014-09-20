@@ -91,6 +91,7 @@ app.post('/group/create', group.create);
 app.post('/post/create', post.create);
 
 app.post('/user/delete', user.delete);
+app.post('/conversation/leave', conversation.leave);
 app.post('/conversation/delete', conversation.delete);
 app.post('/group/delete', group.delete);
 app.post('/post/delete', post.delete);
