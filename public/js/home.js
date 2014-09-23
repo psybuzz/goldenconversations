@@ -113,7 +113,7 @@ $.get('/conversation/search', {
 		var uniqueArray = [];
 		var arrResultObj = {};
 
-		for (var i=0; i<$name.length; i++) {
+		for (var i=0; i<$name.length; i++){
 			names[i] = {
 				userId: $name.eq(i).data("id"), 
 				userName: $name.eq(i).text(),
@@ -121,19 +121,9 @@ $.get('/conversation/search', {
 			};
 		};
 
-		// Convert the names array into an object, removing duplicates
-		for (var i = 0; i < names.length; i++) {
-		    var item = names[i];
-		    arrResultObj[item.userId] = item;
-		}
+		var uniqueArray = _.unique(names, function(el){return el.userId});
 
-		// Convert the object into an array
-		j = 0;    
-		for (var item in arrResultObj){
-		    uniqueArray[j++] = arrResultObj[item];
-		}
-
-		// Counting how many users there are on screen
+		//Counting how many users there are on screen
 		$name.each(function(){
 			var $id = $(this).data('id');
 			for(var i=0; i<uniqueArray.length; i++) {
@@ -141,7 +131,12 @@ $.get('/conversation/search', {
 					uniqueArray[i].userCount++; 
 				} 
 			};	
+
 		});
+
+		var newArray = [];
+		newArray.push($name);
+		console.log(newArray);
 
 		// Removing the userCount of self
 		for (var i=0; i<uniqueArray.length; i++) {
