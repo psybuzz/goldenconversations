@@ -83,7 +83,7 @@ $('#create-submit-button').click(function (){
 // Compile Handlebars template for conversation entries.
 var convoHtml = "<div class='convo'>\
 	<h3><a href='/conversation/{{id}}'>{{question}}</a></h3>\
-	{{#each participants}} <span data-id='{{_id}}'' class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
+	{{#each participants}} <span data-id='{{_id}}' class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
 </div>";
 var convoTemplate = Handlebars.compile(convoHtml);
 
@@ -107,55 +107,18 @@ $.get('/conversation/search', {
 			container.append(html);
 		};
 
-		// Populate the recent contacts list
-		var $name = $('.name');
-		var names = [];
-		var uniqueArray = [];
-		var arrResultObj = {};
-
-		for (var i=0; i<$name.length; i++){
-			names[i] = {
-				userId: $name.eq(i).data("id"), 
-				userName: $name.eq(i).text(),
-				userCount: 0
-			};
-		};
-
-		var uniqueArray = _.unique(names, function(el){return el.userId});
-
-		//Counting how many users there are on screen
-		$name.each(function(){
-			var $id = $(this).data('id');
-			for(var i=0; i<uniqueArray.length; i++) {
-				if ( $id === uniqueArray[i].userId) {
-					uniqueArray[i].userCount++; 
-				} 
-			};	
-
+		// displaying recent contacts
+		var uniqueNames = _.unique($('.name'), function(el){return el.dataset.id});
+		uniqueNames.sort(function(b,a){
+		    return $("[data-id='" + a.dataset.id + "']").length - $("[data-id='" + b.dataset.id + "']").length;
 		});
 
-		var newArray = [];
-		newArray.push($name);
-		console.log(newArray);
-
-		// Removing the userCount of self
-		for (var i=0; i<uniqueArray.length; i++) {
-			if (uniqueArray[i].userName === $("#user-profile").text()){
-				uniqueArray[i].userName = "null";
-				uniqueArray[i].userId = "null";
-				uniqueArray[i].userCount = 0;
-			};
-		};
-
-		// Sort the array in descending order
-		uniqueArray.sort(function(a,b){ 
-			return parseFloat(b.userCount) - parseFloat(a.userCount);
-		});
-		
-		for (var i=0; i<uniqueArray.length; i++) {
-			if (i<5 && uniqueArray[i].userCount !== 0){
-				$('.contacts-content').append('<span class="recent-name"><a href="#user-modal" class="recent-contact" data-id="'+ uniqueArray[i].userId +'" rel="leanModal">'+ uniqueArray[i].userName +'</a></span>')
-			}
+		var $contactsContent = $('.contacts-content');
+		for (var i=0; i<uniqueNames.length && i<=5; i++){
+			if (uniqueNames[i].innerHTML !== $("#user-profile").text()) {
+				$contactsContent.append('<span class="recent-name"><a href="#user-modal" class="recent-contact" data-id="'+ uniqueNames[i].dataset.id +'" rel="leanModal">'+ uniqueNames[i].innerHTML +'</a></span>');
+			}  
 		}
+
 	}
 });
