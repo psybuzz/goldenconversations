@@ -107,7 +107,7 @@ $.get('/conversation/search', {
 			container.append(html);
 		};
 
-		// displaying recent contacts
+		// Displaying recent contacts.
 		var uniqueNames = _.unique($('.name'), function(el){return el.dataset.id});
 		uniqueNames.sort(function(b,a){
 		    return $("[data-id='" + a.dataset.id + "']").length - $("[data-id='" + b.dataset.id + "']").length;
@@ -115,10 +115,9 @@ $.get('/conversation/search', {
 
 		var $contactsContent = $('.contacts-content');
 		for (var i=0; i<uniqueNames.length && i<=5; i++){
-			if (uniqueNames[i].innerHTML !== $("#user-profile").text()) {
+			if (uniqueNames[i].innerHTML !== $("#user-profile").text()){
 				$contactsContent.append('<span class="recent-name"><a href="#user-modal" class="recent-contact" data-id="'+ uniqueNames[i].dataset.id +'" rel="leanModal">'+ uniqueNames[i].innerHTML +'</a></span>');
 			}  
 		}
-
 	}
 });
