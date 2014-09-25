@@ -83,7 +83,7 @@ $('#create-submit-button').click(function (){
 // Compile Handlebars template for conversation entries.
 var convoHtml = "<div class='convo'>\
 	<h3><a href='/conversation/{{id}}'>{{question}}</a></h3>\
-	{{#each participants}} <span class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
+	{{#each participants}} <span data-id='{{_id}}' class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
 </div>";
 var convoTemplate = Handlebars.compile(convoHtml);
 
@@ -106,5 +106,18 @@ $.get('/conversation/search', {
 			});
 			container.append(html);
 		};
+
+		// Displaying recent contacts.
+		var uniqueNames = _.unique($('.name'), function(el){return el.dataset.id});
+		uniqueNames.sort(function(b,a){
+		    return $("[data-id='" + a.dataset.id + "']").length - $("[data-id='" + b.dataset.id + "']").length;
+		});
+
+		var $contactsContent = $('.contacts-content');
+		for (var i=0; i<uniqueNames.length && i<=5; i++){
+			if (uniqueNames[i].innerHTML !== $("#user-profile").text()){
+				$contactsContent.append('<span class="recent-name"><a href="#user-modal" class="recent-contact" data-id="'+ uniqueNames[i].dataset.id +'" rel="leanModal">'+ uniqueNames[i].innerHTML +'</a></span>');
+			}  
+		}
 	}
 });

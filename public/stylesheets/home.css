@@ -175,14 +175,19 @@ html, body {
   color: #b0b0b0;
 }
 /* line 162, ../sass/home.scss */
-.wrapper .home-contacts .name {
+.wrapper .home-contacts .recent-name {
   display: block;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0.5rem;
   color: #b0b0b0;
   font-weight: 400;
+  font-family: "Lato", "Lucidia Grande", serif;
 }
-/* line 171, ../sass/home.scss */
+/* line 169, ../sass/home.scss */
+.wrapper .home-contacts .recent-name a {
+  text-decoration: none;
+}
+/* line 175, ../sass/home.scss */
 .wrapper .home-mvp a {
   color: #777777;
   font-family: "Lato", "Lucidia Grande", serif;
@@ -198,12 +203,12 @@ html, body {
   display: inline-block;
 }
 @media screen and (max-width: 750px) {
-  /* line 171, ../sass/home.scss */
+  /* line 175, ../sass/home.scss */
   .wrapper .home-mvp a {
     margin-top: 2.6rem;
   }
 }
-/* line 188, ../sass/home.scss */
+/* line 192, ../sass/home.scss */
 .wrapper .home-mvp a:hover {
   opacity: 1;
   background-image: -webkit-linear-gradient(100deg, rgba(244, 238, 63, 0.5), rgba(244, 238, 63, 0.5) 38%, #ffffff 38.5%, #ffffff 41.5%, rgba(244, 238, 63, 0.5) 42%, rgba(244, 238, 63, 0.5) 46%, #ffffff 46%, #ffffff 47.5%, rgba(244, 238, 63, 0.5) 47.5%, rgba(244, 238, 63, 0.5));
@@ -212,7 +217,7 @@ html, body {
   background-image: linear-gradient(100deg, rgba(244, 238, 63, 0.5), rgba(244, 238, 63, 0.5) 38%, #ffffff 38.5%, #ffffff 41.5%, rgba(244, 238, 63, 0.5) 42%, rgba(244, 238, 63, 0.5) 46%, #ffffff 46%, #ffffff 47.5%, rgba(244, 238, 63, 0.5) 47.5%, rgba(244, 238, 63, 0.5));
 }
 
-/* line 196, ../sass/home.scss */
+/* line 200, ../sass/home.scss */
 button {
   float: right;
   background-color: #b0b0b0;
@@ -227,7 +232,7 @@ button {
   box-shadow: rgba(128, 128, 128, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.2) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.1) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.5) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 213, ../sass/home.scss */
+/* line 217, ../sass/home.scss */
 button:hover {
   background-color: #555555;
   -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
@@ -235,7 +240,7 @@ button:hover {
   box-shadow: rgba(0, 0, 0, 0.7) 0 4px 0 0, rgba(128, 128, 128, 0.9) -2px 0px 0 0 inset, rgba(128, 128, 128, 0.6) 2px 0px 0 0 inset, rgba(255, 255, 255, 0.35) 0 2px 0 0 inset;
 }
 
-/* line 224, ../sass/home.scss */
+/* line 228, ../sass/home.scss */
 #new-input-modal {
   display: none;
   position: fixed;
@@ -250,7 +255,7 @@ button:hover {
   font-weight: 300;
 }
 @media screen and (max-width: 360px) {
-  /* line 224, ../sass/home.scss */
+  /* line 228, ../sass/home.scss */
   #new-input-modal {
     top: 0% !important;
     right: 3%;
@@ -259,7 +264,7 @@ button:hover {
     width: 94%;
   }
 }
-/* line 245, ../sass/home.scss */
+/* line 249, ../sass/home.scss */
 #new-input-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
@@ -270,7 +275,7 @@ button:hover {
   top: 2rem;
   right: 3rem;
 }
-/* line 256, ../sass/home.scss */
+/* line 260, ../sass/home.scss */
 #new-input-modal input, #new-input-modal textarea {
   width: 100%;
   margin-bottom: 2rem;
@@ -278,17 +283,17 @@ button:hover {
   border-bottom: 1px solid #b0b0b0;
   font-size: 1.5rem;
 }
-/* line 263, ../sass/home.scss */
+/* line 267, ../sass/home.scss */
 #new-input-modal input {
   height: 2.5rem;
   padding: 0.5rem 0;
 }
-/* line 268, ../sass/home.scss */
+/* line 272, ../sass/home.scss */
 #new-input-modal textarea {
   margin-top: 0;
   clear: both;
 }
-/* line 274, ../sass/home.scss */
+/* line 278, ../sass/home.scss */
 #new-input-modal #search_names {
   border-radius: 3px;
   position: absolute;
@@ -300,7 +305,7 @@ button:hover {
   -moz-box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
 }
-/* line 283, ../sass/home.scss */
+/* line 287, ../sass/home.scss */
 #new-input-modal #search_names .modal-name {
   background-color: white;
   font-weight: 400;
@@ -308,22 +313,22 @@ button:hover {
   cursor: pointer;
   margin: 0;
 }
-/* line 289, ../sass/home.scss */
+/* line 293, ../sass/home.scss */
 #new-input-modal #search_names .modal-name:hover {
   background-color: #333333;
   color: white;
 }
-/* line 297, ../sass/home.scss */
+/* line 301, ../sass/home.scss */
 #new-input-modal .people-select {
   margin-bottom: 2rem;
   position: relative;
 }
-/* line 300, ../sass/home.scss */
+/* line 304, ../sass/home.scss */
 #new-input-modal .people-select input[name="People"] {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 304, ../sass/home.scss */
+/* line 308, ../sass/home.scss */
 #new-input-modal .people-select span {
   font-size: 0.9rem;
   background-color: #e0e0e0;
@@ -334,14 +339,14 @@ button:hover {
   padding: 5px 8px;
   color: #555555;
 }
-/* line 315, ../sass/home.scss */
+/* line 319, ../sass/home.scss */
 #new-input-modal .people-select .names-list {
   margin: 0;
   top: -1.2rem;
   list-style-type: none;
   padding: 0;
 }
-/* line 322, ../sass/home.scss */
+/* line 326, ../sass/home.scss */
 #new-input-modal .people-select .selected-name {
   background-color: #e0e0e0;
   padding: 5px;
@@ -352,7 +357,7 @@ button:hover {
   display: inline-block;
   border-radius: 3px;
 }
-/* line 331, ../sass/home.scss */
+/* line 335, ../sass/home.scss */
 #new-input-modal .people-select .selected-name .name_remove {
   position: absolute;
   top: 10px;
@@ -363,7 +368,7 @@ button:hover {
   cursor: pointer;
 }
 
-/* line 344, ../sass/home.scss */
+/* line 348, ../sass/home.scss */
 #user-modal {
   display: none;
   position: fixed;
@@ -378,7 +383,7 @@ button:hover {
   font-weight: 300;
 }
 @media screen and (max-width: 750px) {
-  /* line 344, ../sass/home.scss */
+  /* line 348, ../sass/home.scss */
   #user-modal {
     top: 0% !important;
     right: 3%;
@@ -387,7 +392,7 @@ button:hover {
     width: 94%;
   }
 }
-/* line 365, ../sass/home.scss */
+/* line 369, ../sass/home.scss */
 #user-modal .modal_close {
   cursor: pointer;
   color: #b0b0b0;
@@ -398,16 +403,16 @@ button:hover {
   top: 1.2rem;
   right: 2.2rem;
 }
-/* line 376, ../sass/home.scss */
+/* line 380, ../sass/home.scss */
 #user-modal .info {
   font-size: 1.3rem;
   margin-bottom: 1em;
 }
-/* line 380, ../sass/home.scss */
+/* line 384, ../sass/home.scss */
 #user-modal .info span {
   display: inline-block;
 }
-/* line 385, ../sass/home.scss */
+/* line 389, ../sass/home.scss */
 #user-modal .label {
   width: 25%;
   text-align: right;
@@ -415,31 +420,31 @@ button:hover {
   vertical-align: top;
 }
 @media screen and (max-width: 750px) {
-  /* line 385, ../sass/home.scss */
+  /* line 389, ../sass/home.scss */
   #user-modal .label {
     display: block;
     width: 50%;
     text-align: left;
   }
 }
-/* line 398, ../sass/home.scss */
+/* line 402, ../sass/home.scss */
 #user-modal .content {
   width: 70%;
   font-weight: 400;
   vertical-align: bottom;
 }
 @media screen and (max-width: 750px) {
-  /* line 398, ../sass/home.scss */
+  /* line 402, ../sass/home.scss */
   #user-modal .content {
     display: block;
     width: 100%;
   }
 }
-/* line 409, ../sass/home.scss */
+/* line 413, ../sass/home.scss */
 #user-modal #bio {
   margin-bottom: 3rem;
 }
-/* line 413, ../sass/home.scss */
+/* line 417, ../sass/home.scss */
 #user-modal button {
   position: absolute;
   bottom: 3rem;
