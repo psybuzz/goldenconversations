@@ -197,7 +197,7 @@ exports.leave = function (req, res){
 					} else{
 						if (convo.participants.length === 0){
 							resolve({removePosts: true, posts: convo.discussion});
-						} else {
+						} else{
 							resolve({removePosts: false});
 						}
 					}
@@ -223,7 +223,7 @@ exports.leave = function (req, res){
 			// Remove the conversation itself.
 			var removeConversationPromise = Q.promise(function (resolve, reject){
 				Conversation.findByIdAndRemove(req.body.conversationId, function (err){
-					if (err) {
+					if (err){
 						reject('Could not remove the empty conversation.');
 					} else{
 						resolve();
@@ -238,14 +238,14 @@ exports.leave = function (req, res){
 		}
 	}, resError).spread(function (results){
 		// Redirect back to home after leaving a convo.
-	    res.send({success: true, redirect: '/home'});
+		res.send({success: true, redirect: '/home'});
 
 		// Logging for failed posts removed.
 		results.forEach(function (result){
-	        if (result.state !== "fulfilled"){
-	            console.log('Some dangling posts were not removed!', result.reason);
-	        }
-	    });
+			if (result.state !== "fulfilled"){
+				console.log('Some dangling posts were not removed!', result.reason);
+			}
+		});
 	});
 };
 

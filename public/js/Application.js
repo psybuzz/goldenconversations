@@ -57,7 +57,7 @@ $('.choice-modal button[type=submit]').click(function (evt){
 
                     if (data.success){
                         window.location.href = '/home';
-                    } else {
+                    } else{
                         alert('Sorry, an error occurred when leaving.  Try again in a bit.');
 
                         // Remove the modal.
@@ -67,7 +67,7 @@ $('.choice-modal button[type=submit]').click(function (evt){
                 });
     } else if (action === 'archive'){
         // TODO(erik): Implement archiving functionality.
-    } else {
+    } else{
         // Remove the modal.
         modal.style.display = 'none';
         overlay.style.display = 'none';
@@ -89,9 +89,9 @@ function styleNewNames (styleSelection){
         });
 
         var initials = $currentShape.text()
-                            .split(' ')
-                            .map(function(s){ return s.charAt(0);})
-                            .join('');
+                .split(' ')
+                .map(function(s){ return s.charAt(0);})
+                .join('');
         $currentShape.html(initials);
         $('<div class="color-ball"></div>').prependTo($currentShape).css({
             backgroundColor: colorValue,
@@ -106,7 +106,7 @@ $(document).ready(function (){
 	$.get('/conversation/posts', {conversationId: conversationId}, function (data){
         if (data.success){
     		var text = '';
-    		for (var i = 0; i < data.message.length; i++) {
+    		for (var i = 0; i < data.message.length; i++){
                 var colorValue;
                 $('.name').each(function(){
                     var $currentName = $(this);
@@ -117,9 +117,9 @@ $(document).ready(function (){
                 });
 
                 var initials = data.message[i].username
-                            .split(' ')
-                            .map(function(s){ return s.charAt(0);})
-                            .join('');
+                        .split(' ')
+                        .map(function(s){ return s.charAt(0);})
+                        .join('');
 
                 text += '<span class="userShape" data_id="' + data.message[i].userid + '"><div class="color-ball" style="background-color:'+ colorValue +';"></div>' + initials + '</span>';
     			text += '<p>' + data.message[i].content + '</p><br>';    
@@ -163,8 +163,8 @@ $('#mainform').on('submit', function (e){
 
             $('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
                     user + ' </span>')
-                .append(messageWrapper)
-                .append('<br>');
+                    .append(messageWrapper)
+                    .append('<br>');
             setScrollPos();
             $('textarea').val("");
             
