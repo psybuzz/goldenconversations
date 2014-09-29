@@ -64,6 +64,7 @@ app.use(app.router);
 
 app.get('/', routes.home);
 app.get('/testing', routes.testing);
+app.get('/landing', routes.landing);
 app.get('/signup', routes.signup);
 app.get('/login', routes.login);
 app.get('/signup', routes.signup);
