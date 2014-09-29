@@ -1,2 +1,10 @@
 @import 'partials/variables';
 @import "compass";
+
+header {
+	background-color: $light-gray;
+	h1 {
+		margin: 0;
+		font-family: $sans-stack;
+	}
+}
