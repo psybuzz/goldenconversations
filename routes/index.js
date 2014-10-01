@@ -17,7 +17,7 @@ exports.landing = function(req, res){
 
 exports.home = function(req, res){
 	if (!req.user){
-		res.redirect('/login');
+		res.redirect('/landing');
 	} else {
 		res.render('home', { 
 			title: 'Express',
