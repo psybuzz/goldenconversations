@@ -1,0 +1,36 @@
+/* line 3, ../sass/error.scss */
+body {
+  padding: 3% 7%;
+  font-size: 16px;
+}
+@media screen and (max-width: 750px) {
+  /* line 3, ../sass/error.scss */
+  body {
+    font-size: 13px;
+  }
+}
+
+/* line 11, ../sass/error.scss */
+h1, a {
+  font-family: "Lato", "Lucidia Grande", serif;
+  margin-bottom: 0rem;
+}
+
+/* line 16, ../sass/error.scss */
+h3 {
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 1.5rem;
+}
+
+/* line 22, ../sass/error.scss */
+a {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  display: inline-block;
+  color: #777777;
+}
+/* line 27, ../sass/error.scss */
+a:hover {
+  color: #181818;
+}

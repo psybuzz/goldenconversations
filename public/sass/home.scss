@@ -121,7 +121,8 @@ html,body {
 		  		margin-right: 0;
 		  	}
 		}
-	}	
+	}
+
 	.home-conversations {
 		clear: both;
 		width: 64%;
@@ -141,6 +142,11 @@ html,body {
 			}
 		}
 	}
+
+	.hof-conversations {
+		width: 80%;
+	}
+
 	.home-groups {
 		margin-bottom: 1rem;
 		h3	{
@@ -153,12 +159,16 @@ html,body {
 	}
 
 	.home-contacts{
-		.name {
+		.recent-name {
 			display: block;
-			font-size: 1rem;
+			font-size: 0.9rem;
 			margin-bottom: 0.5rem;
 			color: $light-main;
 			font-weight: 400;
+			font-family: $sans-stack;
+			a {
+				text-decoration: none;
+			}
 		}
 	}
 	.home-mvp {

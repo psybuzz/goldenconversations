@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!--[if lt IE 9]>
-	<script src="dist/html5shiv.js"></script>
+	<script src="js/lib/html5shiv.min.js"></script>
 	<![endif]-->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />	
@@ -19,7 +19,7 @@
 <body>
 	<div class="wrapper">
 		<section class="admin-bar">
-			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{user.firstName}} {{user.lastName}}!</a></div>
+			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{user.firstName}} {{user.lastName}}</a>!</div>
 			<div id="log-out"><a href="/logout">Log Out</a></div>
 		</section>
 
@@ -50,16 +50,11 @@
 		<section class="home-contacts right-side">
 			<h2>Contacts</h2>
 			<div class="contacts-content">
-				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Nikil Selvam</a></span>
-				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Erik Luo</a></span>
-				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Tony Jing</a></span>
-				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Fifi Yeung</a></span>
-				<span class="name"><a href="#user-modal" class="recent-contact"rel="leanModal">Sarah J.</a></span>
 			</div>
 		</section >
 	
 		<section class="home-mvp right-side">
-			<a href="#">Hall of Fame</a>
+			<a href="halloffame">Hall of Fame</a>
 			<div class="mvp-content">
 			</div>
 		</section>
