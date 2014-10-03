@@ -38,6 +38,7 @@ header div.header-inner .header-buttons {
 header div.header-inner a {
   font-family: "Lato", "Lucidia Grande", serif;
   font-weight: 400;
+  font-size: 0.95rem;
   border-radius: 2px;
   padding: 6px 26px;
   display: inline-block;
@@ -45,33 +46,33 @@ header div.header-inner a {
   text-decoration: none;
   transition: all 0.4s;
 }
-/* line 42, ../sass/landing.scss */
+/* line 43, ../sass/landing.scss */
 header div.header-inner a:hover {
   color: #181818;
 }
 @media screen and (max-width: 615px) {
   /* line 33, ../sass/landing.scss */
   header div.header-inner a {
-    font-size: 0.95rem;
+    font-size: 0.89rem;
   }
 }
-/* line 50, ../sass/landing.scss */
+/* line 51, ../sass/landing.scss */
 header div.header-inner a#join {
   background-color: rgba(224, 224, 224, 0.6);
   border: 1px solid;
 }
-/* line 53, ../sass/landing.scss */
+/* line 54, ../sass/landing.scss */
 header div.header-inner a#join:hover {
   background-color: rgba(224, 224, 224, 0.3);
 }
-/* line 58, ../sass/landing.scss */
+/* line 59, ../sass/landing.scss */
 header div.header-inner a#login {
   border: none;
   margin-right: 0.5rem;
   padding: 6px;
 }
 
-/* line 66, ../sass/landing.scss */
+/* line 67, ../sass/landing.scss */
 div.content-wrapper {
   max-width: 1000px;
   margin: 0 auto;
@@ -80,19 +81,19 @@ div.content-wrapper {
   font-family: "Merriweather", Georgia, sans-serif;
 }
 @media screen and (max-width: 615px) {
-  /* line 66, ../sass/landing.scss */
+  /* line 67, ../sass/landing.scss */
   div.content-wrapper {
     padding: 0 10px;
   }
 }
-/* line 76, ../sass/landing.scss */
+/* line 77, ../sass/landing.scss */
 div.content-wrapper h2 {
   margin: 4.5rem 0 3.65rem;
   font-weight: 600;
   font-style: italic;
   font-size: 2.6rem;
 }
-/* line 83, ../sass/landing.scss */
+/* line 84, ../sass/landing.scss */
 div.content-wrapper h3 {
   font-weight: 400;
   font-size: 1.55rem;
@@ -101,13 +102,13 @@ div.content-wrapper h3 {
   font-family: "Lato", "Lucidia Grande", serif;
 }
 @media screen and (max-width: 615px) {
-  /* line 83, ../sass/landing.scss */
+  /* line 84, ../sass/landing.scss */
   div.content-wrapper h3 {
     margin-left: 20px;
     margin-right: 20px;
   }
 }
-/* line 95, ../sass/landing.scss */
+/* line 96, ../sass/landing.scss */
 div.content-wrapper p {
   width: 90%;
   margin: 0 auto;
@@ -117,13 +118,13 @@ div.content-wrapper p {
   color: rgba(119, 119, 119, 0.9);
 }
 @media screen and (max-width: 615px) {
-  /* line 95, ../sass/landing.scss */
+  /* line 96, ../sass/landing.scss */
   div.content-wrapper p {
     width: 70%;
   }
 }
 
-/* line 109, ../sass/landing.scss */
+/* line 110, ../sass/landing.scss */
 #join-cta {
   position: absolute;
   margin-top: 1.1rem;
@@ -145,7 +146,7 @@ div.content-wrapper p {
   box-shadow: rgba(56, 56, 56, 0.93) 0 4px 0 0, rgba(51, 51, 51, 0.6) -2px 0px 0 0 inset, rgba(85, 85, 85, 0.4) 2px 0px 0 0 inset, rgba(176, 176, 176, 0.9) 0 2px 0 0 inset;
   transition: all 0.3s ease;
 }
-/* line 132, ../sass/landing.scss */
+/* line 133, ../sass/landing.scss */
 #join-cta:hover {
   background-color: #383838;
   color: white;
@@ -154,7 +155,7 @@ div.content-wrapper p {
   box-shadow: rgba(24, 24, 24, 0.93) 0 4px 0 0, rgba(56, 56, 56, 0.6) -2px 0px 0 0 inset, rgba(85, 85, 85, 0.4) 2px 0px 0 0 inset, rgba(119, 119, 119, 0.9) 0 2px 0 0 inset;
 }
 
-/* line 144, ../sass/landing.scss */
+/* line 145, ../sass/landing.scss */
 footer {
   font-size: 0.6rem;
   font-family: "Lato", "Lucidia Grande", serif;
@@ -163,7 +164,7 @@ footer {
   margin: 12rem 0 2rem;
   color: #e0e0e0;
 }
-/* line 151, ../sass/landing.scss */
+/* line 152, ../sass/landing.scss */
 footer a {
   color: #e0e0e0;
 }

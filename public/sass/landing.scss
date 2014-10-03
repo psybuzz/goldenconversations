@@ -33,6 +33,7 @@ header {
 		a {
 			font-family: $sans-stack;
 			font-weight: 400;
+			font-size: 0.95rem;
 			border-radius: 2px;
 			padding: 6px 26px; 
 			display: inline-block;
@@ -43,7 +44,7 @@ header {
 				color: $dark-black;
 			}
 			@media screen and (max-width: $mobile-arbitrary) {
-				font-size: 0.95rem;
+				font-size: 0.89rem;
 			}
 		}
 
