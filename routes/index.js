@@ -11,9 +11,13 @@ exports.signup = function(req, res){
 	res.render('signup', { title: 'Express' });
 };
 
+exports.landing = function(req, res){
+	res.render('landing', { title: 'Express' });
+};
+
 exports.home = function(req, res){
 	if (!req.user){
-		res.redirect('/login');
+		res.redirect('/landing');
 	} else {
 		res.render('home', { 
 			title: 'Express',

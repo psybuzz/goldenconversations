@@ -1,0 +1,153 @@
+@import 'partials/variables';
+@import "compass";
+
+body {
+	font-size: 16px;
+	position: relative;
+}
+
+header {
+	background-color: rgba($light-gray, 0.4);
+	padding: 1rem 0 1.2rem;;
+
+	div.header-inner {
+		max-width: $homepage-width;
+		margin: 0 auto;
+		@media screen and (max-width: $homepage-width) {
+			padding: 0 10px;
+		}
+		h1 {
+			margin: 0;
+			font-size: 1.6rem;
+			font-family: $sans-stack;
+			color: $light-black;
+			display: inline-block;
+		}
+
+		.header-buttons {
+			float: right;
+		}
+
+		a {
+			font-family: $sans-stack;
+			font-weight: 400;
+			border-radius: 2px;
+			padding: 6px 26px; 
+			display: inline-block;
+			color: $dark-main;
+			text-decoration: none;
+			transition: all 0.4s;
+			&:hover {
+				color: $dark-black;
+			}
+			@media screen and (max-width: $mobile-arbitrary) {
+				font-size: 0.95rem;
+			}
+		}
+
+		a#join {
+			background-color: rgba($light-gray, 0.6);
+			border: 1px solid ;
+			&:hover {
+				background-color: rgba($light-gray, 0.3);
+			}
+		}
+
+		a#login {
+			border: none;
+			margin-right: 0.5rem;
+			padding: 6px; 
+		}
+	}
+}
+
+div.content-wrapper {
+	max-width: $homepage-width;
+	margin: 0 auto;
+	color: $dark-black;
+	text-align: center;
+	font-family: $serif-stack;
+	@media screen and (max-width: $mobile-arbitrary) {
+		padding: 0 10px;
+	}
+
+	h2 {
+		margin: 4.5rem 0 3.65rem;
+		font-weight: 600;
+		font-style: italic;
+		font-size: 2.6rem;
+	}
+
+	h3 {
+		font-weight: 400;
+		font-size: 1.55rem;
+		margin-bottom: 0.6rem;
+		color: $dark-black;
+		font-family: $sans-stack;
+		@media screen and (max-width: $mobile-arbitrary) {
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+	}
+
+	p {
+		width: 90%;
+		margin: 0 auto;
+		font-size: 1rem;
+		font-family: $sans-stack;
+		margin-bottom: 2.4rem;
+		color: rgba($main, 0.9);
+		@media screen and (max-width: $mobile-arbitrary) {
+			width: 70%;
+		}
+
+	}
+}
+
+#join-cta {
+	position: absolute; 
+	margin-top: 1.1rem;
+	left: 50%;
+	width: 100px;
+	text-align: center;
+	background-color: rgba($dark-main, .98);
+	border:none;
+	color: rgba(white, 0.95);	
+	font-family: $sans-stack;
+	font-weight: 400;
+	border-radius: 4px;
+	padding: 10px 25px 7px;
+	font-size: 1.05rem;
+	text-decoration: none;
+	margin-left: -75px;
+	@include box-shadow(
+		rgba($light-black, 0.93) 0 4px 0 0,
+		rgba($super-main, 0.6) -2px 0px 0 0 inset,
+		rgba($dark-main, 0.4) 2px 0px 0 0 inset,
+		rgba($light-main, 0.9) 0 2px 0 0 inset
+	);
+	transition: all 0.3s ease;
+	&:hover {
+		background-color: $light-black;
+		color: white;
+		@include box-shadow(
+			rgba($dark-black, 0.93) 0 4px 0 0,
+			rgba($light-black, 0.6) -2px 0px 0 0 inset,
+			rgba($dark-main, 0.4) 2px 0px 0 0 inset,
+			rgba($main, 0.9) 0 2px 0 0 inset
+		);
+	}
+}
+
+footer {
+	font-size: 0.6rem;
+	font-family: $sans-stack;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 12rem 0 2rem;;
+	color: $light-gray;
+	a {
+		color: $light-gray;
+	}
+}
+
