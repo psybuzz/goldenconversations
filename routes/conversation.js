@@ -49,7 +49,7 @@ exports.create = function (req, res){
 				User.findById(entry, fields, function (err, otherUser){
 					if (err){
 						reject('Could not find other user by id');
-					} else {
+					} else{
 						resolve(otherUser);
 						peopleData[index] = otherUser;
 					}
@@ -105,7 +105,7 @@ exports.create = function (req, res){
 									}
 									d.resolve();	
 								});
-							} else {
+							} else{
 								// If we are inviting someone to a conversation they are already in.
 								d.resolve();
 							}
@@ -233,7 +233,7 @@ exports.leave = function (req, res){
 			removeJobs.push(removeConversationPromise);
 
 			return Q.allSettled(removeJobs);
-		} else {
+		} else{
 			return Q.allSettled([]);
 		}
 	}, resError).spread(function (results){
