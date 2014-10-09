@@ -31,6 +31,49 @@ $('#new-input-modal button[type=submit]').click(function (evt){
     document.getElementById('lean_overlay').style.display = 'none';
 });
 
+$('.choice-modal button[type=submit]').click(function (evt){
+    evt.preventDefault();
+
+    var modal = document.getElementById('new-input-modal');
+    var overlay = document.getElementById('lean_overlay');
+
+    // Apply action.
+    var action = $('.choice-modal').data('action');
+    if (action === 'leave'){
+        // Show placeholder waiting text.
+        $('.choice-modal .question').text('Goodbye conversation...');
+
+        // Make the request to leave.
+        $.post(
+                '/conversation/leave',
+                {
+                    conversationId: conversationId, 
+                    _csrf: token
+                },
+                function (data){
+                    // Restore the text.
+                    $('.choice-modal .question').text(
+                            'Are you sure that you want to leave this conversation?');
+
+                    if (data.success){
+                        window.location.href = '/home';
+                    } else{
+                        alert('Sorry, an error occurred when leaving.  Try again in a bit.');
+
+                        // Remove the modal.
+                        modal.style.display = 'none';
+                        overlay.style.display = 'none';
+                    }
+                });
+    } else if (action === 'archive'){
+        // TODO(erik): Implement archiving functionality.
+    } else{
+        // Remove the modal.
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+});
+
 function styleNewNames (styleSelection){
     styleSelection.each(function (){
         var $currentShape = $(this);
@@ -46,9 +89,9 @@ function styleNewNames (styleSelection){
         });
 
         var initials = $currentShape.text()
-                            .split(' ')
-                            .map(function(s){ return s.charAt(0);})
-                            .join('');
+                .split(' ')
+                .map(function(s){ return s.charAt(0);})
+                .join('');
         $currentShape.html(initials);
         $('<div class="color-ball"></div>').prependTo($currentShape).css({
             backgroundColor: colorValue,
@@ -60,10 +103,10 @@ $(document).ready(function (){
     var socket = io();
 
 	// Load comments
-	$.get('/conversation/posts', {conversationId: conversationId}, function(data) {
+	$.get('/conversation/posts', {conversationId: conversationId}, function (data){
         if (data.success){
     		var text = '';
-    		for (var i = 0; i < data.message.length; i++) {
+    		for (var i = 0; i < data.message.length; i++){
                 var colorValue;
                 $('.name').each(function(){
                     var $currentName = $(this);
@@ -74,9 +117,9 @@ $(document).ready(function (){
                 });
 
                 var initials = data.message[i].username
-                            .split(' ')
-                            .map(function(s){ return s.charAt(0);})
-                            .join('');
+                        .split(' ')
+                        .map(function(s){ return s.charAt(0);})
+                        .join('');
 
                 text += '<span class="userShape" data_id="' + data.message[i].userid + '"><div class="color-ball" style="background-color:'+ colorValue +';"></div>' + initials + '</span>';
     			text += '<p>' + data.message[i].content + '</p><br>';    
@@ -120,8 +163,8 @@ $('#mainform').on('submit', function (e){
 
             $('.display-area').append('<span class="userShape" data_id="' +  userId + '">' + 
                     user + ' </span>')
-                .append(messageWrapper)
-                .append('<br>');
+                    .append(messageWrapper)
+                    .append('<br>');
             setScrollPos();
             $('textarea').val("");
             
