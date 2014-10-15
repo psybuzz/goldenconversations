@@ -77,7 +77,7 @@ $('.choice-modal button[type=submit]').click(function (evt){
 function styleNewNames (styleSelection){
     styleSelection.each(function (){
         var $currentShape = $(this);
-        var originalNameText = $currentShape.text();
+        var originalNameText = $.trim($currentShape.text());
         var colorValue;
 
         $('.name').each(function (){
@@ -86,6 +86,7 @@ function styleNewNames (styleSelection){
             if (originalNameText === storedName){
                 colorValue = $currentName.find('.name-colors').css('background-color');
             }
+            console.log("akdjaa;d" +originalNameText+ "aklds;fja");
         });
 
         var initials = $currentShape.text()
