@@ -86,7 +86,6 @@ function styleNewNames (styleSelection){
             if (originalNameText === storedName){
                 colorValue = $currentName.find('.name-colors').css('background-color');
             }
-            console.log("akdjaa;d" +originalNameText+ "aklds;fja");
         });
 
         var initials = $currentShape.text()
@@ -151,8 +150,8 @@ $('#mainform').on('submit', function (e){
     // the user uses newlines in their post (such as when creating lists or when creating spacing between
     // multiple paragraph).
     var message = $('textarea').val();
-    message = message.replace(/(?:\r\n|\r|\n)/g, '<br />');
-    
+    message = message.replace(/(?:\r\n|\r|\n)/g, '\n');
+
 	function onSubmitError (err){
 		alert('Send failed.');
 	}
