@@ -77,7 +77,7 @@ $('.choice-modal button[type=submit]').click(function (evt){
 function styleNewNames (styleSelection){
     styleSelection.each(function (){
         var $currentShape = $(this);
-        var originalNameText = $currentShape.text();
+        var originalNameText = $.trim($currentShape.text());
         var colorValue;
 
         $('.name').each(function (){
@@ -150,8 +150,8 @@ $('#mainform').on('submit', function (e){
     // the user uses newlines in their post (such as when creating lists or when creating spacing between
     // multiple paragraph).
     var message = $('textarea').val();
-    message = message.replace(/(?:\r\n|\r|\n)/g, '<br />');
-    
+    message = message.replace(/(?:\r\n|\r|\n)/g, '\n');
+
 	function onSubmitError (err){
 		alert('Send failed.');
 	}
