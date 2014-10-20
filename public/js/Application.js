@@ -145,12 +145,7 @@ $('#mainform').on('submit', function (e){
         timeout : 3000
     });
 
-    // Replace the newlines in the user's post with break tags in order to display the post properly right
-    // after the user hits 'Send' on their post. This establishes the proper formatting in situations where
-    // the user uses newlines in their post (such as when creating lists or when creating spacing between
-    // multiple paragraph).
     var message = $('textarea').val();
-    message = message.replace(/(?:\r\n|\r|\n)/g, '\n');
 
 	function onSubmitError (err){
 		alert('Send failed.');
