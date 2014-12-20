@@ -43,6 +43,10 @@ exports.search = function(req, res){
 	User.find({ username: new RegExp('^'+req.query.query, 'i')}, fields, function(err, docs, count){
 		if (err){ console.log(err) };
 
+		// Exclude the user's self from the search.
+		docs = docs.filter(function (e){
+			return e.username !== req.user.username;
+		});
 
 		User.find({ firstName: new RegExp('^'+req.query.query, 'i')}, fields, function(err2, docs2, count){
 			if (err2){ console.log(err2) };
