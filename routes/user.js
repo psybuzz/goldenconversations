@@ -4,8 +4,13 @@ var Q = require('q');
 var Utils = require('./../utils');
 
 exports.create = function(req, res){
-	// TODO(erik): Check that names are at least 2 letters long.  Return an error message if they
-	// are not.
+	// Check that names are at least 2 letters long.
+	if (firstName.length < 2 || lastName.length < 2 || firstName.length > 128 ||
+			lastName.length > 128){
+		resError(res, "Sorry, your name is too short or too long.  Do you have a nickname?");
+		return;
+	}
+
 	var user = new db.models.User({
 		username 			: validator.escape(req.body.email),
 		firstName  			: validator.escape(req.body.first_name),
@@ -18,6 +23,7 @@ exports.create = function(req, res){
 
 	user.save(function(err){
 		if (err){
+			resError(res, "Sorry, I could not create your account.  Try again later?");
 			console.log(err);
 		} else{
 			res.send({status: 'OK', success: true, redirect: '/'});
