@@ -54,7 +54,14 @@ exports.search = function(req, res){
 			User.find({ lastName: new RegExp('^'+req.query.query, 'i')}, fields, function(err3, docs3, count){
 				if (err3){ console.log(err3) };
 
+				// Combine results and exclude the user's self from the search.
 				var result = Utils.union(docs, docs2, docs3);
+				if (req.user && req.user.username){
+					result = result.filter(function (e){
+						return e.username !== req.user.username;
+					});
+				}
+
 				res.send({status: 'OK', success: true, message: result});
 			});
 		});
