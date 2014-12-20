@@ -32,6 +32,11 @@ exports.create = function (req, res){
 		var people = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') === -1});
 		var emails = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') !== -1});
 
+		// Limit from 2 - 6 people, including oneself.
+		if (idOrEmails.length < 1 || idOrEmails.length > 5){
+			resError(res, "Keep it intimate!  Please have 2 - 6 people in a conversation.");
+		}
+
 		// TODO(erik): The emails that don't match up with users should really go into a list of
 		// invited-but-have-not-yet-signed-up global list somewhere. This may require some schema
 		// changes.
