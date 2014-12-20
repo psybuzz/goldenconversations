@@ -2,6 +2,7 @@ var db = require('./../db.js');
 var resError = require('./messaging').resError;
 var Q = require('q');
 var Utils = require('./../utils');
+var validator = require('validator');
 
 exports.create = function(req, res){
 	// TODO(erik): Check that names are at least 2 letters long.  Return an error message if they
