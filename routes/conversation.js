@@ -32,9 +32,10 @@ exports.create = function (req, res){
 		var people = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') === -1});
 		var emails = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') !== -1});
 
-		// Limit from 2 - 6 people, including oneself.
+		// Limit from 1 to 5 people, excluding oneself.
+		idOrEmails = idOrEmails.filter(function(idOrEmail){return idOrEmail !== iceBreakerId});
 		if (idOrEmails.length < 1 || idOrEmails.length > 5){
-			resError(res, "Keep it intimate!  Please have 2 - 6 people in a conversation.");
+			resError(res, "Keep it intimate!  Please have 2 to 6 people in a conversation.");
 		}
 
 		// TODO(erik): The emails that don't match up with users should really go into a list of
