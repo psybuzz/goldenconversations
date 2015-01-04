@@ -19,7 +19,7 @@
 <body>
 	<div class="wrapper">
 		<section class="admin-bar">
-			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{user.firstName}} {{user.lastName}}</a>!</div>
+			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{{user.firstName}}} {{{user.lastName}}}</a>!</div>
 			<div id="log-out"><a href="/logout">Log Out</a></div>
 		</section>
 
@@ -83,23 +83,23 @@
 		<div class="modal_close">x</div>
 		<div id="name" class="info">
 			<span class="label">User:</span>
-			<span class="content">{{user.firstName}} {{user.lastName}}</span>
+			<span class="content">{{{user.firstName}}} {{{user.lastName}}}</span>
 		</div>
 		<div id="email" class="info">
 			<span class="label">Email:</span>
-			<span class="content">{{user.username}}</span>
+			<span class="content">{{{user.username}}}</span>
 		</div>
 		<div id="joined" class="info">
 			<span class="label">Joined:</span>
-			<span class="content">{{user.joined}}</span>
+			<span class="content">{{{user.joined}}}</span>
 		</div>
 		<div id="conversations" class="info">
 			<span class="label">Number of conversations:</span>
-			<span class="content">{{user.userConversations.length}}</span>
+			<span class="content">{{{user.userConversations.length}}}</span>
 		</div>
 		<div id="bio" class="info">
 			<span class="label">Bio:</span>
-			<span class="content">{{user.description}}</span>
+			<span class="content">{{{user.description}}}</span>
 		</div>
 		<div class="btn-fld">
 			<button id="edit-my-info" type="button">Edit</button>
