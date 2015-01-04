@@ -12,6 +12,7 @@
     "q": "^1.0.1",
     "socket.io": "^1.0.6",
     "validator": "~3.16.0",
-    "nodemailer": "^1.1.1"
+    "nodemailer": "^1.1.1",
+    "bcrypt": "~0.8.0"
   }
 }

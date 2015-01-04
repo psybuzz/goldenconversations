@@ -3,15 +3,20 @@ var resError = require('./messaging').resError;
 var Q = require('q');
 var Utils = require('./../utils');
 var validator = require('validator');
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10 /* work factor */);
 
 exports.create = function(req, res){
+	// Hash the password.
+	var passHash = bcrypt.hashSync(req.body.password, salt);
+
 	// TODO(erik): Check that names are at least 2 letters long.  Return an error message if they
 	// are not.
 	var user = new db.models.User({
 		username 			: validator.escape(req.body.email),
 		firstName  			: validator.escape(req.body.first_name),
 		lastName			: validator.escape(req.body.last_name),
-		password			: req.body.password,
+		password			: passHash,
 		joined  			: Date.now(),
 		description			: validator.escape(req.body.description),
 		photo				: req.body.photo,
