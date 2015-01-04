@@ -1,6 +1,7 @@
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var db = require('./db');
+var bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -10,14 +11,13 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!validPassword(user, password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+      bcrypt.compare(password, user.password, function(err, isMatch) {
+          if (isMatch === true && !err) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+      });
     });
   }
 ));
-
-function validPassword(user, password){
-  return user.password === password;
-}
