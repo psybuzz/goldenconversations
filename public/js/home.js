@@ -82,8 +82,8 @@ $('#create-submit-button').click(function (){
 
 // Compile Handlebars template for conversation entries.
 var convoHtml = "<div class='convo'>\
-	<h3><a href='/conversation/{{id}}'>{{question}}</a></h3>\
-	{{#each participants}} <span data-id='{{_id}}' class='name'>{{firstName}} {{lastName}}</span> {{/each}}\
+	<h3><a href='/conversation/{{id}}'>{{{question}}}</a></h3>\
+	{{#each participants}} <span data-id='{{_id}}' class='name'>{{{firstName}}} {{{lastName}}}</span> {{/each}}\
 </div>";
 var convoTemplate = Handlebars.compile(convoHtml);
 
