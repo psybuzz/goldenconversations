@@ -32,6 +32,12 @@ exports.create = function (req, res){
 		var people = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') === -1});
 		var emails = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') !== -1});
 
+		// Limit from 1 to 5 people, excluding oneself.
+		idOrEmails = idOrEmails.filter(function(idOrEmail){return idOrEmail !== iceBreakerId});
+		if (idOrEmails.length < 1 || idOrEmails.length > 5){
+			resError(res, "Keep it intimate!  Please have 2 to 6 people in a conversation.");
+		}
+
 		// TODO(erik): The emails that don't match up with users should really go into a list of
 		// invited-but-have-not-yet-signed-up global list somewhere. This may require some schema
 		// changes.
@@ -49,7 +55,7 @@ exports.create = function (req, res){
 				User.findById(entry, fields, function (err, otherUser){
 					if (err){
 						reject('Could not find other user by id');
-					} else {
+					} else{
 						resolve(otherUser);
 						peopleData[index] = otherUser;
 					}
@@ -105,7 +111,7 @@ exports.create = function (req, res){
 									}
 									d.resolve();	
 								});
-							} else {
+							} else{
 								// If we are inviting someone to a conversation they are already in.
 								d.resolve();
 							}
@@ -144,6 +150,111 @@ exports.create = function (req, res){
 			});
 	});
 };
+
+/**
+ * Action when a user leaves a conversation.
+ */
+exports.leave = function (req, res){
+	if (!req.user || !req.user._id){
+		resError(res, "Access denied.", "/error");
+		return;
+	}
+
+	var convoPromise = Q.promise(function (resolve, reject){
+		Conversation.findById( req.body.conversationId, function (err, convo){
+	    	if (err){
+				reject(res, "Could not find your conversation.");
+				return;
+			}
+			var participantIds = convo.participants.map(function (p){return p._id});
+			var userString = JSON.stringify(req.user._id);
+			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
+			var found = participantIdStrings.indexOf(userString) !== -1;
+
+			if (found){
+				// Remove the user from the convo's participant list.
+				convo.participants.splice(found, 1);
+
+				resolve(convo);
+			} else{
+				reject(res, "Access denied.", "/error");
+			}
+		});
+	}).then(function (convo){
+		return Q.promise(function (resolve, reject){
+			// Remove convo from the user's list of conversations.
+			User.findById(req.user._id, function(err, user){
+				if (err){
+					reject('Could not find user.');
+					return;
+				}
+
+				// Get the index of the conversation to remove within the user's list.
+				var index = user
+						.userConversations
+						.map(function (c){return JSON.stringify(c.conversation)})
+						.indexOf(JSON.stringify(convo._id));
+				if (index !== -1){
+					user.userConversations.splice(index, 1);
+				}
+				user.save(function (saveErr){
+					if (saveErr){
+						reject('Could not save user\'s list after removal');
+					} else{
+						if (convo.participants.length === 0){
+							resolve({removePosts: true, posts: convo.discussion});
+						} else{
+							resolve({removePosts: false});
+						}
+					}
+				});
+			});
+		});
+	}).then(function (options){
+		if (options.removePosts){
+			// Remove associated posts.
+			var posts = options.posts;
+			var removeJobs = posts.map(function (postId){
+				return Q.promise(function (resolve, reject){
+					Post.findByIdAndRemove(postId, function(err){
+						if (err){
+							reject('Could not find post.');
+						} else{
+							resolve();
+						}
+					});
+				});
+			});
+
+			// Remove the conversation itself.
+			var removeConversationPromise = Q.promise(function (resolve, reject){
+				Conversation.findByIdAndRemove(req.body.conversationId, function (err){
+					if (err){
+						reject('Could not remove the empty conversation.');
+					} else{
+						resolve();
+					}
+				});
+			});
+			removeJobs.push(removeConversationPromise);
+
+			return Q.allSettled(removeJobs);
+		} else{
+			return Q.allSettled([]);
+		}
+	}, resError).spread(function (results){
+		// Redirect back to home after leaving a convo.
+		res.send({success: true, redirect: '/home'});
+
+		// Logging for failed posts removed.
+		results.forEach(function (result){
+			if (result.state !== "fulfilled"){
+				console.log('Some dangling posts were not removed!', result.reason);
+			}
+		});
+	});
+};
+
 
 exports.delete = function (req, res){
 	if (!req.user || !req.user._id){
@@ -232,7 +343,7 @@ exports.delete = function (req, res){
 
 		// Remove the actual conversation.
 		Conversation.findByIdAndRemove(req.body.conversationId, function (err){
-			if (err) return resError(res, message);
+			if (err) return resError(res, "Could not remove the conversation.");
 
 			// Redirect back home.
 			res.send({success: true, redirect: '/home'});

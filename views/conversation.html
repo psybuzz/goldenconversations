@@ -21,10 +21,10 @@
 		<div class="menu-bar">
 			<a id="return-home" href="/home">&lt; all conversations</a>
 		</div>
-		<h1 id="question">{{title}}</h1>
+		<h1 id="question">{{{title}}}</h1>
 		<div id="participants">
 			{{#each participants}}
-				<span class='name'>{{firstName}} {{lastName}}</span>
+				<span class='name'>{{{firstName}}} {{{lastName}}}</span>
 			{{/each}}
 		</div>
 
@@ -71,11 +71,12 @@
 	<div class="choice-modal">
 		<div class="modal_close">x</div>
 		<form>
-			 <div class="question"></div>
+			<div class="question"></div>
 			<div class="btn-fld">
-				<button class="yes">Yes</button>
+				<button type="submit" class="yes">Yes</button>
 				<button class="no">No</button>
-		  </div>
+			</div>
+			<input type="hidden" value="{{csrfToken}}" name="_csrf">
 		</form>
 	</div>
 	<script type='text/javascript'>

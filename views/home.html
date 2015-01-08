@@ -19,45 +19,43 @@
 <body>
 	<div class="wrapper">
 		<section class="admin-bar">
-			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{user.firstName}} {{user.lastName}}</a>!</div>
+			<div class="personal-info">Welcome, <a href="#user-modal" id="user-profile" rel="leanModal">{{{user.firstName}}} {{{user.lastName}}}</a>!</div>
 			<div id="log-out"><a href="/logout">Log Out</a></div>
 		</section>
 
 		<section class="home-conversations">
 			<div class="conversation-content">
 				<h2>Conversations</h2>
+				<a href="#new-input-modal" id="new-convo" class="new-thing" rel="leanModal"><span>Start a New Conversation</span></a>
 				<div id="conversation-entries">
 				</div>
-
-				<a href="#"class="load-more">Load More</a>
-
-				<a href="#new-input-modal" id="new-convo" class="new-thing" rel="leanModal"><span>Start a New Conversation</span></a>
 			</div>
 		</section>
 
+		<div class="right-container">
+			<section class="home-groups right-side">
+				<h2>Groups</h2>
+				<div class="groups-content">
+					<h3>The trio show</h3>
+					<h3>Sports</h3>
+					<h3>Inkterns</h3>
+				</div>
+				<a href="#" class="load-more">View All Groups</a>
+				<a href="#" class="new-thing"><span>Create a New Group</span></a>
+			</section>
+
+			<section class="home-contacts right-side">
+				<h2>Contacts</h2>
+				<div class="contacts-content">
+				</div>
+			</section >
 		
-		<section class="home-groups right-side">
-			<h2>Groups</h2>
-			<div class="groups-content">
-				<h3>The trio show</h3>
-				<h3>Sports</h3>
-				<h3>Inkterns</h3>
-			</div>
-			<a href="#" class="load-more">View All Groups</a>
-			<a href="#" class="new-thing"><span>Create a New Group</span></a>
-		</section>
-
-		<section class="home-contacts right-side">
-			<h2>Contacts</h2>
-			<div class="contacts-content">
-			</div>
-		</section >
-	
-		<section class="home-mvp right-side">
-			<a href="halloffame">Hall of Fame</a>
-			<div class="mvp-content">
-			</div>
-		</section>
+			<section class="home-mvp right-side">
+				<a href="halloffame">Hall of Fame</a>
+				<div class="mvp-content">
+				</div>
+			</section>
+		</div>
 
 	</div>
 	<div id="new-input-modal">
@@ -85,23 +83,23 @@
 		<div class="modal_close">x</div>
 		<div id="name" class="info">
 			<span class="label">User:</span>
-			<span class="content">{{user.firstName}} {{user.lastName}}</span>
+			<span class="content">{{{user.firstName}}} {{{user.lastName}}}</span>
 		</div>
 		<div id="email" class="info">
 			<span class="label">Email:</span>
-			<span class="content">{{user.username}}</span>
+			<span class="content">{{{user.username}}}</span>
 		</div>
 		<div id="joined" class="info">
 			<span class="label">Joined:</span>
-			<span class="content">{{user.joined}}</span>
+			<span class="content">{{{user.joined}}}</span>
 		</div>
 		<div id="conversations" class="info">
 			<span class="label">Number of conversations:</span>
-			<span class="content">{{user.userConversations.length}}</span>
+			<span class="content">{{{user.userConversations.length}}}</span>
 		</div>
 		<div id="bio" class="info">
 			<span class="label">Bio:</span>
-			<span class="content">{{user.description}}</span>
+			<span class="content">{{{user.description}}}</span>
 		</div>
 		<div class="btn-fld">
 			<button id="edit-my-info" type="button">Edit</button>

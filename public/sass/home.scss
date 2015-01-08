@@ -13,12 +13,12 @@ html,body {
 	margin: 0 auto;
 	max-width: 1000px;
 	height: 90%;
-	padding: 1.2rem 0;
+	padding: 0 0 1.2rem;
 	padding-left: 200px;
 
 	@media screen and (max-width: $max-display) {
 		  	max-width: 100%;
-		  	padding: 0.8rem 0;
+		  	padding: 0 0 0.8rem;
 	}
 
 	@media screen and (min-width: $super-wide) {
@@ -26,7 +26,7 @@ html,body {
 	}
 
 	h2 {
-		margin-top: 2.6rem;
+		margin-top: 5.6rem;
 		font-size: 1.2rem;
 		color: $main;
 		font-family: $sans-stack;
@@ -83,13 +83,17 @@ html,body {
 	}
 
 	.admin-bar {
-		margin-top: 1rem;
+		padding: 2rem 0 1rem;
+		background-color: white;
+		position: fixed;
 		color: $main;
 		font-family: $sans-stack;
 		float: none;
 		display: block;
+		width: 100%;
 		padding-left: $shape-padding-left;
 		margin-bottom: 1rem;
+		z-index: 100;
 		@media screen and (max-width: $max-display) {
 			padding-left: 2%;
 		  	width: 96%;
@@ -106,13 +110,14 @@ html,body {
 		}
 	}
 
-	.right-side{
-		float: right;
-		clear: right;
+	.right-container {
+		position: fixed;
 		width: 33%;
 		margin-left: 2%;
+		right: 0;
 		@media screen and (max-width: $max-display) {
-		  	float: none;;
+			position: static;
+		  	float: none;
 		  	width: 80%;
 		  	margin-right: 2%;
 		  	box-sizing: border-box;
@@ -123,9 +128,17 @@ html,body {
 		}
 	}
 
+	.right-side{
+		float: right;
+		clear: right;
+		width: 100%;
+		
+		
+	}
+
 	.home-conversations {
 		clear: both;
-		width: 64%;
+		width: 55%;
 		padding-left: $shape-padding-left;
 		@media screen and (max-width: $max-display) {
 			padding: 2%;
@@ -159,6 +172,9 @@ html,body {
 	}
 
 	.home-contacts{
+		h2 {
+			margin-top: 3rem;
+		}
 		.recent-name {
 			display: block;
 			font-size: 0.9rem;

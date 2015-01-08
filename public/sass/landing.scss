@@ -12,11 +12,14 @@ header {
 
 	div.header-inner {
 		max-width: $homepage-width;
+		display: block;
+		height: 34px;
 		margin: 0 auto;
 		@media screen and (max-width: $homepage-width) {
 			padding: 0 10px;
 		}
 		h1 {
+			float: left;
 			margin: 0;
 			font-size: 1.6rem;
 			font-family: $sans-stack;
@@ -25,12 +28,14 @@ header {
 		}
 
 		.header-buttons {
+			display: inline-block;
 			float: right;
 		}
 
 		a {
 			font-family: $sans-stack;
 			font-weight: 400;
+			font-size: 0.95rem;
 			border-radius: 2px;
 			padding: 6px 26px; 
 			display: inline-block;
@@ -41,7 +46,7 @@ header {
 				color: $dark-black;
 			}
 			@media screen and (max-width: $mobile-arbitrary) {
-				font-size: 0.95rem;
+				font-size: 0.89rem;
 			}
 		}
 
