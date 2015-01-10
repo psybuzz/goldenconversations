@@ -14,34 +14,38 @@ exports.create = function(req, res){
 
 	// Check that the provided information is valid.
 	if (!validator.isEmail(email)){
-		return resError(res, "Please enter a valid email address as your username.");
+		return resError(res, "INVALID_EMAIL");
 	} else if (!validator.isLength(firstName, 2, 128) || !validator.isLength(lastName, 2, 128)){
-		return resError(res, "Sorry, your name is too short or too long.  " +
-				"Do you have a nickname between 2 and 128 characters?");
+		return resError(res, "BAD_NAME_LENGTH");
 	}
 
-	// Hash the password.
-	var passHash = bcrypt.hashSync(req.body.password, salt);
+	// Check for another pre-existing user with the same email.
+	User.find({ username: validator.escape(email) }, 'username', function(err, docs){
+		// Stop the request if there was a DB error of it another user has the same username.
+		if (err) return resError(res, "DB_FAILURE");
+		if (docs.length > 0) return resError(res, "EXISTING_USER");
 
-	// TODO(erik): Check that names are at least 2 letters long.  Return an error message if they
-	// are not.
-	var user = new db.models.User({
-		username 			: validator.escape(email),
-		firstName  			: validator.escape(firstName),
-		lastName			: validator.escape(lastName),
-		password			: passHash,
-		joined  			: Date.now(),
-		description			: validator.escape(description),
-		photo				: req.body.photo,
-	});
+		// Hash the password.
+		var passHash = bcrypt.hashSync(req.body.password, salt);
 
-	user.save(function(err){
-		if (err){
-			resError(res, "Sorry, I could not create your account.  Try again later?");
-			console.log(err);
-		} else{
-			res.send({status: 'OK', success: true, redirect: '/'});
-		}
+		var user = new db.models.User({
+			username 			: validator.escape(email),
+			firstName  			: validator.escape(firstName),
+			lastName			: validator.escape(lastName),
+			password			: passHash,
+			joined  			: Date.now(),
+			description			: validator.escape(description),
+			photo				: req.body.photo,
+		});
+
+		user.save(function(err){
+			if (err){
+				resError(res, "Sorry, I could not create your account.  Try again later?");
+				console.log(err);
+			} else{
+				res.send({status: 'OK', success: true, redirect: '/'});
+			}
+		});
 	});
 };
 
