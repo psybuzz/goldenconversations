@@ -13,7 +13,7 @@ exports.create = function(req, res){
 	var description = req.body.description;
 
 	// Check that the provided information is valid.
-	if (!validator.isEmail(email)){
+	if (!validator.isEmail(email) || !validator.normalizeEmail(email)){
 		return resError(res, "INVALID_EMAIL");
 	} else if (!validator.isLength(firstName, 2, 128) || !validator.isLength(lastName, 2, 128)){
 		return resError(res, "BAD_NAME_LENGTH");
@@ -28,8 +28,11 @@ exports.create = function(req, res){
 		// Hash the password.
 		var passHash = bcrypt.hashSync(req.body.password, salt);
 
+		// Normalize the email.
+		var cleanEmail = validator.normalizeEmail(validator.escape(email));
+
 		var user = new db.models.User({
-			username 			: validator.escape(email),
+			username 			: cleanEmail,
 			firstName  			: validator.escape(firstName),
 			lastName			: validator.escape(lastName),
 			password			: passHash,
