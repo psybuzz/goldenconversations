@@ -265,7 +265,28 @@ exports.archive = function (req, res){
 	}
 
 	// Search through the user's conversation list until the conversation with the correct
-	// id is found. Modify the hallOfFame boolean associated with this conversation to be true.
+	// id is found. 
+	User.findById( req.user._id, function (err, user){
+		if (err){
+			reject(res, "Could not find the user.");
+			return;
+		}
+
+		// Save the id of the conversation that we want to archive.
+		var targetConversationId = JSON.stringify(req.body.conversationId);
+
+		// Find the index at which the target conversation exists amongst all of the user's conversations.
+		var conversationIds = user.userConversations.map(function(p) {return p.conversation});
+		var conversationIdStrings = conversationIds.map(function(id) {return JSON.stringify(id)});
+		var found = conversationIdStrings.indexOf(targetConversationId) !== -1;
+
+		// Modify the hallOfFame boolean associated with the conversation to true if it exists.
+		if (found) {
+			// Something along the lines of: user.userConversations[found].hallOfFame == true;
+		} else{
+			reject(res, "Access denied.", "/error");
+		}
+	});
 };
 
 exports.delete = function (req, res){
