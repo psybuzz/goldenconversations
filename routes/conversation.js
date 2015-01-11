@@ -255,6 +255,18 @@ exports.leave = function (req, res){
 	});
 };
 
+/**
+ * Action when a user archives a conversation.
+ */
+exports.archive = function (req, res){
+	if (!req.user || !req.user._id){
+		resError(res, "Access denied.", "/error");
+		return;
+	}
+
+	// Search through the user's conversation list until the conversation with the correct
+	// id is found. Modify the hallOfFame boolean associated with this conversation to be true.
+};
 
 exports.delete = function (req, res){
 	if (!req.user || !req.user._id){

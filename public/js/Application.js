@@ -64,9 +64,35 @@ $('.choice-modal button[type=submit]').click(function (evt){
                         modal.style.display = 'none';
                         overlay.style.display = 'none';
                     }
-                });
+                }
+        );
     } else if (action === 'archive'){
-        // TODO(erik): Implement archiving functionality.
+        // Show placeholder waiting text.
+        $('.choice-modal .question').text('Archiving conversation...');
+
+        // Make the request to archive.
+        $.post(
+                '/conversation/archive',
+                {
+                    conversationId: conversationId, 
+                    _csrf: token
+                },
+                function (data){
+                    // Restore the text.
+                    $('.choice-modal .question').text(
+                            'Are you sure that you want to archive this conversation?');
+
+                    if (data.success){
+                        window.location.href = '/home';
+                    } else{
+                        alert('Sorry, an error occurred when archiving.  Try again in a bit.');
+
+                        // Remove the modal.
+                        modal.style.display = 'none';
+                        overlay.style.display = 'none';
+                    }
+                }
+        );
     } else{
         // Remove the modal.
         modal.style.display = 'none';
