@@ -169,6 +169,8 @@ exports.leave = function (req, res){
 			var participantIds = convo.participants.map(function (p){return p._id});
 			var userString = JSON.stringify(req.user._id);
 			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
+			// Should this 'found' variable definition be changed to the equivalent 'foundIndex' variable
+			// definitions used below in 'exports.archive'?
 			var found = participantIdStrings.indexOf(userString) !== -1;
 
 			if (found){
@@ -268,7 +270,7 @@ exports.archive = function (req, res){
 	// id is found. 
 	User.findById( req.user._id, function (err, user){
 		if (err){
-			reject(res, "Could not find the user.");
+			resError(res, "Could not find the user.");
 			return;
 		}
 
@@ -278,11 +280,46 @@ exports.archive = function (req, res){
 		// Find the index at which the target conversation exists amongst all of the user's conversations.
 		var conversationIds = user.userConversations.map(function(p) {return p.conversation});
 		var conversationIdStrings = conversationIds.map(function(id) {return JSON.stringify(id)});
-		var found = conversationIdStrings.indexOf(targetConversationId) !== -1;
+		var foundIndex = conversationIdStrings.indexOf(targetConversationId);
 
 		// Modify the hallOfFame boolean associated with the conversation to true if it exists.
-		if (found) {
-			// Something along the lines of: user.userConversations[found].hallOfFame == true;
+		if (foundIndex !== -1) {
+			user.userConversations[foundIndex].hallOfFame = true;
+
+			// Save the modified user object.
+			user.save(function(err){
+				if (err) return resError(res, "Could not save user to database.");
+
+				// If there are no errors, proceed to update the isThrilled boolean of the user
+				// in the conversation object to true and save this object.
+				Conversation.findById(targetConversationId, function(err, convo){
+					if (err) return resError(res, "Could not find conversation");
+
+					// Save the id of the user whose isThrilled boolean we want to set as true.
+					var userString = JSON.stringify(req.user._id);
+
+					// Find the index at which the target user exists amongst all of the conversation's participants.
+					var participantIds = convo.participants.map(function (p){return p._id});
+					var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
+					var userIndex = participantIdStrings.indexOf(userString);
+
+					// Modify the isThrilled boolean associated with the appropriate participant if 
+					// he/she exists.
+					if (userIndex !== -1){
+						// Update the user's isThrilled boolean.
+						convo.participants[userIndex].isThrilled = true;
+
+						// Save the modified conversation.
+						convo.save(function(err){
+							if (err) return resError(res, "Could not save conversation to database.");
+
+							// After everything is done, send the response back to the user with success.
+							res.send({success: true, redirect: '/home'});
+						});
+					} else{
+						reject(res, "Access denied.", "/error");
+					}
+				});
 		} else{
 			reject(res, "Access denied.", "/error");
 		}
