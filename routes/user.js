@@ -21,7 +21,7 @@ exports.create = function(req, res){
 
 	// Check for another pre-existing user with the same email.
 	User.find({ username: validator.escape(email) }, 'username', function(err, docs){
-		// Stop the request if there was a DB error of it another user has the same username.
+		// Stop the request if there was a DB error or if another user has the same username.
 		if (err) return resError(res, "DB_FAILURE");
 		if (docs.length > 0) return resError(res, "EXISTING_USER");
 
