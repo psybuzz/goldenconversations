@@ -170,11 +170,11 @@ exports.leave = function (req, res){
 			var participantIds = convo.participants.map(function (p){return p._id});
 			var userString = JSON.stringify(req.user._id);
 			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
-			var found = participantIdStrings.indexOf(userString) !== -1;
+			var foundIndex = participantIdStrings.indexOf(userString);
 
-			if (found){
+			if (foundIndex !== -1){
 				// Remove the user from the convo's participant list.
-				convo.participants.splice(found, 1);
+				convo.participants.splice(foundIndex, 1);
 
 				// Modifying the participants is an operation that requires the convo to be saved
 				// again.
