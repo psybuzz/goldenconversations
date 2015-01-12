@@ -166,16 +166,25 @@ exports.leave = function (req, res){
 				reject(res, "Could not find your conversation.");
 				return;
 			}
+
 			var participantIds = convo.participants.map(function (p){return p._id});
 			var userString = JSON.stringify(req.user._id);
 			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
-			var found = participantIdStrings.indexOf(userString) !== -1;
+			var foundIndex = participantIdStrings.indexOf(userString);
 
-			if (found){
+			if (foundIndex !== -1){
 				// Remove the user from the convo's participant list.
-				convo.participants.splice(found, 1);
+				convo.participants.splice(foundIndex, 1);
 
-				resolve(convo);
+				// Modifying the participants is an operation that requires the convo to be saved
+				// again.
+				convo.save(function (err){
+					if (err){
+						reject(res, "Unable to update the conversation.");
+					} else{
+						resolve(convo);
+					}
+				});
 			} else{
 				reject(res, "Access denied.", "/error");
 			}
@@ -185,7 +194,7 @@ exports.leave = function (req, res){
 			// Remove convo from the user's list of conversations.
 			User.findById(req.user._id, function(err, user){
 				if (err){
-					reject('Could not find user.');
+					reject(res, 'Could not find user.');
 					return;
 				}
 
@@ -199,7 +208,7 @@ exports.leave = function (req, res){
 				}
 				user.save(function (saveErr){
 					if (saveErr){
-						reject('Could not save user\'s list after removal');
+						reject(res, 'Could not save user\'s list after removal');
 					} else{
 						if (convo.participants.length === 0){
 							resolve({removePosts: true, posts: convo.discussion});
@@ -218,7 +227,7 @@ exports.leave = function (req, res){
 				return Q.promise(function (resolve, reject){
 					Post.findByIdAndRemove(postId, function(err){
 						if (err){
-							reject('Could not find post.');
+							reject(res, 'Could not find post.');
 						} else{
 							resolve();
 						}
@@ -230,7 +239,7 @@ exports.leave = function (req, res){
 			var removeConversationPromise = Q.promise(function (resolve, reject){
 				Conversation.findByIdAndRemove(req.body.conversationId, function (err){
 					if (err){
-						reject('Could not remove the empty conversation.');
+						reject(res, 'Could not remove the empty conversation.');
 					} else{
 						resolve();
 					}
