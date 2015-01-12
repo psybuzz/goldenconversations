@@ -169,8 +169,6 @@ exports.leave = function (req, res){
 			var participantIds = convo.participants.map(function (p){return p._id});
 			var userString = JSON.stringify(req.user._id);
 			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
-			// Should this 'found' variable definition be changed to the equivalent 'foundIndex' variable
-			// definitions used below in 'exports.archive'?
 			var found = participantIdStrings.indexOf(userString) !== -1;
 
 			if (found){
@@ -269,7 +267,7 @@ exports.archive = function (req, res){
 	// Search through the user's conversation list until the conversation with the correct
 	// id is found. 
 	User.findById( req.user._id, function (err, user){
-		if (err){
+		if (err || !user){
 			resError(res, "Could not find the user.");
 			return;
 		}
@@ -292,8 +290,8 @@ exports.archive = function (req, res){
 
 				// If there are no errors, proceed to update the isThrilled boolean of the user
 				// in the conversation object to true and save this object.
-				Conversation.findById(targetConversationId, function(err, convo){
-					if (err) return resError(res, "Could not find conversation");
+				Conversation.findById(req.body.conversationId, function(err, convo){
+					if (err || !convo) return resError(res, "Could not find conversation");
 
 					// Save the id of the user whose isThrilled boolean we want to set as true.
 					var userString = JSON.stringify(req.user._id);
@@ -320,6 +318,7 @@ exports.archive = function (req, res){
 						reject(res, "Access denied.", "/error");
 					}
 				});
+			});
 		} else{
 			reject(res, "Access denied.", "/error");
 		}
