@@ -31,6 +31,10 @@ $('#signup').on('submit', function (e){
             } else if (data.status === 'EXISTING_USER'){
                 alert("It seems there is already an account for this email!  " +
                         "If you are locked out, contact goldenconversations@gmail.com");
+            } else if (data.status === 'BAD_PASS_LENGTH'){
+                alert("Please make sure your password is at least 8 characters.");
+            } else if (data.status === 'ALPHANUMERIC_NAME'){
+                alert("Please make sure your name doesn't contain strange symbols.");
             } else{
                 alert("Something went wrong when sending the information.  Try again in a bit!");
             }

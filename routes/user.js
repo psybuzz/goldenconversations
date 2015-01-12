@@ -11,12 +11,17 @@ exports.create = function(req, res){
 	var firstName = req.body.first_name;
 	var lastName = req.body.last_name;
 	var description = req.body.description;
+	var password = req.body.password;
 
 	// Check that the provided information is valid.
-	if (!validator.isEmail(email) || !validator.normalizeEmail(email)){
+	if (!validator.isAlphanumeric(firstName) || !validator.isAlphanumeric(lastName)){
+		return resError(res, "ALPHANUMERIC_NAME");
+	} else if (!validator.isEmail(email) || !validator.normalizeEmail(email)){
 		return resError(res, "INVALID_EMAIL");
 	} else if (!validator.isLength(firstName, 2, 128) || !validator.isLength(lastName, 2, 128)){
 		return resError(res, "BAD_NAME_LENGTH");
+	} else if (!validator.isLength(password, 8, 128)){
+		return resError(res, "BAD_PASS_LENGTH");
 	}
 
 	// Check for another pre-existing user with the same email.
@@ -26,7 +31,7 @@ exports.create = function(req, res){
 		if (docs.length > 0) return resError(res, "EXISTING_USER");
 
 		// Hash the password.
-		var passHash = bcrypt.hashSync(req.body.password, salt);
+		var passHash = bcrypt.hashSync(password, salt);
 
 		// Normalize the email.
 		var cleanEmail = validator.normalizeEmail(validator.escape(email));
