@@ -1,5 +1,3 @@
-var resError = require('./messaging').resError;
-
 /*
  * GET home page.
  */

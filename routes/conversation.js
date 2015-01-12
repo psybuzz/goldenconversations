@@ -21,7 +21,7 @@ exports.create = function (req, res){
 	var iceBreakerId = req.body.iceBreaker;
 
 	User.findById(iceBreakerId, function (err, user){
-    	if (err) resError(res, "Could not find user.");
+    	if (err || !user) resError(res, "Could not find user.");
 
     	/*
     	 * We fill in the firstName, lastName here on the server, so the client request only needs
@@ -53,7 +53,7 @@ exports.create = function (req, res){
 				var fields = 'username firstName lastName';
 
 				User.findById(entry, fields, function (err, otherUser){
-					if (err){
+					if (err || !otherUser){
 						reject('Could not find other user by id');
 					} else{
 						resolve(otherUser);
@@ -162,7 +162,7 @@ exports.leave = function (req, res){
 
 	var convoPromise = Q.promise(function (resolve, reject){
 		Conversation.findById( req.body.conversationId, function (err, convo){
-	    	if (err){
+	    	if (err || !convo){
 				reject(res, "Could not find your conversation.");
 				return;
 			}
@@ -184,7 +184,7 @@ exports.leave = function (req, res){
 		return Q.promise(function (resolve, reject){
 			// Remove convo from the user's list of conversations.
 			User.findById(req.user._id, function(err, user){
-				if (err){
+				if (err || !user){
 					reject('Could not find user.');
 					return;
 				}
@@ -264,7 +264,7 @@ exports.delete = function (req, res){
 
 	var convoPromise = Q.promise(function (resolve, reject){
 		Conversation.findById( req.body.conversationId, function (err, convo){
-	    	if (err){
+	    	if (err || !convo){
 				reject(res, "Could not find your conversation.");
 				return;
 			}
@@ -393,7 +393,7 @@ exports.allPosts = function (req, res){
 	}
 
 	Conversation.findById(req.query.conversationId, function (err, convo){
-		if (err){
+		if (err || !convo){
 			resError(res, "Could not find posts for your conversation.");
 		}
 		var participantIds = convo.participants.map(function (p){
@@ -416,7 +416,7 @@ exports.allPosts = function (req, res){
 		var jobs = convo.discussion.map(function (postId, index){
 			var d = Q.defer();
 			Post.findById(postId, function (err, post){
-				if (err){
+				if (err || !post){
 					d.reject();
 					return;
 				}

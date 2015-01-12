@@ -86,7 +86,7 @@ exports.search = function(req, res){
 exports.findById = function(id) {
 	var d = Q.defer();
 	User.findById(id, function(err, user){
-		if (err){
+		if (err || !user){
 			resError("internal", "Could not find user by id");
 			d.reject();
 			return;
