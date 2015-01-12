@@ -165,11 +165,11 @@ exports.resetPasswordPost = function (req, res){
  * or not the email notification was successfully sent.
  *
  * @param  {Object} options 			The configuration options.
- *      @param  {UserSchema} user      	The user to update.
- *      @param  {String} emailSubject 	The email subject line.
- *      @param  {String} emailHTML 		The email HTML to be sent.
- *      @param  {Function} onSuccess 	The success callback.
- *      @param  {Function} onFailure 	The failure callback.
+ *      @param  {UserSchema} user		The user to update.
+ *      @param  {String} emailSubject	The email subject line.
+ *      @param  {String} emailHTML		The email HTML to be sent.
+ *      @param  {Function} onSuccess	The success callback.
+ *      @param  {Function} onFailure	The failure callback.
  */
 function saveAndNotifyUser (options){
 	var user = options.user;
