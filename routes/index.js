@@ -94,6 +94,19 @@ exports.conversation = function (req, res) {
 	});
 }
 
+exports.account = function (req, res){
+	if (!req.user || !req.user._id) {
+		res.render('error', {
+			title: "Looks like you're not logged in!"
+		});
+		return;
+	} else{
+		res.render('account', {
+			user: req.user
+		});
+	}
+}
+
 exports.error404 = function(req, res) {
 	res.render('error', {
 		title: 'Sorry, we could not find what you were looking for.',

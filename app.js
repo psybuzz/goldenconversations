@@ -111,6 +111,7 @@ app.get('/home', routes.home);
 app.get('/conversation/:id', routes.conversation);
 app.get('/halloffame', routes.halloffame);
 app.get('/group/:id', routes.group);
+app.get('/account', routes.account);
 
 app.get('/forgot', password.forgotPassword);
 app.post('/forgot', password.forgotPasswordRequest);

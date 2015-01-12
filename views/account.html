@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--[if lt IE 9]>
+	<script src="dist/html5shiv.js"></script>
+	<![endif]-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />	
+	<title>Meaningful - Forgot Password</title>
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700|Merriweather:400,300italic,300,700,900' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+</head>
+<body>
+	<div class="wrapper">
+		<a href="/home">< back to home</a>
+		<div class="centered">
+			<h2>Account: {{user.username}}</h2>
+			<div class="changeContainer">
+				<form id='passwordForm' action="/reset" method="POST">
+					<input type="hidden" name="_csrf" value={{csrfToken}} />
+					<input type="password" placeholder="New password" name="newPassword">
+					<input type="password" placeholder="Re-enter new password" name="newPasswordConfirm" required>
+					<input class="submit" type="submit" value="Change password"></input>
+				</form>
+			</div>
+			<!--
+			<div class="changeContainer">
+				<form id='submitForm' action="/" method="POST">
+					<input type="hidden" name="_csrf" value={{csrfToken}} />
+					<input type="password" placeholder="{{user.firstName}}" name="firstName">
+					<input type="password" placeholder="{{user.lastName}}" name="lastName">
+					<input class="submit" type="submit" value="Change name"></input>
+				</form>
+			</div>
+			<div class="changeContainer">
+				<form id='submitForm' action="/" method="POST">
+					<input type="hidden" name="_csrf" value={{csrfToken}} />
+					<input class="submit" style="background: pink; border: none" type="submit" value="Delete account"></input>
+				</form>
+			</div>
+		-->
+			<br>
+			<span class="message"></span>
+		</div>
+		<div class="centered">
+			<br><br>
+			<span>Need further assistance?  Contact <a href="mailto:goldenconversations@gmail.com">us by email</a><br>We'll do our best to help!</span>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/js/account.js"></script>
+</body>
+</html>

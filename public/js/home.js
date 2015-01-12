@@ -29,6 +29,10 @@ var searchAndLoadNamesDebounced = _.debounce(searchAndLoadNames, 400);
 
 var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+$('#edit-my-info').click(function (){
+	window.location.href = '/account';
+});
+
 $('#people_input').keyup(function (e){
 	if (e.keyCode === 13){		// If the enter key was pressed
 		var q = $('#people_input').val();
