@@ -260,8 +260,7 @@ exports.leave = function (req, res){
  */
 exports.archive = function (req, res){
 	if (!req.user || !req.user._id){
-		resError(res, "Access denied.", "/error");
-		return;
+		return resError(res, "Access denied.", "/error");
 	}
 
 	// Search through the user's conversation list until the conversation with the correct
@@ -315,12 +314,12 @@ exports.archive = function (req, res){
 							res.send({success: true, redirect: '/home'});
 						});
 					} else{
-						reject(res, "Access denied.", "/error");
+						return resError(res, "Access denied.", "/error");
 					}
 				});
 			});
 		} else{
-			reject(res, "Access denied.", "/error");
+			return resError(res, "Access denied.", "/error");
 		}
 	});
 };
