@@ -267,8 +267,7 @@ exports.archive = function (req, res){
 	// id is found. 
 	User.findById( req.user._id, function (err, user){
 		if (err || !user){
-			resError(res, "Could not find the user.");
-			return;
+			return resError(res, "Could not find the user.");
 		}
 
 		// Save the id of the conversation that we want to archive.
