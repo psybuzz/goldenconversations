@@ -35,7 +35,7 @@ $passwordForm.submit(function (evt){
 				}, 3000);
 			}
 
-		} else {
+		} else{
 			// Display the failure message.
 			if (data.status === 'INVALID_TOKEN'){
 				$message.html(STATUS_MESSAGE.FAILURE_TOKEN);
@@ -59,8 +59,8 @@ $passwordForm.submit(function (evt){
 var STATUS_MESSAGE = {
 	WAITING: 'Please wait, as we reset your password...',
 	SUCCESS: 'Thank you.<br>Your Meaningful account password has been reset!',
-	FAILURE_DB: 'Sorry, something went wrong, and we were unable to reset your password.  Please try submitting the form again.',
-	FAILURE_TOKEN: 'Sorry, it looks like the password reset email has expired.  Please request another reset email.',
+	FAILURE_DB: 'Sorry, something went wrong and we were unable to reset your password. Please try submitting the form again.',
+	FAILURE_TOKEN: 'Sorry, it looks like the password reset email has expired. Please request another reset email.',
 	FAILURE_MISMATCH: 'Please make sure that the two passwords match.',
-	FAILURE_NETWORK: 'It looks like your computer cannot reach our server!  Could you try refreshing the page?'
+	FAILURE_NETWORK: 'It looks like your computer cannot reach our server! Could you try refreshing the page?'
 };

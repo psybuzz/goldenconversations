@@ -19,7 +19,7 @@ $submitForm.submit(function (evt){
 			// Display the success message.
 			$message.html(STATUS_MESSAGE.SUCCESS);
 			$submitForm.slideUp();
-		} else {
+		} else{
 			// Display the failure message.
 			$message.html(STATUS_MESSAGE.FAILURE);
 		}
@@ -35,7 +35,7 @@ $submitForm.submit(function (evt){
 
 // Define status messages to be displayed.
 var STATUS_MESSAGE = {
-	WAITING: 'Please wait, as we send you a reset email...',
+	WAITING: 'Please wait as we send you a reset email...',
 	SUCCESS: 'Thank you.<br>Please check your email inbox for further instructions on how to re-activate your Meaningful account!',
-	FAILURE: 'Sorry, something went wrong when requesting a password reset email.  Please try submitting the form again.'
+	FAILURE: 'Sorry, something went wrong when requesting a password reset email. Please try submitting the form again.'
 };
