@@ -20,8 +20,8 @@ exports.landing = function(req, res){
 };
 
 /**
- * Renders the home page with a list of conversations if the user is logged in,
- * otherwise, it redirects to the landing page.
+ * Renders the home page with a list of conversations if the user is logged in.
+ * Otherwise, it redirects to the landing page.
  */
 exports.home = function(req, res){
 	if (!req.user){
@@ -49,7 +49,7 @@ exports.group = function(req, res){
 };
 
 /**
- * Renders the hall of fame page.
+ * Renders the Hall of Fame page.
  */
 exports.halloffame = function(req, res){
 	if (!req.user){
