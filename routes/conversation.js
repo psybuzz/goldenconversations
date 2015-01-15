@@ -166,16 +166,25 @@ exports.leave = function (req, res){
 				reject(res, "Could not find your conversation.");
 				return;
 			}
+
 			var participantIds = convo.participants.map(function (p){return p._id});
 			var userString = JSON.stringify(req.user._id);
 			var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
-			var found = participantIdStrings.indexOf(userString) !== -1;
+			var foundIndex = participantIdStrings.indexOf(userString);
 
-			if (found){
+			if (foundIndex !== -1){
 				// Remove the user from the convo's participant list.
-				convo.participants.splice(found, 1);
+				convo.participants.splice(foundIndex, 1);
 
-				resolve(convo);
+				// Modifying the participants is an operation that requires the convo to be saved
+				// again.
+				convo.save(function (err){
+					if (err){
+						reject(res, "Unable to update the conversation.");
+					} else{
+						resolve(convo);
+					}
+				});
 			} else{
 				reject(res, "Access denied.", "/error");
 			}
@@ -185,7 +194,7 @@ exports.leave = function (req, res){
 			// Remove convo from the user's list of conversations.
 			User.findById(req.user._id, function(err, user){
 				if (err || !user){
-					reject('Could not find user.');
+					reject(res, 'Could not find user.');
 					return;
 				}
 
@@ -199,7 +208,7 @@ exports.leave = function (req, res){
 				}
 				user.save(function (saveErr){
 					if (saveErr){
-						reject('Could not save user\'s list after removal');
+						reject(res, 'Could not save user\'s list after removal');
 					} else{
 						if (convo.participants.length === 0){
 							resolve({removePosts: true, posts: convo.discussion});
@@ -218,7 +227,7 @@ exports.leave = function (req, res){
 				return Q.promise(function (resolve, reject){
 					Post.findByIdAndRemove(postId, function(err){
 						if (err){
-							reject('Could not find post.');
+							reject(res, 'Could not find post.');
 						} else{
 							resolve();
 						}
@@ -230,7 +239,7 @@ exports.leave = function (req, res){
 			var removeConversationPromise = Q.promise(function (resolve, reject){
 				Conversation.findByIdAndRemove(req.body.conversationId, function (err){
 					if (err){
-						reject('Could not remove the empty conversation.');
+						reject(res, 'Could not remove the empty conversation.');
 					} else{
 						resolve();
 					}
@@ -255,6 +264,73 @@ exports.leave = function (req, res){
 	});
 };
 
+/**
+ * Action when a user archives a conversation.
+ */
+exports.archive = function (req, res){
+	if (!req.user || !req.user._id){
+		return resError(res, "Access denied.", "/error");
+	}
+
+	// Search through the user's conversation list until the conversation with the correct
+	// id is found. 
+	User.findById( req.user._id, function (err, user){
+		if (err || !user){
+			return resError(res, "Could not find the user.");
+		}
+
+		// Save the id of the conversation that we want to archive.
+		var targetConversationId = JSON.stringify(req.body.conversationId);
+
+		// Find the index at which the target conversation exists amongst all of the user's conversations.
+		var conversationIds = user.userConversations.map(function(p) {return p.conversation});
+		var conversationIdStrings = conversationIds.map(function(id) {return JSON.stringify(id)});
+		var foundIndex = conversationIdStrings.indexOf(targetConversationId);
+
+		// Modify the hallOfFame boolean associated with the conversation to true if it exists.
+		if (foundIndex !== -1) {
+			user.userConversations[foundIndex].hallOfFame = true;
+
+			// Save the modified user object.
+			user.save(function(err){
+				if (err) return resError(res, "Could not save user to database.");
+
+				// If there are no errors, proceed to update the isThrilled boolean of the user
+				// in the conversation object to true and save this object.
+				Conversation.findById(req.body.conversationId, function(err, convo){
+					if (err || !convo) return resError(res, "Could not find conversation");
+
+					// Save the id of the user whose isThrilled boolean we want to set as true.
+					var userString = JSON.stringify(req.user._id);
+
+					// Find the index at which the target user exists amongst all of the conversation's participants.
+					var participantIds = convo.participants.map(function (p){return p._id});
+					var participantIdStrings = participantIds.map(function (id){return JSON.stringify(id)});
+					var userIndex = participantIdStrings.indexOf(userString);
+
+					// Modify the isThrilled boolean associated with the appropriate participant if 
+					// he/she exists.
+					if (userIndex !== -1){
+						// Update the user's isThrilled boolean.
+						convo.participants[userIndex].isThrilled = true;
+
+						// Save the modified conversation.
+						convo.save(function(err){
+							if (err) return resError(res, "Could not save conversation to database.");
+
+							// After everything is done, send the response back to the user with success.
+							res.send({success: true, redirect: '/home'});
+						});
+					} else{
+						return resError(res, "Access denied.", "/error");
+					}
+				});
+			});
+		} else{
+			return resError(res, "Access denied.", "/error");
+		}
+	});
+};
 
 exports.delete = function (req, res){
 	if (!req.user || !req.user._id){
