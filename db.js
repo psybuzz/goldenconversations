@@ -35,7 +35,9 @@ var userSchema = new Schema({
     userConversations	: [{ conversation: ObjectId, hallOfFame: Boolean }],
     groups              : [ObjectId],
     recentContacts		: [ObjectId],
-    password            : String
+    password            : String,
+    resetPassToken      : String,
+    resetPassExpiration : Date
 }, { collection: 'user' });
 
 // Conversation Schema

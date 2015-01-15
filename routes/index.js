@@ -1,5 +1,3 @@
-var resError = require('./messaging').resError;
-
 /*
  * GET home page.
  */
@@ -7,14 +5,24 @@ var resError = require('./messaging').resError;
 exports.testing = function(req, res){
 };
 
+/**
+ * Renders the signup page.
+ */
 exports.signup = function(req, res){
 	res.render('signup', { title: 'Express' });
 };
 
+/**
+ * Renders the landing page.
+ */
 exports.landing = function(req, res){
 	res.render('landing', { title: 'Express' });
 };
 
+/**
+ * Renders the home page with a list of conversations if the user is logged in.
+ * Otherwise, it redirects to the landing page.
+ */
 exports.home = function(req, res){
 	if (!req.user){
 		res.redirect('/landing');
@@ -26,14 +34,23 @@ exports.home = function(req, res){
 	}
 };
 
+/**
+ * Renders the login page.
+ */
 exports.login = function(req, res){
 	res.render('login', { title: 'Express' });
 };
 
+/**
+ * Renders the group view page.
+ */
 exports.group = function(req, res){
 	res.render('group', { title: 'Express' });
 };
 
+/**
+ * Renders the Hall of Fame page.
+ */
 exports.halloffame = function(req, res){
 	if (!req.user){
 		res.redirect('/login');
@@ -45,6 +62,9 @@ exports.halloffame = function(req, res){
 	}
 };
 
+/**
+ * Renders the conversation page.
+ */
 exports.conversation = function (req, res) {
 	if (!req.user || !req.user._id) {
 		res.render('error', {
@@ -96,6 +116,25 @@ exports.conversation = function (req, res) {
 	});
 }
 
+/**
+ * Renders the account settings page if the user is logged in.
+ */
+exports.account = function (req, res){
+	if (!req.user || !req.user._id) {
+		res.render('error', {
+			title: "Looks like you're not logged in!"
+		});
+		return;
+	} else{
+		res.render('account', {
+			user: req.user
+		});
+	}
+}
+
+/**
+ * Renders the 404 error page when the requested page is not found.
+ */
 exports.error404 = function(req, res) {
 	res.render('error', {
 		title: 'Sorry, we could not find what you were looking for.',
@@ -103,6 +142,9 @@ exports.error404 = function(req, res) {
 	})
 }
 
+/**
+ * Renders the 500 error page when there is an internal server error.
+ */
 exports.error500 = function(req, res) {
 	res.render('error', {
 		title: 'Eum, je ne sais quoi?',

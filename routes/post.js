@@ -45,7 +45,7 @@ exports.create = function(req, res){
 			} else {
 				// Add the post to the conversation's discussion and save
 			    Conversation.findOne( { _id: req.body.conversationId }, function (err, convo, count){
-			    	if (err){
+			    	if (err || !convo){
 						resError(res, "Could not find messages collection in DB.");
 					}
 					else{

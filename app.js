@@ -15,6 +15,7 @@ var user = require('./routes/user');
 var conversation = require('./routes/conversation');
 var group = require('./routes/group');
 var post = require('./routes/post');
+var password = require('./routes/password');
 var http = require('http').Server(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
@@ -111,6 +112,12 @@ app.get('/home', routes.home);
 app.get('/conversation/:id', routes.conversation);
 app.get('/halloffame', routes.halloffame);
 app.get('/group/:id', routes.group);
+app.get('/account', routes.account);
+
+app.get('/forgot', password.forgotPassword);
+app.post('/forgot', password.forgotPasswordRequest);
+app.get('/reset/:token', password.resetPasswordGet);
+app.post('/reset', password.resetPasswordPost);
 
 app.get('/all', conversation.getTestMessages);
 
