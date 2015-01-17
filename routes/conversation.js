@@ -5,6 +5,7 @@ var findUserById = require('./user').findById;
 var Utils = require('./../utils.js');
 var validator = require('validator');
 var Mailman = require('./../mailman.js').Mailman;
+var PostHandler = require('./post');
 
 Conversation = db.models.Conversation;
 User = db.models.User;
@@ -18,137 +19,161 @@ Post = db.models.Post;
  *      participant.
  */
 exports.create = function (req, res){
-	var iceBreakerId = req.body.iceBreaker;
+	if (!req.user || !req.user._id){
+		return resError(res, "Sorry, it looks like you're not logged in!");
+	}
 
-	User.findById(iceBreakerId, function (err, user){
-    	if (err || !user) resError(res, "Could not find user.");
+	var iceBreakerId = req.user._id;
+	var firstPostContent = req.body.content || '';
+	firstPostContent = firstPostContent.trim();
 
-    	/*
-    	 * We fill in the firstName, lastName here on the server, so the client request only needs
-    	 * to pass in an array of id/emails:
-		 * [id1, id2, ..., email1, id7, email2, id8]
-		 */
-		var idOrEmails = req.body.people || [];
-		var people = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') === -1});
-		var emails = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') !== -1});
+	// Validate first post content if it is non-empty.
+	if ((!validator.isLength(firstPostContent, 140, 10000) || validator.isNull(firstPostContent)) &&
+				firstPostContent.length > 0){
+		return resError(res, "Invalid content");
+	}
 
-		// Limit from 1 to 5 people, excluding oneself.
-		idOrEmails = idOrEmails.filter(function(idOrEmail){return idOrEmail !== iceBreakerId});
-		if (idOrEmails.length < 1 || idOrEmails.length > 5){
-			resError(res, "Keep it intimate!  Please have 2 to 6 people in a conversation.");
-		}
+	/*
+	 * We fill in the firstName, lastName here on the server, so the client request only needs
+	 * to pass in an array of id/emails:
+	 * [id1, id2, ..., email1, id7, email2, id8]
+	 */
+	var idOrEmails = req.body.people || [];
+	var people = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') === -1});
+	var emails = idOrEmails.filter(function(idOrEmail){return idOrEmail.indexOf('@') !== -1});
 
-		// TODO(erik): The emails that don't match up with users should really go into a list of
-		// invited-but-have-not-yet-signed-up global list somewhere. This may require some schema
-		// changes.
+	// Limit from 1 to 5 people, excluding oneself.
+	idOrEmails = idOrEmails.filter(function(idOrEmail){return idOrEmail !== iceBreakerId});
+	if (idOrEmails.length < 1 || idOrEmails.length > 5){
+		return resError(res, "Keep it intimate!  Please have 2 to 6 people in a conversation.");
+	}
 
-		// Add the ice breaker to the list of participants and de-duplicate.
-		people.push(iceBreakerId);
-		people = Utils.union(people);
+	// Add the ice breaker to the list of participants and de-duplicate.
+	people.push(iceBreakerId);
+	people = Utils.union(people);
 
-		// People data should fill in the first and last names of all the users.
-		var peopleData = [];
-		var jobs = people.map(function (entry, index){
-			return Q.promise(function (resolve, reject){
-				var fields = 'username firstName lastName';
+	// TODO(erik): The emails that don't match up with users should really go into a list of
+	// invited-but-have-not-yet-signed-up global list somewhere. This may require some schema
+	// changes.
 
-				User.findById(entry, fields, function (err, otherUser){
-					if (err || !otherUser){
-						reject('Could not find other user by id');
-					} else{
-						resolve(otherUser);
-						peopleData[index] = otherUser;
+	// People data should fill in the first and last names of all the users.
+	var peopleData = [];
+	var jobs = people.map(function (entry, index){
+		return Q.promise(function (resolve, reject){
+			var fields = 'username firstName lastName';
+
+			User.findById(entry, fields, function (err, otherUser){
+				if (err || !otherUser){
+					reject('Could not find other user by id');
+				} else{
+					resolve(otherUser);
+					peopleData[index] = otherUser;
+				}
+			});
+		});
+	});
+
+	// Wait for information to populate on all users before saving.
+	Q.allSettled(jobs)
+		.then(function (){
+			people = peopleData;
+
+			// Set all participants' thrilled flag to false.
+			for (var i = 0; i < people.length; i++){
+				people[i].isThrilled = false;
+			}
+
+			// Create the conversation.
+			var conversation = new Conversation({
+			    participants        : people,
+			    category            : validator.escape(req.body.category),
+			    question            : validator.escape(req.body.question),
+			    isGroup             : req.body.isGroup,
+			    lastEdited          : Date.now()
+			});
+
+			// Save the newly created conversation.
+			conversation.save(function (err, savedConvo){
+				if (err){
+					resError(res, err);
+					return;
+				}
+
+				var jobs = people.map(function (person, index){
+					var d = Q.defer();
+					User.findById(person._id, function (err, otherPerson){
+						if (err || !otherPerson){
+							d.reject();
+							return;
+						}
+
+						// Check that we aren't pushing in a duplicate conversation. If the user
+						// already has the conversation in his/her list, we simply continue.
+						var convoIds = otherPerson.userConversations.map(function (convo){
+							return convo.conversation;
+						});
+
+						if (convoIds.indexOf(conversation.id) === -1){
+							// If we are inviting someone to a conversation they have not seen.
+							otherPerson.userConversations.push({conversation: conversation.id, hallOfFame: false});
+							otherPerson.save(function (err){
+								if (err){
+									d.reject();
+									return;
+								}
+								d.resolve();	
+							});
+						} else{
+							// If we are inviting someone to a conversation they are already in.
+							d.resolve();
+						}
+					});
+					return d.promise;
+				});
+				Q.allSettled(jobs).then(function (){
+					// Redirect regardless of email success.
+			    	res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
+
+		    		// Send emails to notify participants of the new conversaion.
+					// This assumes that the 'username' field of a User is his/her email.
+					var peopleEmails = peopleData.map(function (person){
+						if (person) return person.username;
+					});
+
+					recipients = Utils.denullify(Utils.union(peopleEmails, emails));
+					var question = req.body.question;
+					var cleanQuestion = question;
+					if (question.length > 40){			// 40 char subject limit
+						cleanQuestion = question.slice(0, 40) + '...';
+					}
+
+					Mailman.sendMail({
+						recipients: recipients,
+						subject: 'GC: ' + cleanQuestion,
+						html: 'Hello,<br><br>Someone recently sought your opinion for this question:' +
+							'<h2>'+question+'</h2><br>What are your thoughts?<br>' +
+							'Continue the conversation on <a href="http://goldenconversations.heroku.com/">Golden Conversations</a>.',
+						callback: function(){
+							console.log('New conversation notification emails have been sent.');
+						}
+					});
+
+					// Create a post for the creator's first thoughts.
+					if (firstPostContent.length > 0){
+						var postOptions = {
+							user: req.user,
+							content: firstPostContent.trim(),
+							conversationId: savedConvo._id
+						};
+						PostHandler.createPost(postOptions, function (){
+							console.log('Created first post!');
+						}, function (err){
+							console.error('Error creating first post: ', err);
+						});
 					}
 				});
 			});
 		});
-
-		// Wait for information to populate on all users before saving.
-		Q.allSettled(jobs)
-			.then(function (){
-				people = peopleData;
-
-				for (var i = 0; i < people.length; i++){
-					people[i].isThrilled = false;
-				};
-
-				var conversation = new Conversation({
-				    participants        : people,
-				    category            : validator.escape(req.body.category),
-				    question            : validator.escape(req.body.question),
-				    isGroup             : req.body.isGroup,
-				    lastEdited          : Date.now()
-				});
-
-				// Save the newly created conversation.
-				conversation.save(function (err){
-					if (err){
-						resError(res, err);
-						return;
-					}
-
-					var jobs = people.map(function (person, index){
-						var d = Q.defer();
-						User.findById(person._id, function (err, otherPerson){
-							if (err || !otherPerson){
-								d.reject();
-								return;
-							}
-
-							// Check that we aren't pushing in a duplicate conversation. If the user
-							// already has the conversation in his/her list, we simply continue.
-							var convoIds = otherPerson.userConversations.map(function (convo){
-								return convo.conversation;
-							});
-
-							if (convoIds.indexOf(conversation.id) === -1){
-								// If we are inviting someone to a conversation they have not seen.
-								otherPerson.userConversations.push({conversation: conversation.id, hallOfFame: false});
-								otherPerson.save(function (err){
-									if (err){
-										d.reject();
-										return;
-									}
-									d.resolve();	
-								});
-							} else{
-								// If we are inviting someone to a conversation they are already in.
-								d.resolve();
-							}
-						});
-						return d.promise;
-					});
-					Q.allSettled(jobs).then(function (){
-						// Redirect regardless of email success.
-				    	res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
-
-			    		// Send emails to notify participants of the new conversaion.
-						// This assumes that the 'username' field of a User is his/her email.
-						var peopleEmails = peopleData.map(function (person){
-							if (person) return person.username;
-						});
-
-						recipients = Utils.denullify(Utils.union(peopleEmails, emails));
-						var question = req.body.question;
-						var cleanQuestion = question;
-						if (question.length > 40){			// 40 char subject limit
-							cleanQuestion = question.slice(0, 40) + '...';
-						}
-
-						Mailman.sendMail({
-							recipients: recipients,
-							subject: 'GC: ' + cleanQuestion,
-							html: 'Hello,<br><br>Someone recently sought your opinion for this question:' +
-								'<h2>'+question+'</h2><br>What are your thoughts?<br>' +
-								'Continue the conversation on <a href="http://goldenconversations.heroku.com/">Golden Conversations</a>.',
-							callback: function(){
-								console.log('New conversation notification emails have been sent.');
-							}
-						});
-					});
-				});
-			});
-	});
 };
 
 /**

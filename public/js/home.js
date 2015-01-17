@@ -68,19 +68,27 @@ $('#create-submit-button').click(function (){
 	var question = $('input.good_input').val();
 	$('#convo-creation-form button').attr('disabled', 'disabled');
 
+	var $form = $('#convo-creation-form');
 	$.post('/conversation/create', {
 		iceBreaker	        : userId,
 	    category            : 'funny',
 	    question            : question,
 	    people  			: addedPeople,
 	    isGroup             : false,
-	    _csrf				: token
+	    _csrf				: token,
+	    content 			: $form.find('[name=content]').val()
 	}, function (data) {
 		console.log(data);
 		if (data.success){
 			alert('your conversation is created!');
 			window.location.href = data.redirect;
+		} else{
+			alert(data.status);
+
+			// Re-enable the button after a callback.
+			$('#convo-creation-form button').attr('disabled', 'false');
 		}
+
 	});
 });
 
