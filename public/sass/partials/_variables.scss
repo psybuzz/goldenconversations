@@ -1,17 +1,9 @@
 
 // Font Stack 
-$serif-stack:    'Merriweather', Georgia, sans-serif;
-$sans-stack:  'Lato', 'Lucidia Grande', serif;
+$serif-stack:	'Merriweather', Georgia, sans-serif;
+$sans-stack:  	'Lato', 'Lucidia Grande', serif;
 
-// Colors
-// $dark-black: 	#181818;
-// $light-black: 	#383838;
-// $super-gray:	#555;
-// $dark-gray: 	#777;
-// $gray:			#999;
-// $light-gray: 	#D0D0D0;
-
-
+// Body Colors
 $dark-black: 	#181818;
 $light-black: 	#383838;
 $super-main:	#333;
@@ -20,11 +12,15 @@ $main:			#777;
 $light-main: 	#b0b0b0;
 $light-gray: 	#e0e0e0;
 
+// HOF Colors
+$gold-label: 		#FFFC00;
+$goldplated-label: 	#FFED99;
+
 // Button shadows
-$bottom-sub: 	rgba(gray, 0.8);
-$left-sub:		rgba(gray, 0.3); 	
+$bottom-sub: 		rgba(gray, 0.8);
+$left-sub:			rgba(gray, 0.3); 	
 $right-sub: 		rgba(gray, 0.2);
-$top-sub: 		rgba(white, 0.5);
+$top-sub: 			rgba(white, 0.5);
 
 $bottom-sub-dark: 	rgba(black, 0.7);
 $left-sub-dark:		rgba(gray, 1);
@@ -32,35 +28,35 @@ $right-sub-dark: 	rgba(gray, 0.7);
 $top-sub-dark: 		rgba(white, 0.45);
 
 $dark-bottom-main: 	rgba(black, 0.7);
-$dark-left-main:		rgba(gray, 0.69); 	
+$dark-left-main:	rgba(gray, 0.69); 	
 $dark-right-main: 	rgba(gray, 0.49);
-$dark-top-main: 		rgba(white, 0.6);
+$dark-top-main: 	rgba(white, 0.6);
 
-$dark-bottom-main-dark: 	rgba(black, 0.85);
-$dark-left-main-dark:		rgba(black, 0.3);
+$dark-bottom-main-dark: rgba(black, 0.85);
+$dark-left-main-dark:	rgba(black, 0.3);
 $dark-right-main-dark: 	rgba(black, 0.3);
-$dark-top-main-dark: 		rgba(white, 0.3);
+$dark-top-main-dark: 	rgba(white, 0.3);
 
 
-$light-box-shadow: rgba(black,0.12) 0px 3px 4px;
-$yellow: rgba(244, 238, 63, 0.5);
+$light-box-shadow: 	rgba(black,0.12) 0px 3px 4px;
+$yellow: 			rgba(244, 238, 63, 0.5);
 
 
 // Width & Height
 $shape-padding-left: 0;
-$max-display: 750px;
-$mid-display: 360px;
-$min-display: 280px;
-$super-wide: 1200px;
+$max-display: 		 750px;
+$mid-display: 		 360px;
+$min-display: 		 280px;
+$super-wide: 		 1200px;
 
-$homepage-width: 1000px;
+$homepage-width: 	 1000px;
 
-$min-height: 180px;
-$mobile-display: 300px;
-$mobile-arbitrary: 615px;
+$min-height: 		 180px;
+$mobile-display: 	 300px;
+$mobile-arbitrary: 	 615px;
 
-$messaging-width: 50%;
-$messaging-padding: 5rem;
+$messaging-width: 	 50%;
+$messaging-padding:  5rem;
 
 // Transition effect
 $default-trans: all 0.3s ease;

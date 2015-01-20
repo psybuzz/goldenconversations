@@ -2,15 +2,25 @@
 @import 'partials/variables';
 @import "compass";
 
-
+/* apply a natural box layout model to all elements, but allowing components to change */
 
 .wrapper {
+	h2 {
+		margin-bottom: 2rem;
+	}
 	.convo {
+		margin-top: 0.7rem;
+		padding: 1rem 1.3rem;
+		transition: background-color 0.35s;
+
+		h3	{
+			margin-top: 0;
+		}
 		.name {
 			margin-right: 0.75rem;
+			color: $main;
 		}
 	}
-	
 	.right-container {
 		color: $light-main;
 		font-size: 1rem;
@@ -23,7 +33,6 @@
 			font-size: 1rem;
 			font-weight: 400;
 		}
-
 		.hof-helper {
 			margin-bottom: 1rem;
 			h2 {
@@ -38,17 +47,58 @@
 				margin-top: 0.5rem;
 				width: 55%;
 				font-size: 0.9rem;
+				.hof-helper-emphasis {
+					font-style: italic;
+				}
 			}
 		}
-		.hof-stats {
-			h2 {
-				text-transform: uppercase;
-				font-size: 1.2rem;
-			}
+		.hof-stats h2 {
+			text-transform: uppercase;
+			font-size: 1.2rem;
 		}
 	}
 }
 
+#golden-conversations, #gold-plated-conversations {
+	h3 a {
+		color: $dark-black;
+	}
+	.name {
+		color: $dark-main;
+	}
+	.convo {
+		background-color: rgba($gold-label, 0.55);
+		&:hover {
+			background-color: rgba($gold-label, 0.78);
+		}
+	}
+}
+
+#gold-plated-conversations {
+	.convo {
+		background-color: rgba($goldplated-label, 0.55);
+		&:hover {
+			background-color: rgba($goldplated-label, 0.75);
+		}
+	}
+}
+
+#saved-conversations {
+	.convo {
+		padding: 0.5rem 1.3rem;
+	}
+}
+
 .gold-label {
-	
+	color: $dark-black;
+	font-size: 0.75rem;
+	font-weight: 400;
+	display: inline-block;
+	padding: 0.08rem 0.25rem;
+	background-color: $gold-label;
+}
+
+.goldplated-label {
+	@extend .gold-label;
+	background-color: $goldplated-label;
 }

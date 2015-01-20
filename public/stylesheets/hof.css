@@ -434,18 +434,34 @@ th {
   padding: 0;
 }
 
-/* line 9, ../sass/hof.scss */
+/* apply a natural box layout model to all elements, but allowing components to change */
+/* line 8, ../sass/hof.scss */
+.wrapper h2 {
+  margin-bottom: 2rem;
+}
+/* line 11, ../sass/hof.scss */
+.wrapper .convo {
+  margin-top: 0.7rem;
+  padding: 1rem 1.3rem;
+  transition: background-color 0.35s;
+}
+/* line 16, ../sass/hof.scss */
+.wrapper .convo h3 {
+  margin-top: 0;
+}
+/* line 19, ../sass/hof.scss */
 .wrapper .convo .name {
   margin-right: 0.75rem;
+  color: #777777;
 }
-/* line 14, ../sass/hof.scss */
+/* line 24, ../sass/hof.scss */
 .wrapper .right-container {
   color: #b0b0b0;
   font-size: 1rem;
   font-family: "Lato", "Lucidia Grande", serif;
   font-weight: 300;
 }
-/* line 19, ../sass/hof.scss */
+/* line 29, ../sass/hof.scss */
 .wrapper .right-container h2 {
   color: #b0b0b0;
   margin-top: 0;
@@ -453,28 +469,78 @@ th {
   font-size: 1rem;
   font-weight: 400;
 }
-/* line 27, ../sass/hof.scss */
+/* line 36, ../sass/hof.scss */
 .wrapper .right-container .hof-helper {
   margin-bottom: 1rem;
 }
-/* line 29, ../sass/hof.scss */
+/* line 38, ../sass/hof.scss */
 .wrapper .right-container .hof-helper h2 {
   text-transform: inherit;
   margin-top: 8.9rem;
 }
-/* line 32, ../sass/hof.scss */
+/* line 41, ../sass/hof.scss */
 .wrapper .right-container .hof-helper h2 span {
   text-transform: uppercase;
   font-size: 1.2rem;
 }
-/* line 37, ../sass/hof.scss */
+/* line 46, ../sass/hof.scss */
 .wrapper .right-container .hof-helper p {
   margin-top: 0.5rem;
   width: 55%;
   font-size: 0.9rem;
 }
-/* line 44, ../sass/hof.scss */
+/* line 50, ../sass/hof.scss */
+.wrapper .right-container .hof-helper p .hof-helper-emphasis {
+  font-style: italic;
+}
+/* line 55, ../sass/hof.scss */
 .wrapper .right-container .hof-stats h2 {
   text-transform: uppercase;
   font-size: 1.2rem;
+}
+
+/* line 63, ../sass/hof.scss */
+#golden-conversations h3 a, #gold-plated-conversations h3 a {
+  color: #181818;
+}
+/* line 66, ../sass/hof.scss */
+#golden-conversations .name, #gold-plated-conversations .name {
+  color: #555555;
+}
+/* line 69, ../sass/hof.scss */
+#golden-conversations .convo, #gold-plated-conversations .convo {
+  background-color: rgba(255, 252, 0, 0.55);
+}
+/* line 71, ../sass/hof.scss */
+#golden-conversations .convo:hover, #gold-plated-conversations .convo:hover {
+  background-color: rgba(255, 252, 0, 0.78);
+}
+
+/* line 78, ../sass/hof.scss */
+#gold-plated-conversations .convo {
+  background-color: rgba(255, 237, 153, 0.55);
+}
+/* line 80, ../sass/hof.scss */
+#gold-plated-conversations .convo:hover {
+  background-color: rgba(255, 237, 153, 0.75);
+}
+
+/* line 87, ../sass/hof.scss */
+#saved-conversations .convo {
+  padding: 0.5rem 1.3rem;
+}
+
+/* line 92, ../sass/hof.scss */
+.gold-label, .goldplated-label {
+  color: #181818;
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: inline-block;
+  padding: 0.08rem 0.25rem;
+  background-color: #fffc00;
+}
+
+/* line 101, ../sass/hof.scss */
+.goldplated-label {
+  background-color: #ffed99;
 }
