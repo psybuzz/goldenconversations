@@ -1,0 +1,54 @@
+@import 'partials/normalize';
+@import 'partials/variables';
+@import "compass";
+
+
+
+.wrapper {
+	.convo {
+		.name {
+			margin-right: 0.75rem;
+		}
+	}
+	
+	.right-container {
+		color: $light-main;
+		font-size: 1rem;
+		font-family: $sans-stack;
+		font-weight: 300;
+		h2 {
+			color: $light-main;
+			margin-top: 0;
+			margin-bottom: 0.5rem;
+			font-size: 1rem;
+			font-weight: 400;
+		}
+
+		.hof-helper {
+			margin-bottom: 1rem;
+			h2 {
+				text-transform: inherit;
+				margin-top: 8.9rem;
+				span {
+					text-transform: uppercase;
+					font-size: 1.2rem;
+				}
+			}
+			p {
+				margin-top: 0.5rem;
+				width: 55%;
+				font-size: 0.9rem;
+			}
+		}
+		.hof-stats {
+			h2 {
+				text-transform: uppercase;
+				font-size: 1.2rem;
+			}
+		}
+	}
+}
+
+.gold-label {
+	
+}
