@@ -86,7 +86,7 @@ $('#create-submit-button').click(function (){
 			alert(data.status);
 
 			// Re-enable the button after a callback.
-			$('#convo-creation-form button').attr('disabled', 'false');
+			$('#convo-creation-form button').attr('disabled', false);
 		}
 
 	});

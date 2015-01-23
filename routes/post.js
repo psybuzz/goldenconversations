@@ -81,15 +81,15 @@ function createPost(options, onSuccess, onFailure){
 		}
 
 		// Add the post to the conversation's discussion and save
-	    Conversation.findOne( { _id: conversationId }, function (err, convo, count){
-	    	if (err || !convo){
-	    		return onFailure("Could not find messages collection in DB.");
+		Conversation.findOne( { _id: conversationId }, function (err, convo, count){
+			if (err || !convo){
+				return onFailure("Could not find messages collection in DB.");
 			}
 
 			convo.discussion.push(post._id);
-	    	convo.save(function(err, message){
-	    		if (err){
-	    			onFailure("Could not save message into db.");
+			convo.save(function(err, message){
+				if (err){
+					onFailure("Could not save message into db.");
 				} else {
 					onSuccess();
 				}
@@ -123,7 +123,6 @@ function createPost(options, onSuccess, onFailure){
 					}
 				});
 			});
-		
 	    });
 	});
 }

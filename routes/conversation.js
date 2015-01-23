@@ -30,7 +30,7 @@ exports.create = function (req, res){
 	// Validate first post content if it is non-empty.
 	if ((!validator.isLength(firstPostContent, 140, 10000) || validator.isNull(firstPostContent)) &&
 				firstPostContent.length > 0){
-		return resError(res, "Invalid content");
+		return resError(res, "First post contents should be at least 140 characters!");
 	}
 
 	/*
@@ -132,9 +132,9 @@ exports.create = function (req, res){
 				});
 				Q.allSettled(jobs).then(function (){
 					// Redirect regardless of email success.
-			    	res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
+					res.send({status: 'OK', success: true, redirect: '/conversation/'+conversation._id});
 
-		    		// Send emails to notify participants of the new conversaion.
+					// Send emails to notify participants of the new conversaion.
 					// This assumes that the 'username' field of a User is his/her email.
 					var peopleEmails = peopleData.map(function (person){
 						if (person) return person.username;
