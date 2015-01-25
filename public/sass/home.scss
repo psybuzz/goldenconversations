@@ -118,9 +118,12 @@ html,body {
 		@media screen and (max-width: $max-display) {
 			position: static;
 		  	float: none;
-		  	width: 80%;
+		  	width: 98%;
 		  	margin-right: 2%;
 		  	box-sizing: border-box;
+		  	h2 {
+		  		margin-top: 1rem;
+		  	}
 		  	&:last-child a{
 		  		margin-top: 0;
 		  		margin-right: 0;
@@ -132,8 +135,6 @@ html,body {
 		float: right;
 		clear: right;
 		width: 100%;
-		
-		
 	}
 
 	.home-conversations {
