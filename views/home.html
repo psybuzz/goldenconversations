@@ -50,8 +50,11 @@
 		<div class="modal_close">x</div>
 		<form id="convo-creation-form">
 			<input type="hidden" name="_csrf" value={{csrfToken}} />
+			<input type="hidden" name="iceBreaker" value={{user._id}} />
+			<input type="hidden" name="category" value="funny" />
+			<input type="hidden" name="isGroup" value=false />
 			<div class="txt-fld">
-				<input class="good_input" name="Topic" type="text" placeholder="Topic" autocomplete="off" required>
+				<input class="good_input" name="question" type="text" placeholder="Topic" autocomplete="off" required>
 			</div>
 			<div class="txt-fld people-select">
 			  	<ul class="names-list"></ul>
