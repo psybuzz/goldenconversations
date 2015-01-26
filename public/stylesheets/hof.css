@@ -597,20 +597,26 @@ th {
 /* line 152, ../sass/hof.scss */
 #chart {
   margin-top: 0.25rem;
-  margin-left: -2rem;
+  margin-left: -1rem;
   display: inline-block;
 }
 /* line 156, ../sass/hof.scss */
 #chart g path:first-child {
-  fill: #fffc00 !important;
+  fill: #fffc00;
   opacity: 0.6;
 }
 /* line 160, ../sass/hof.scss */
 #chart g path:nth-child(2) {
-  fill: #ffed99 !important;
+  fill: #ffed99;
   opacity: 0.5;
 }
 /* line 164, ../sass/hof.scss */
 #chart g path:nth-child(3) {
-  fill: #e0e0e0 !important;
+  fill: #e0e0e0;
+}
+@media screen and (max-width: 1190px) and (min-width: 820px) {
+  /* line 152, ../sass/hof.scss */
+  #chart {
+    margin-left: 1.5rem;
+  }
 }

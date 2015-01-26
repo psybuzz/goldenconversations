@@ -151,18 +151,22 @@
 
 #chart {
 	margin-top: 0.25rem;
-	margin-left: -2rem;
+	margin-left: -1rem;
 	display: inline-block;
 	g path:first-child {
-		fill: $gold-label !important;
+		fill: $gold-label;
 		opacity: 0.6;
 	}
 	g path:nth-child(2) {
-		fill: $goldplated-label !important;
+		fill: $goldplated-label;
 		opacity: 0.5;
 	}
 	g path:nth-child(3) {
-		fill: $light-gray !important;
+		fill: $light-gray;
+	}
+
+	@media screen and (max-width: 1190px) and (min-width: 820px) {
+		margin-left: 1.5rem;
 	}
 }
 

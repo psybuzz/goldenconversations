@@ -118,7 +118,7 @@ html, body {
 }
 /* line 113, ../sass/home.scss */
 .wrapper .right-container {
-  position: fixed;
+  position: absolute;
   width: 33%;
   margin-left: 2%;
   right: 0;
