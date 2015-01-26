@@ -620,3 +620,9 @@ th {
     margin-left: 1.5rem;
   }
 }
+@media screen and (max-width: 700px) {
+  /* line 152, ../sass/hof.scss */
+  #chart {
+    margin-left: 3rem;
+  }
+}
