@@ -46,10 +46,15 @@
 				margin-top: 0.5rem;
 				width: 55%;
 				font-size: 0.9rem;
+				@media screen and (max-width: $max-display) {
+					width: 96%;
+					margin-right: 2%;
+				}
 				.hof-helper-emphasis {
 					font-style: italic;
 				}
 			}
+			
 		}
 		.hof-stats h2 {
 			text-transform: uppercase;
@@ -66,9 +71,9 @@
 		color: $dark-main;
 	}
 	.convo {
-		background-color: rgba($gold-label, 0.55);
+		background-color: rgba($gold-label, 0.45);
 		&:hover {
-			background-color: rgba($gold-label, 0.78);
+			background-color: rgba($gold-label, 0.88);
 		}
 	}
 }
@@ -101,3 +106,73 @@
 	@extend .gold-label;
 	background-color: $goldplated-label;
 }
+
+.stats-helper {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+}
+
+.hof-stats {
+	p {
+		font-size: 0.9rem;
+		margin-left: 1rem;
+		&:first-of-type {
+			margin-top: 0.5rem;
+		}
+	}
+	.regNum, .gpNum, .gNum {
+		position: relative;
+	}
+
+	.regNum:before {
+		content: "";
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: $light-gray;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		left: -1rem;
+		top: 0.25rem;
+	}
+
+	.gpNum:before {
+		@extend .regNum:before;
+		background-color: $goldplated-label;
+	}
+
+	.gNum:before {
+		@extend .regNum:before;
+		background-color: $gold-label;
+	}
+}
+
+#chart {
+	margin-top: 0.25rem;
+	margin-left: -1rem;
+	display: inline-block;
+	g path:first-child {
+		fill: $gold-label;
+		opacity: 0.6;
+	}
+	g path:nth-child(2) {
+		fill: $goldplated-label;
+		opacity: 0.5;
+	}
+	g path:nth-child(3) {
+		fill: $light-gray;
+	}
+
+	@media screen and (max-width: 1190px) and (min-width: 820px) {
+		margin-left: 1.5rem;
+	}
+
+	@media screen and (max-width: 700px) {
+		margin-left: 3rem;
+	}
+}
+
+
+

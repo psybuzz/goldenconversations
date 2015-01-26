@@ -445,23 +445,23 @@ th {
   padding: 1rem 1.3rem;
   transition: background-color 0.35s;
 }
-/* line 16, ../sass/hof.scss */
+/* line 15, ../sass/hof.scss */
 .wrapper .convo h3 {
   margin-top: 0;
 }
-/* line 19, ../sass/hof.scss */
+/* line 18, ../sass/hof.scss */
 .wrapper .convo .name {
   margin-right: 0.75rem;
   color: #777777;
 }
-/* line 24, ../sass/hof.scss */
+/* line 23, ../sass/hof.scss */
 .wrapper .right-container {
   color: #b0b0b0;
   font-size: 1rem;
   font-family: "Lato", "Lucidia Grande", serif;
   font-weight: 300;
 }
-/* line 29, ../sass/hof.scss */
+/* line 28, ../sass/hof.scss */
 .wrapper .right-container h2 {
   color: #b0b0b0;
   margin-top: 0;
@@ -469,68 +469,75 @@ th {
   font-size: 1rem;
   font-weight: 400;
 }
-/* line 36, ../sass/hof.scss */
+/* line 35, ../sass/hof.scss */
 .wrapper .right-container .hof-helper {
   margin-bottom: 1rem;
 }
-/* line 38, ../sass/hof.scss */
+/* line 37, ../sass/hof.scss */
 .wrapper .right-container .hof-helper h2 {
   text-transform: inherit;
   margin-top: 8.9rem;
 }
-/* line 41, ../sass/hof.scss */
+/* line 40, ../sass/hof.scss */
 .wrapper .right-container .hof-helper h2 span {
   text-transform: uppercase;
   font-size: 1.2rem;
 }
-/* line 46, ../sass/hof.scss */
+/* line 45, ../sass/hof.scss */
 .wrapper .right-container .hof-helper p {
   margin-top: 0.5rem;
   width: 55%;
   font-size: 0.9rem;
 }
-/* line 50, ../sass/hof.scss */
+@media screen and (max-width: 820px) {
+  /* line 45, ../sass/hof.scss */
+  .wrapper .right-container .hof-helper p {
+    width: 96%;
+    margin-right: 2%;
+  }
+}
+/* line 53, ../sass/hof.scss */
 .wrapper .right-container .hof-helper p .hof-helper-emphasis {
   font-style: italic;
 }
-/* line 55, ../sass/hof.scss */
+/* line 59, ../sass/hof.scss */
 .wrapper .right-container .hof-stats h2 {
   text-transform: uppercase;
   font-size: 1.2rem;
 }
 
-/* line 63, ../sass/hof.scss */
+/* line 67, ../sass/hof.scss */
 #golden-conversations h3 a, #gold-plated-conversations h3 a {
   color: #181818;
 }
-/* line 66, ../sass/hof.scss */
+/* line 70, ../sass/hof.scss */
 #golden-conversations .name, #gold-plated-conversations .name {
   color: #555555;
 }
-/* line 69, ../sass/hof.scss */
+/* line 73, ../sass/hof.scss */
 #golden-conversations .convo, #gold-plated-conversations .convo {
-  background-color: rgba(255, 252, 0, 0.55);
+  background-color: rgba(255, 252, 0, 0.45);
 }
-/* line 71, ../sass/hof.scss */
+/* line 75, ../sass/hof.scss */
 #golden-conversations .convo:hover, #gold-plated-conversations .convo:hover {
-  background-color: rgba(255, 252, 0, 0.78);
+  background-color: rgba(255, 252, 0, 0.88);
 }
 
-/* line 78, ../sass/hof.scss */
+/* line 82, ../sass/hof.scss */
 #gold-plated-conversations .convo {
   background-color: rgba(255, 237, 153, 0.55);
 }
-/* line 80, ../sass/hof.scss */
+/* line 84, ../sass/hof.scss */
 #gold-plated-conversations .convo:hover {
   background-color: rgba(255, 237, 153, 0.75);
 }
 
-/* line 87, ../sass/hof.scss */
+/* line 91, ../sass/hof.scss */
 #saved-conversations .convo {
   padding: 0.5rem 1.3rem;
 }
 
-/* line 92, ../sass/hof.scss */
+/* line 96, ../sass/hof.scss */
 .gold-label, .goldplated-label {
   color: #181818;
   font-size: 0.75rem;
@@ -540,7 +547,82 @@ th {
   background-color: #fffc00;
 }
 
-/* line 101, ../sass/hof.scss */
+/* line 105, ../sass/hof.scss */
 .goldplated-label {
   background-color: #ffed99;
+}
+
+/* line 110, ../sass/hof.scss */
+.stats-helper {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+}
+
+/* line 117, ../sass/hof.scss */
+.hof-stats p {
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+/* line 120, ../sass/hof.scss */
+.hof-stats p:first-of-type {
+  margin-top: 0.5rem;
+}
+/* line 124, ../sass/hof.scss */
+.hof-stats .regNum, .hof-stats .gpNum, .hof-stats .gNum {
+  position: relative;
+}
+/* line 128, ../sass/hof.scss */
+.hof-stats .regNum:before, .hof-stats .gpNum:before, .hof-stats .gNum:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #e0e0e0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  left: -1rem;
+  top: 0.25rem;
+}
+/* line 141, ../sass/hof.scss */
+.hof-stats .gpNum:before {
+  background-color: #ffed99;
+}
+/* line 146, ../sass/hof.scss */
+.hof-stats .gNum:before {
+  background-color: #fffc00;
+}
+
+/* line 152, ../sass/hof.scss */
+#chart {
+  margin-top: 0.25rem;
+  margin-left: -1rem;
+  display: inline-block;
+}
+/* line 156, ../sass/hof.scss */
+#chart g path:first-child {
+  fill: #fffc00;
+  opacity: 0.6;
+}
+/* line 160, ../sass/hof.scss */
+#chart g path:nth-child(2) {
+  fill: #ffed99;
+  opacity: 0.5;
+}
+/* line 164, ../sass/hof.scss */
+#chart g path:nth-child(3) {
+  fill: #e0e0e0;
+}
+@media screen and (max-width: 1190px) and (min-width: 820px) {
+  /* line 152, ../sass/hof.scss */
+  #chart {
+    margin-left: 1.5rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  /* line 152, ../sass/hof.scss */
+  #chart {
+    margin-left: 3rem;
+  }
 }

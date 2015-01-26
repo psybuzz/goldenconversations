@@ -3,13 +3,13 @@
   box-sizing: border-box;
   padding: 6rem;
 }
-@media screen and (max-height: 750px) {
+@media screen and (max-height: 820px) {
   /* line 4, ../sass/signup.scss */
   .wrapper {
     padding: 1rem;
   }
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 820px) {
   /* line 4, ../sass/signup.scss */
   .wrapper {
     padding: 0.5rem;
@@ -24,7 +24,7 @@
   width: 360px;
   margin: 0 auto;
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 820px) {
   /* line 19, ../sass/signup.scss */
   .wrapper .centered {
     width: 300px;
@@ -74,7 +74,7 @@
   font-weight: 300;
   width: 360px;
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 820px) {
   /* line 57, ../sass/signup.scss */
   .wrapper input {
     width: 300px;

@@ -442,7 +442,7 @@ body {
   font-family: "Merriweather", Georgia, sans-serif;
   box-sizing: border-box;
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 820px) {
   /* line 7, ../sass/main.scss */
   html,
   body {
