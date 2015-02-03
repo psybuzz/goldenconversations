@@ -273,6 +273,7 @@ button {
 		border: none;
 		border-bottom: 1px solid $light-main;
 		font-size: 1.5rem;
+		resize: none;
 	}
 	input {
 		height: 2.5rem;
@@ -428,6 +429,18 @@ button {
 		position: absolute;
 		bottom: 3rem;
 		right: 2.2rem;
+	}
+}
+
+#participantImage {
+	float: left;
+	width: 1.5rem;
+	margin-left: -2rem;
+	margin-top: -1.8rem;
+	opacity: 0.65;
+	&:hover {
+		transform:  rotate(720deg);
+		transition: transform 0.9s ease; 
 	}
 }
 
