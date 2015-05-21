@@ -3,7 +3,18 @@
 
 .wrapper {
 	box-sizing: border-box;
+	font-family: $sans-stack;
 	padding: 6rem;
+
+	a {
+		font-weight: 300;
+		color: $light-black;
+	}
+
+	.back-to-login {
+		margin-bottom: 2rem;
+		display: inline-block;
+	}
 		@media screen and (max-height: $max-display) {
 		  	padding: 1rem;
 		}
@@ -21,7 +32,17 @@
 		@media screen and (max-width: $max-display) {
 		  	width: $mobile-display;
 		}
+
+		span {
+			color: $main;
+		}
 	}
+
+	h2 {
+		color: $light-black;
+	}
+
+
 	h1 {
 		position: relative;
 		padding-bottom: 1.8rem;
@@ -42,6 +63,8 @@
 			font-weight: 700;
 		}
 	}
+
+
 
 	.forgot {
 		display: block;
@@ -140,4 +163,10 @@
 		}
 		margin-right: 0;
 	}	
+
+	input.submit {
+		@extend .login;
+		width: 100%;
+		margin-bottom: 2rem;
+	}
 }

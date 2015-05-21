@@ -5,6 +5,7 @@
 var $submitForm = $('#submitForm');
 var $emailField = $('#submitForm input[type="email"]');
 var $message = $('.message');
+var $initialHelper = $('.initial-helper');
 
 // Display a confirmation message when the email is submitted.
 $submitForm.submit(function (evt){
@@ -18,6 +19,7 @@ $submitForm.submit(function (evt){
 		if (data.success){
 			// Display the success message.
 			$message.html(STATUS_MESSAGE.SUCCESS);
+			$initialHelper.hide();
 			$submitForm.slideUp();
 		} else{
 			// Display the failure message.
